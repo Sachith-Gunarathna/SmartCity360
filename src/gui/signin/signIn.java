@@ -13,7 +13,7 @@ public class signIn extends javax.swing.JFrame {
 
     public signIn() {
         initComponents();
-        
+        jButton1.putClientProperty("FlatLaf.style", "arc:30");
         slideShow1.initSlideShow(new SMSlide1(), new SMSlide2(), new SMSlide3());
     }
 
@@ -26,6 +26,7 @@ public class signIn extends javax.swing.JFrame {
         slideShow1 = new components.slideShow();
         panelRound2 = new components.PanelRound();
         pictureBox1 = new components.PictureBox();
+        pictureBox4 = new components.PictureBox();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -37,6 +38,7 @@ public class signIn extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         companyLogo = new components.PictureBox();
         pictureBox2 = new components.PictureBox();
+        pictureBox3 = new components.PictureBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -47,69 +49,80 @@ public class signIn extends javax.swing.JFrame {
         panelRound1.setRoundTopLeft(20);
         panelRound1.setRoundTopRight(20);
 
-        panelRound2.setBackground(new java.awt.Color(255, 255, 255));
+        panelRound2.setBackground(new java.awt.Color(15, 23, 42));
         panelRound2.setRoundBottomLeft(20);
         panelRound2.setRoundBottomRight(20);
         panelRound2.setRoundTopLeft(20);
         panelRound2.setRoundTopRight(20);
         panelRound2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        pictureBox1.setImage(new javax.swing.ImageIcon(getClass().getResource("/resources/logo/smartcity360 logo.png"))); // NOI18N
+        pictureBox1.setImage(new javax.swing.ImageIcon(getClass().getResource("/resources/logo/smartcity360 logo white version.png"))); // NOI18N
         panelRound2.add(pictureBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(105, 6, 168, 138));
 
+        pictureBox4.setImage(new javax.swing.ImageIcon(getClass().getResource("/resources/img/icons8-security-lock-100.png"))); // NOI18N
+        panelRound2.add(pictureBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 200, 40, 40));
+
         jLabel1.setFont(new java.awt.Font("Franklin Gothic Medium", 1, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(15, 23, 42));
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("SIGN IN");
-        panelRound2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 360, -1));
+        jLabel1.setText("<html> <p> <center>WELCOME BACK,</center> </br><center>OPPRATOR</center></p></html>");
+        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        panelRound2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 370, 140));
 
         jLabel2.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(15, 23, 42));
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Username or Email ");
-        panelRound2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 346, -1));
+        panelRound2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 346, -1));
 
-        jSeparator1.setForeground(new java.awt.Color(15, 23, 42));
-        panelRound2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 350, 10));
+        jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
+        panelRound2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, 350, 10));
 
+        jTextField1.setBackground(new java.awt.Color(15, 23, 42));
         jTextField1.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 14)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(15, 23, 42));
+        jTextField1.setForeground(new java.awt.Color(255, 255, 255));
         jTextField1.setToolTipText("Enter your username or email");
         jTextField1.setBorder(null);
+        jTextField1.setCaretColor(new java.awt.Color(255, 255, 255));
+        jTextField1.setDisabledTextColor(new java.awt.Color(204, 204, 204));
         jTextField1.setFocusCycleRoot(true);
         jTextField1.setOpaque(true);
-        panelRound2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, 346, 37));
+        jTextField1.setSelectionColor(new java.awt.Color(56, 189, 248));
+        panelRound2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 346, 37));
 
         jLabel3.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(15, 23, 42));
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Password");
-        panelRound2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 346, -1));
+        panelRound2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, 346, -1));
 
-        jSeparator2.setForeground(new java.awt.Color(15, 23, 42));
-        panelRound2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, 350, 10));
+        jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
+        panelRound2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 400, 350, 10));
 
-        jPasswordField1.setForeground(new java.awt.Color(15, 23, 42));
+        jPasswordField1.setBackground(new java.awt.Color(15, 23, 42));
+        jPasswordField1.setForeground(new java.awt.Color(255, 255, 255));
         jPasswordField1.setToolTipText("Enter your password");
         jPasswordField1.setBorder(null);
         jPasswordField1.setCaretColor(new java.awt.Color(255, 255, 255));
+        jPasswordField1.setDisabledTextColor(new java.awt.Color(204, 204, 204));
         jPasswordField1.setOpaque(true);
-        panelRound2.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, 350, 30));
+        jPasswordField1.setSelectionColor(new java.awt.Color(56, 189, 248));
+        panelRound2.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, 350, 30));
 
-        jButton1.setBackground(new java.awt.Color(15, 23, 42));
+        jButton1.setBackground(new java.awt.Color(56, 189, 248));
         jButton1.setFont(new java.awt.Font("Franklin Gothic Medium", 1, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("LOGING");
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(this::jButton1ActionPerformed);
-        panelRound2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 450, 270, 40));
+        panelRound2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 440, 270, 40));
 
         jLabel4.setBackground(new java.awt.Color(15, 23, 42));
         jLabel4.setFont(new java.awt.Font("Microsoft YaHei", 0, 12)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(15, 23, 42));
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Powered by");
-        panelRound2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 510, 70, 20));
+        panelRound2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 500, 70, 30));
 
-        companyLogo.setImage(new javax.swing.ImageIcon(getClass().getResource("/resources/logo/Nexcentauri Black Edition.png"))); // NOI18N
-        panelRound2.add(companyLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 510, 110, 20));
+        companyLogo.setImage(new javax.swing.ImageIcon(getClass().getResource("/resources/logo/logo2.png"))); // NOI18N
+        panelRound2.add(companyLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 500, 110, 30));
 
         pictureBox2.setToolTipText("Close");
         pictureBox2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -120,6 +133,9 @@ public class signIn extends javax.swing.JFrame {
             }
         });
         panelRound2.add(pictureBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 10, 30, 30));
+
+        pictureBox3.setImage(new javax.swing.ImageIcon(getClass().getResource("/resources/img/icons8-bot-100.png"))); // NOI18N
+        panelRound2.add(pictureBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 60, 50));
 
         javax.swing.GroupLayout panelRound1Layout = new javax.swing.GroupLayout(panelRound1);
         panelRound1.setLayout(panelRound1Layout);
@@ -189,6 +205,8 @@ public class signIn extends javax.swing.JFrame {
     private components.PanelRound panelRound2;
     private components.PictureBox pictureBox1;
     private components.PictureBox pictureBox2;
+    private components.PictureBox pictureBox3;
+    private components.PictureBox pictureBox4;
     private components.slideShow slideShow1;
     // End of variables declaration//GEN-END:variables
 }

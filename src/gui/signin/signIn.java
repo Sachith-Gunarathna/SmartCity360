@@ -5,6 +5,7 @@ import components.SMSlide1;
 import components.SMSlide2;
 import components.SMSlide3;
 import gui.home.dashboard;
+import module.AppIcon;
 
 
 public class signIn extends javax.swing.JFrame {
@@ -13,6 +14,7 @@ public class signIn extends javax.swing.JFrame {
 
     public signIn() {
         initComponents();
+        AppIcon.setIcon(this);
         jButton1.putClientProperty("FlatLaf.style", "arc:30");
         slideShow1.initSlideShow(new SMSlide1(), new SMSlide2(), new SMSlide3());
     }

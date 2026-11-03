@@ -1,7 +1,13 @@
 package gui.home;
 
 import com.formdev.flatlaf.FlatLightLaf;
+import gui.citizenComplaint.citizenComplaint;
+import gui.dataStreamSecurity.dataStreamSecurity;
+import gui.policy.policy;
+import gui.smartStreetLights.smartStreetLights;
+import gui.smartZone.smartZone;
 import javax.swing.JButton;
+import module.AppIcon;
 
 
 public class dashboard extends javax.swing.JFrame {
@@ -11,13 +17,16 @@ public class dashboard extends javax.swing.JFrame {
     
     public dashboard() {
         initComponents();
-        
+        AppIcon.setIcon(this);
         JButton[] menuButton = {jButton1,jButton2,jButton3,jButton4,jButton5,jButton6};
         for(JButton btn : menuButton){
             if(btn != null){
                 btn.putClientProperty("FlatLaf.style", "arc:30");
             }
         }
+        
+        jDesktopPane1.removeAll();
+        jDesktopPane1.add(new Home()).setVisible(true);
         
     }
 
@@ -116,6 +125,7 @@ public class dashboard extends javax.swing.JFrame {
         jButton1.setToolTipText("Dashboard");
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.setIconTextGap(55);
+        jButton1.addActionListener(this::jButton1ActionPerformed);
 
         jButton2.setBackground(new java.awt.Color(30, 41, 59));
         jButton2.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 14)); // NOI18N
@@ -134,6 +144,7 @@ public class dashboard extends javax.swing.JFrame {
         jButton3.setToolTipText("Dashboard");
         jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton3.setIconTextGap(60);
+        jButton3.addActionListener(this::jButton3ActionPerformed);
 
         jButton4.setBackground(new java.awt.Color(30, 41, 59));
         jButton4.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 14)); // NOI18N
@@ -143,6 +154,7 @@ public class dashboard extends javax.swing.JFrame {
         jButton4.setToolTipText("Dashboard");
         jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton4.setIconTextGap(20);
+        jButton4.addActionListener(this::jButton4ActionPerformed);
 
         jButton5.setBackground(new java.awt.Color(30, 41, 59));
         jButton5.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 14)); // NOI18N
@@ -152,6 +164,7 @@ public class dashboard extends javax.swing.JFrame {
         jButton5.setToolTipText("Dashboard");
         jButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton5.setIconTextGap(20);
+        jButton5.addActionListener(this::jButton5ActionPerformed);
 
         jButton6.setBackground(new java.awt.Color(30, 41, 59));
         jButton6.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 14)); // NOI18N
@@ -161,6 +174,7 @@ public class dashboard extends javax.swing.JFrame {
         jButton6.setToolTipText("Dashboard");
         jButton6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton6.setIconTextGap(90);
+        jButton6.addActionListener(this::jButton6ActionPerformed);
 
         javax.swing.GroupLayout sideNavBarLayout = new javax.swing.GroupLayout(sideNavBar);
         sideNavBar.setLayout(sideNavBarLayout);
@@ -274,8 +288,34 @@ public class dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_shutdownButtonMouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        jDesktopPane1.removeAll();
+        jDesktopPane1.add(new dataStreamSecurity()).setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        jDesktopPane1.removeAll();
+        jDesktopPane1.add(new Home()).setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+       jDesktopPane1.removeAll();
+       jDesktopPane1.add(new smartZone()).setVisible(true);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        jDesktopPane1.removeAll();
+        jDesktopPane1.add(new citizenComplaint()).setVisible(true);
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        jDesktopPane1.removeAll();
+        jDesktopPane1.add(new smartStreetLights()).setVisible(true);
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+       jDesktopPane1.removeAll();
+       jDesktopPane1.add(new policy()).setVisible(true);
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     public static void main(String args[]) {
         FlatLightLaf.setup();

@@ -1,6 +1,6 @@
 package gui.signin;
 
-import com.formdev.flatlaf.FlatLightLaf;
+import com.formdev.flatlaf.FlatDarkLaf;
 import components.SMSlide1;
 import components.SMSlide2;
 import components.SMSlide3;
@@ -187,8 +187,7 @@ public class signIn extends javax.swing.JFrame {
  
     public static void main(String args[]) {
         
-        FlatLightLaf.setup();
-        
+        FlatDarkLaf.setup();
         java.awt.EventQueue.invokeLater(() -> new signIn().setVisible(true));
     }
 

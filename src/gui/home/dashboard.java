@@ -1,6 +1,6 @@
 package gui.home;
 
-import com.formdev.flatlaf.FlatLightLaf;
+import com.formdev.flatlaf.FlatDarkLaf;
 import gui.citizenComplaint.citizenComplaint;
 import gui.dataStreamSecurity.dataStreamSecurity;
 import gui.policy.policy;
@@ -318,7 +318,7 @@ public class dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     public static void main(String args[]) {
-        FlatLightLaf.setup();
+        FlatDarkLaf.setup();
         java.awt.EventQueue.invokeLater(() -> new dashboard().setVisible(true));
     }
 

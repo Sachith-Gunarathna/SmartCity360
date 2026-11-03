@@ -1,6 +1,7 @@
 package gui.home;
 
 import com.formdev.flatlaf.FlatLightLaf;
+import javax.swing.JButton;
 
 
 public class dashboard extends javax.swing.JFrame {
@@ -10,6 +11,14 @@ public class dashboard extends javax.swing.JFrame {
     
     public dashboard() {
         initComponents();
+        
+        JButton[] menuButton = {jButton1,jButton2,jButton3,jButton4,jButton5,jButton6};
+        for(JButton btn : menuButton){
+            if(btn != null){
+                btn.putClientProperty("FlatLaf.style", "arc:30");
+            }
+        }
+        
     }
 
    
@@ -24,28 +33,17 @@ public class dashboard extends javax.swing.JFrame {
         companyLogo = new components.PictureBox();
         jLabel1 = new javax.swing.JLabel();
         line02 = new components.PanelRound();
-        dataStreamsAndSecurityButton = new components.PanelRound();
-        jLabel3 = new javax.swing.JLabel();
-        pictureBox3 = new components.PictureBox();
-        smartCityZonesButton = new components.PanelRound();
-        jLabel4 = new javax.swing.JLabel();
-        pictureBox1 = new components.PictureBox();
-        citizenComplaintsButton = new components.PanelRound();
-        jLabel5 = new javax.swing.JLabel();
-        pictureBox2 = new components.PictureBox();
-        smartStreetLightsButton = new components.PanelRound();
-        jLabel6 = new javax.swing.JLabel();
-        pictureBox4 = new components.PictureBox();
-        cityPoliciesAndRulesButton = new components.PanelRound();
-        jLabel7 = new javax.swing.JLabel();
-        pictureBox5 = new components.PictureBox();
-        systemReportsButton = new components.PanelRound();
-        jLabel2 = new javax.swing.JLabel();
-        pictureBox6 = new components.PictureBox();
         shutdownButton = new components.PictureBox();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
         jDesktopPane1 = new javax.swing.JDesktopPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         panelRound2.setBackground(new java.awt.Color(255, 255, 255));
         panelRound2.setRoundBottomLeft(30);
@@ -53,15 +51,15 @@ public class dashboard extends javax.swing.JFrame {
         panelRound2.setRoundTopLeft(30);
         panelRound2.setRoundTopRight(30);
 
-        sideNavBar.setBackground(new java.awt.Color(204, 204, 255));
+        sideNavBar.setBackground(new java.awt.Color(11, 15, 25));
         sideNavBar.setRoundBottomLeft(30);
         sideNavBar.setRoundBottomRight(30);
         sideNavBar.setRoundTopLeft(30);
         sideNavBar.setRoundTopRight(30);
 
-        logo.setImage(new javax.swing.ImageIcon(getClass().getResource("/resources/logo/smartcity360 logo.png"))); // NOI18N
+        logo.setImage(new javax.swing.ImageIcon(getClass().getResource("/resources/logo/smartcity360 logo white version.png"))); // NOI18N
 
-        line01.setBackground(new java.awt.Color(11, 15, 25));
+        line01.setBackground(new java.awt.Color(255, 255, 255));
         line01.setRoundBottomLeft(10);
         line01.setRoundBottomRight(10);
         line01.setRoundTopLeft(10);
@@ -78,12 +76,13 @@ public class dashboard extends javax.swing.JFrame {
             .addGap(0, 9, Short.MAX_VALUE)
         );
 
-        companyLogo.setImage(new javax.swing.ImageIcon(getClass().getResource("/resources/logo/Nexcentauri Black Edition.png"))); // NOI18N
+        companyLogo.setImage(new javax.swing.ImageIcon(getClass().getResource("/resources/logo/logo2.png"))); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Microsoft YaHei", 0, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Powered by");
 
-        line02.setBackground(new java.awt.Color(11, 15, 25));
+        line02.setBackground(new java.awt.Color(255, 255, 255));
         line02.setRoundBottomLeft(10);
         line02.setRoundBottomRight(10);
         line02.setRoundTopLeft(10);
@@ -100,209 +99,68 @@ public class dashboard extends javax.swing.JFrame {
             .addGap(0, 9, Short.MAX_VALUE)
         );
 
-        dataStreamsAndSecurityButton.setBackground(new java.awt.Color(56, 189, 248));
-        dataStreamsAndSecurityButton.setPreferredSize(new java.awt.Dimension(146, 55));
-        dataStreamsAndSecurityButton.setRoundBottomLeft(15);
-        dataStreamsAndSecurityButton.setRoundBottomRight(15);
-        dataStreamsAndSecurityButton.setRoundTopLeft(15);
-        dataStreamsAndSecurityButton.setRoundTopRight(15);
-
-        jLabel3.setFont(new java.awt.Font("Verdana", 1, 15)); // NOI18N
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("<html>\n<p>Data Streams </br>&  </br>Security</p>\n</html>");
-        jLabel3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
-        pictureBox3.setImage(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/icons8-ptz-camera-48.png"))); // NOI18N
-
-        javax.swing.GroupLayout dataStreamsAndSecurityButtonLayout = new javax.swing.GroupLayout(dataStreamsAndSecurityButton);
-        dataStreamsAndSecurityButton.setLayout(dataStreamsAndSecurityButtonLayout);
-        dataStreamsAndSecurityButtonLayout.setHorizontalGroup(
-            dataStreamsAndSecurityButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dataStreamsAndSecurityButtonLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pictureBox3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        dataStreamsAndSecurityButtonLayout.setVerticalGroup(
-            dataStreamsAndSecurityButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
-            .addGroup(dataStreamsAndSecurityButtonLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pictureBox3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        smartCityZonesButton.setBackground(new java.awt.Color(56, 189, 248));
-        smartCityZonesButton.setRoundBottomLeft(15);
-        smartCityZonesButton.setRoundBottomRight(15);
-        smartCityZonesButton.setRoundTopLeft(15);
-        smartCityZonesButton.setRoundTopRight(15);
-
-        jLabel4.setFont(new java.awt.Font("Verdana", 1, 15)); // NOI18N
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("<html>\n<p>Smart City </br> Zones</p>\n</html>");
-        jLabel4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
-        pictureBox1.setImage(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/icons8-company-48.png"))); // NOI18N
-
-        javax.swing.GroupLayout smartCityZonesButtonLayout = new javax.swing.GroupLayout(smartCityZonesButton);
-        smartCityZonesButton.setLayout(smartCityZonesButtonLayout);
-        smartCityZonesButtonLayout.setHorizontalGroup(
-            smartCityZonesButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, smartCityZonesButtonLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pictureBox1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        smartCityZonesButtonLayout.setVerticalGroup(
-            smartCityZonesButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel4)
-            .addGroup(smartCityZonesButtonLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pictureBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        citizenComplaintsButton.setBackground(new java.awt.Color(56, 189, 248));
-        citizenComplaintsButton.setRoundBottomLeft(15);
-        citizenComplaintsButton.setRoundBottomRight(15);
-        citizenComplaintsButton.setRoundTopLeft(15);
-        citizenComplaintsButton.setRoundTopRight(15);
-
-        jLabel5.setFont(new java.awt.Font("Verdana", 1, 15)); // NOI18N
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("<html>\n<p>Citizen </br> Complaints</p></html>");
-        jLabel5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
-        pictureBox2.setImage(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/icons8-complaints-48.png"))); // NOI18N
-
-        javax.swing.GroupLayout citizenComplaintsButtonLayout = new javax.swing.GroupLayout(citizenComplaintsButton);
-        citizenComplaintsButton.setLayout(citizenComplaintsButtonLayout);
-        citizenComplaintsButtonLayout.setHorizontalGroup(
-            citizenComplaintsButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, citizenComplaintsButtonLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pictureBox2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        citizenComplaintsButtonLayout.setVerticalGroup(
-            citizenComplaintsButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(citizenComplaintsButtonLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pictureBox2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-
-        smartStreetLightsButton.setBackground(new java.awt.Color(56, 189, 248));
-        smartStreetLightsButton.setRoundBottomLeft(15);
-        smartStreetLightsButton.setRoundBottomRight(15);
-        smartStreetLightsButton.setRoundTopLeft(15);
-        smartStreetLightsButton.setRoundTopRight(15);
-
-        jLabel6.setFont(new java.awt.Font("Verdana", 1, 15)); // NOI18N
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("<html>\n<p>Smart </br> Street </br> Lights</p>\n</html>");
-        jLabel6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
-        pictureBox4.setImage(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/icons8-street-light-48.png"))); // NOI18N
-
-        javax.swing.GroupLayout smartStreetLightsButtonLayout = new javax.swing.GroupLayout(smartStreetLightsButton);
-        smartStreetLightsButton.setLayout(smartStreetLightsButtonLayout);
-        smartStreetLightsButtonLayout.setHorizontalGroup(
-            smartStreetLightsButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, smartStreetLightsButtonLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(pictureBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(53, 53, 53))
-        );
-        smartStreetLightsButtonLayout.setVerticalGroup(
-            smartStreetLightsButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
-            .addGroup(smartStreetLightsButtonLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pictureBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        cityPoliciesAndRulesButton.setBackground(new java.awt.Color(56, 189, 248));
-        cityPoliciesAndRulesButton.setPreferredSize(new java.awt.Dimension(0, 55));
-        cityPoliciesAndRulesButton.setRoundBottomLeft(15);
-        cityPoliciesAndRulesButton.setRoundBottomRight(15);
-        cityPoliciesAndRulesButton.setRoundTopLeft(15);
-        cityPoliciesAndRulesButton.setRoundTopRight(15);
-
-        jLabel7.setFont(new java.awt.Font("Verdana", 1, 15)); // NOI18N
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("<html>\n<p>City </br> Policies </br> & </br> Rules</p>\n</html>");
-        jLabel7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
-        pictureBox5.setImage(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/icons8-rules-48.png"))); // NOI18N
-
-        javax.swing.GroupLayout cityPoliciesAndRulesButtonLayout = new javax.swing.GroupLayout(cityPoliciesAndRulesButton);
-        cityPoliciesAndRulesButton.setLayout(cityPoliciesAndRulesButtonLayout);
-        cityPoliciesAndRulesButtonLayout.setHorizontalGroup(
-            cityPoliciesAndRulesButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cityPoliciesAndRulesButtonLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pictureBox5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        cityPoliciesAndRulesButtonLayout.setVerticalGroup(
-            cityPoliciesAndRulesButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel7)
-            .addGroup(cityPoliciesAndRulesButtonLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pictureBox5, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        systemReportsButton.setBackground(new java.awt.Color(56, 189, 248));
-        systemReportsButton.setPreferredSize(new java.awt.Dimension(164, 55));
-        systemReportsButton.setRoundBottomLeft(15);
-        systemReportsButton.setRoundBottomRight(15);
-        systemReportsButton.setRoundTopLeft(15);
-        systemReportsButton.setRoundTopRight(15);
-
-        jLabel2.setFont(new java.awt.Font("Verdana", 1, 15)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("<html>\n<p>System </br> Reports</p>\n</html>");
-        jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
-        pictureBox6.setImage(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/icons8-reports-48.png"))); // NOI18N
-
-        javax.swing.GroupLayout systemReportsButtonLayout = new javax.swing.GroupLayout(systemReportsButton);
-        systemReportsButton.setLayout(systemReportsButtonLayout);
-        systemReportsButtonLayout.setHorizontalGroup(
-            systemReportsButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, systemReportsButtonLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pictureBox6, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        systemReportsButtonLayout.setVerticalGroup(
-            systemReportsButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
-            .addGroup(systemReportsButtonLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pictureBox6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        shutdownButton.setToolTipText("Shutdown");
+        shutdownButton.setToolTipText("Close");
         shutdownButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         shutdownButton.setImage(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/icons8-shutdown-52.png"))); // NOI18N
+        shutdownButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                shutdownButtonMouseClicked(evt);
+            }
+        });
+
+        jButton1.setBackground(new java.awt.Color(30, 41, 59));
+        jButton1.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/icons8-dashboard-48.png"))); // NOI18N
+        jButton1.setText("Dashboard");
+        jButton1.setToolTipText("Dashboard");
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.setIconTextGap(55);
+
+        jButton2.setBackground(new java.awt.Color(30, 41, 59));
+        jButton2.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 14)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/icons8-ptz-camera-48.png"))); // NOI18N
+        jButton2.setText("Data Stream Security ");
+        jButton2.setToolTipText("Dashboard");
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton2.addActionListener(this::jButton2ActionPerformed);
+
+        jButton3.setBackground(new java.awt.Color(30, 41, 59));
+        jButton3.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 14)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/icons8-company-48.png"))); // NOI18N
+        jButton3.setText("Smart Zone");
+        jButton3.setToolTipText("Dashboard");
+        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton3.setIconTextGap(60);
+
+        jButton4.setBackground(new java.awt.Color(30, 41, 59));
+        jButton4.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 14)); // NOI18N
+        jButton4.setForeground(new java.awt.Color(255, 255, 255));
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/icons8-complaints-48.png"))); // NOI18N
+        jButton4.setText("Citizen Complaint");
+        jButton4.setToolTipText("Dashboard");
+        jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton4.setIconTextGap(20);
+
+        jButton5.setBackground(new java.awt.Color(30, 41, 59));
+        jButton5.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 14)); // NOI18N
+        jButton5.setForeground(new java.awt.Color(255, 255, 255));
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/icons8-street-light-48.png"))); // NOI18N
+        jButton5.setText("Smart Street Lights");
+        jButton5.setToolTipText("Dashboard");
+        jButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton5.setIconTextGap(20);
+
+        jButton6.setBackground(new java.awt.Color(30, 41, 59));
+        jButton6.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 14)); // NOI18N
+        jButton6.setForeground(new java.awt.Color(255, 255, 255));
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/icons8-rules-48.png"))); // NOI18N
+        jButton6.setText("Policy");
+        jButton6.setToolTipText("Dashboard");
+        jButton6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton6.setIconTextGap(90);
 
         javax.swing.GroupLayout sideNavBarLayout = new javax.swing.GroupLayout(sideNavBar);
         sideNavBar.setLayout(sideNavBarLayout);
@@ -311,32 +169,27 @@ public class dashboard extends javax.swing.JFrame {
             .addGroup(sideNavBarLayout.createSequentialGroup()
                 .addGroup(sideNavBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(sideNavBarLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(sideNavBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(dataStreamsAndSecurityButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
-                            .addComponent(logo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(line01, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(line02, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(smartCityZonesButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(citizenComplaintsButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(sideNavBarLayout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addGroup(sideNavBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(smartStreetLightsButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(cityPoliciesAndRulesButton, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)))
-                    .addGroup(sideNavBarLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(systemReportsButton, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE))
-                    .addGroup(sideNavBarLayout.createSequentialGroup()
                         .addGap(28, 28, 28)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(companyLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(sideNavBarLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(sideNavBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(logo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(line01, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(line02, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
             .addGroup(sideNavBarLayout.createSequentialGroup()
-                .addGap(68, 68, 68)
-                .addComponent(shutdownButton, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(77, 77, 77)
+                .addComponent(shutdownButton, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         sideNavBarLayout.setVerticalGroup(
@@ -347,20 +200,20 @@ public class dashboard extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(line01, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(dataStreamsAndSecurityButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(smartCityZonesButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(citizenComplaintsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(smartStreetLightsButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cityPoliciesAndRulesButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(systemReportsButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(shutdownButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(shutdownButton, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(line02, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(sideNavBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -405,18 +258,24 @@ public class dashboard extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(panelRound2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(panelRound2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(panelRound2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        setSize(new java.awt.Dimension(1373, 746));
+        setSize(new java.awt.Dimension(1366, 737));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void shutdownButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_shutdownButtonMouseClicked
+       System.exit(0);
+    }//GEN-LAST:event_shutdownButtonMouseClicked
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     public static void main(String args[]) {
         FlatLightLaf.setup();
@@ -424,32 +283,20 @@ public class dashboard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private components.PanelRound citizenComplaintsButton;
-    private components.PanelRound cityPoliciesAndRulesButton;
     private components.PictureBox companyLogo;
-    private components.PanelRound dataStreamsAndSecurityButton;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private components.PanelRound line01;
     private components.PanelRound line02;
     private components.PictureBox logo;
     private components.PanelRound panelRound2;
-    private components.PictureBox pictureBox1;
-    private components.PictureBox pictureBox2;
-    private components.PictureBox pictureBox3;
-    private components.PictureBox pictureBox4;
-    private components.PictureBox pictureBox5;
-    private components.PictureBox pictureBox6;
     private components.PictureBox shutdownButton;
     private components.PanelRound sideNavBar;
-    private components.PanelRound smartCityZonesButton;
-    private components.PanelRound smartStreetLightsButton;
-    private components.PanelRound systemReportsButton;
     // End of variables declaration//GEN-END:variables
 }

@@ -72,7 +72,7 @@ public class signIn extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Username or Email ");
-        panelRound2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 346, -1));
+        panelRound2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 120, -1));
 
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
         panelRound2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, 350, 10));

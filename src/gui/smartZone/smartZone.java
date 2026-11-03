@@ -109,17 +109,17 @@ public class smartZone extends javax.swing.JInternalFrame {
         jLabel26.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
         jLabel26.setForeground(new java.awt.Color(255, 255, 255));
         jLabel26.setText("System Activity Log");
-        panelRound4.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 710, 40));
+        panelRound4.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 690, 40));
 
         jSeparator2.setBackground(new java.awt.Color(255, 255, 255));
-        panelRound4.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 710, 10));
+        panelRound4.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 690, 10));
 
         jTextArea1.setBackground(new java.awt.Color(30, 41, 59));
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane3.setViewportView(jTextArea1);
 
-        panelRound4.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 710, 130));
+        panelRound4.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 690, 130));
 
         panelRound1.add(panelRound4, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 510, 710, 190));
 
@@ -180,7 +180,7 @@ public class smartZone extends javax.swing.JInternalFrame {
         });
         jScrollPane2.setViewportView(jTable1);
 
-        panelRound6.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 710, 240));
+        panelRound6.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 690, 240));
 
         panelRound1.add(panelRound6, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 70, 710, 310));
 
@@ -205,7 +205,7 @@ public class smartZone extends javax.swing.JInternalFrame {
         jButton1.setText("Shutdown Power (Emergency)");
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(this::jButton1ActionPerformed);
-        panelRound8.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 60, 350, 40));
+        panelRound8.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 60, 340, 40));
 
         jButton2.setBackground(new java.awt.Color(56, 189, 248));
         jButton2.setFont(new java.awt.Font("Franklin Gothic Medium", 1, 20)); // NOI18N

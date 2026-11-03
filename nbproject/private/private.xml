@@ -3,19 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/SmartCity360/src/gui/dashboard.java</file>
-            <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/SmartCity360/src/components/ComboSuggestionUI.java</file>
-            <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/SmartCity360/src/components/ComboBoxSuggestion.java</file>
-            <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/SmartCity360/src/components/ModernScrollBarUI.java</file>
-            <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/SmartCity360/src/components/PanelRound.java</file>
-            <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/SmartCity360/src/components/ScrollBarCustom.java</file>
-            <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/SmartCity360/src/components/Slide1.java</file>
-            <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/SmartCity360/src/components/Slide2.java</file>
-            <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/SmartCity360/src/components/Slide3.java</file>
-            <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/SmartCity360/src/components/eventPagination.java</file>
-            <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/SmartCity360/src/components/pagination.java</file>
-            <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/SmartCity360/src/components/slideShow.java</file>
-            <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/SmartCity360/src/components/PictureBox.java</file>
+            <file>file:/C:/Users/ASUS/Documents/GitHub/SmartCity360/src/gui/home/dashboard.java</file>
+            <file>file:/C:/Users/ASUS/Documents/GitHub/SmartCity360/src/gui/home/Home.java</file>
+            <file>file:/C:/Users/ASUS/Documents/GitHub/SmartCity360/src/gui/dataStreamSecurity/dataStreamSecurity.java</file>
         </group>
     </open-files>
 </project-private>

@@ -2,6 +2,7 @@ package gui.citizenComplaint;
 
 import gui.dataStreamSecurity.*;
 import javax.swing.BorderFactory;
+import javax.swing.JTextField;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 
 public class citizenComplaint extends javax.swing.JInternalFrame {
@@ -14,6 +15,13 @@ public class citizenComplaint extends javax.swing.JInternalFrame {
         ui.setNorthPane(null);
         
         jButton1.putClientProperty("FlatLaf.style", "arc:30");
+        
+        JTextField[] textField = {jTextField1,jTextField2};
+        for(JTextField tf : textField){
+            if(tf != null){
+                tf.putClientProperty("FlatLaf.style", "arc:15");
+            }
+        }
     }
 
     @SuppressWarnings("unchecked")

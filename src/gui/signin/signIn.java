@@ -82,6 +82,7 @@ public class signIn extends javax.swing.JFrame {
         jTextField1.setBackground(new java.awt.Color(15, 23, 42));
         jTextField1.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 14)); // NOI18N
         jTextField1.setForeground(new java.awt.Color(255, 255, 255));
+        jTextField1.setText("admin@nexcentauri.com");
         jTextField1.setToolTipText("Enter your username or email");
         jTextField1.setBorder(null);
         jTextField1.setCaretColor(new java.awt.Color(255, 255, 255));
@@ -101,6 +102,7 @@ public class signIn extends javax.swing.JFrame {
 
         jPasswordField1.setBackground(new java.awt.Color(15, 23, 42));
         jPasswordField1.setForeground(new java.awt.Color(255, 255, 255));
+        jPasswordField1.setText("123456789");
         jPasswordField1.setToolTipText("Enter your password");
         jPasswordField1.setBorder(null);
         jPasswordField1.setCaretColor(new java.awt.Color(255, 255, 255));

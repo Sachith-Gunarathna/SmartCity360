@@ -2,6 +2,7 @@ package gui.policy;
 
 import gui.dataStreamSecurity.*;
 import javax.swing.BorderFactory;
+import javax.swing.JTextField;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 
 public class policy extends javax.swing.JInternalFrame {
@@ -14,6 +15,13 @@ public class policy extends javax.swing.JInternalFrame {
         ui.setNorthPane(null);
         
         jButton1.putClientProperty("FlatLaf.style", "arc:30");
+        
+        JTextField[] textfield = {jTextField1,jTextField2,jTextField3};
+        for(JTextField textF : textfield){
+            if(textF != null){
+                textF.putClientProperty("FlatLaf.style", "arc:15");
+            }
+        }
     }
 
     @SuppressWarnings("unchecked")

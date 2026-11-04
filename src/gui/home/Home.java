@@ -2,6 +2,7 @@ package gui.home;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JTextArea;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 
 public class Home extends javax.swing.JInternalFrame {
@@ -19,6 +20,7 @@ public class Home extends javax.swing.JInternalFrame {
                 jbtn.putClientProperty("FlatLaf.style", "arc:20");
             } 
         }
+
          jProgressBar1.putClientProperty("FlatLaf.style", "arc:20");
     }
 
@@ -61,16 +63,14 @@ public class Home extends javax.swing.JInternalFrame {
         smartSwitch1 = new components.SmartSwitch();
         smartSwitch2 = new components.SmartSwitch();
         smartSwitch3 = new components.SmartSwitch();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        roundTextAreaPanel1 = new components.RoundTextAreaPanel();
         panelRound7 = new components.PanelRound();
         jLabel18 = new javax.swing.JLabel();
         panelRound13 = new components.PanelRound();
         panelRound14 = new components.PanelRound();
         panelRound18 = new components.PanelRound();
         panelRound19 = new components.PanelRound();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        jTextArea3 = new javax.swing.JTextArea();
+        roundTextAreaPanel2 = new components.RoundTextAreaPanel();
         panelRound9 = new components.PanelRound();
         jLabel26 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
@@ -91,15 +91,14 @@ public class Home extends javax.swing.JInternalFrame {
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
-        panelRound21 = new components.PanelRound();
+        smartStreetMap1 = new components.SmartStreetMap();
         panelRound10 = new components.PanelRound();
         jLabel27 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
         jButton4 = new javax.swing.JButton();
         jLabel29 = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
+        roundTextAreaPanel3 = new components.RoundTextAreaPanel();
 
         setPreferredSize(new java.awt.Dimension(1124, 725));
 
@@ -427,16 +426,7 @@ public class Home extends javax.swing.JInternalFrame {
 
         smartSwitch3.setText("smartSwitch1");
         panelRound6.add(smartSwitch3, new org.netbeans.lib.awtextra.AbsoluteConstraints(437, 150, 71, -1));
-
-        jTextArea2.setBackground(new java.awt.Color(30, 41, 59));
-        jTextArea2.setColumns(20);
-        jTextArea2.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        jTextArea2.setForeground(new java.awt.Color(255, 255, 255));
-        jTextArea2.setText("[11:15:02] EM_82931 // 42.18 kW");
-        jTextArea2.setCaretColor(new java.awt.Color(255, 255, 255));
-        jScrollPane3.setViewportView(jTextArea2);
-
-        panelRound6.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 290, 160));
+        panelRound6.add(roundTextAreaPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, -1, 160));
 
         panelRound1.add(panelRound6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 89, 540, 250));
 
@@ -523,16 +513,7 @@ public class Home extends javax.swing.JInternalFrame {
         );
 
         panelRound7.add(panelRound19, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 50, 100, 90));
-
-        jTextArea3.setBackground(new java.awt.Color(30, 41, 59));
-        jTextArea3.setColumns(20);
-        jTextArea3.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        jTextArea3.setForeground(new java.awt.Color(255, 255, 255));
-        jTextArea3.setText("Submit Noise Copalint...");
-        jTextArea3.setCaretColor(new java.awt.Color(255, 255, 255));
-        jScrollPane4.setViewportView(jTextArea3);
-
-        panelRound7.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 530, 90));
+        panelRound7.add(roundTextAreaPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, -1, 80));
 
         panelRound1.add(panelRound7, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 90, 550, 250));
 
@@ -699,57 +680,52 @@ public class Home extends javax.swing.JInternalFrame {
         jLabel19.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(255, 255, 255));
         jLabel19.setText("Smart Lights Monitor");
-        panelRound8.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 530, 20));
+        panelRound8.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 530, 30));
 
         jLabel20.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 14)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(255, 255, 255));
         jLabel20.setText("Flyweight Shared :");
-        panelRound8.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 40, 140, 20));
+        panelRound8.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 200, 140, 20));
 
         jLabel21.setFont(new java.awt.Font("Franklin Gothic Medium", 1, 18)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(255, 255, 255));
         jLabel21.setText("3 Model Types");
-        panelRound8.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 60, 140, 20));
+        panelRound8.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 220, 140, 20));
 
         jLabel22.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 14)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(255, 255, 255));
         jLabel22.setText("Individual Lights :");
-        panelRound8.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 90, 120, 20));
+        panelRound8.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 250, 120, 20));
 
         jLabel23.setFont(new java.awt.Font("Franklin Gothic Medium", 1, 18)); // NOI18N
         jLabel23.setForeground(new java.awt.Color(0, 153, 0));
         jLabel23.setText("ON (Dim)");
-        panelRound8.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 160, 120, 20));
+        panelRound8.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 320, 120, 20));
 
         jLabel24.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 14)); // NOI18N
         jLabel24.setForeground(new java.awt.Color(255, 255, 255));
         jLabel24.setText("Status :");
-        panelRound8.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 140, 120, 20));
+        panelRound8.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 300, 120, 20));
 
         jLabel25.setFont(new java.awt.Font("Franklin Gothic Medium", 1, 18)); // NOI18N
         jLabel25.setForeground(new java.awt.Color(255, 255, 255));
         jLabel25.setText("10,000");
-        panelRound8.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 110, 120, 20));
+        panelRound8.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 270, 120, 20));
 
-        panelRound21.setRoundBottomLeft(10);
-        panelRound21.setRoundBottomRight(10);
-        panelRound21.setRoundTopLeft(10);
-        panelRound21.setRoundTopRight(10);
-
-        javax.swing.GroupLayout panelRound21Layout = new javax.swing.GroupLayout(panelRound21);
-        panelRound21.setLayout(panelRound21Layout);
-        panelRound21Layout.setHorizontalGroup(
-            panelRound21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 350, Short.MAX_VALUE)
+        javax.swing.GroupLayout smartStreetMap1Layout = new javax.swing.GroupLayout(smartStreetMap1);
+        smartStreetMap1.setLayout(smartStreetMap1Layout);
+        smartStreetMap1Layout.setHorizontalGroup(
+            smartStreetMap1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 380, Short.MAX_VALUE)
         );
-        panelRound21Layout.setVerticalGroup(
-            panelRound21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 140, Short.MAX_VALUE)
+        smartStreetMap1Layout.setVerticalGroup(
+            smartStreetMap1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
         );
 
-        panelRound8.add(panelRound21, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 350, 140));
+        panelRound8.add(smartStreetMap1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 380, 300));
 
-        panelRound1.add(panelRound8, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 350, 550, 230));
+        panelRound1.add(panelRound8, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 350, 550, 360));
 
         panelRound10.setBackground(new java.awt.Color(30, 41, 59));
         panelRound10.setRoundBottomLeft(15);
@@ -766,17 +742,7 @@ public class Home extends javax.swing.JInternalFrame {
         jLabel28.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 14)); // NOI18N
         jLabel28.setForeground(new java.awt.Color(255, 255, 255));
         jLabel28.setText("80 dB");
-        panelRound10.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 70, 80, 20));
-
-        jTextArea1.setBackground(new java.awt.Color(30, 41, 59));
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextArea1.setForeground(new java.awt.Color(255, 255, 255));
-        jTextArea1.setText("Simulation : Base (50) + Zone (10) + Event (20)");
-        jTextArea1.setCaretColor(new java.awt.Color(255, 255, 255));
-        jScrollPane1.setViewportView(jTextArea1);
-
-        panelRound10.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 880, 50));
+        panelRound10.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 70, 70, 20));
 
         jButton4.setBackground(new java.awt.Color(56, 189, 248));
         jButton4.setFont(new java.awt.Font("Franklin Gothic Medium", 1, 18)); // NOI18N
@@ -784,7 +750,7 @@ public class Home extends javax.swing.JInternalFrame {
         jButton4.setText("Execute/Evaluate");
         jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton4.addActionListener(this::jButton4ActionPerformed);
-        panelRound10.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 20, -1, 40));
+        panelRound10.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 10, -1, 40));
 
         jLabel29.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 14)); // NOI18N
         jLabel29.setForeground(new java.awt.Color(255, 255, 255));
@@ -794,9 +760,10 @@ public class Home extends javax.swing.JInternalFrame {
         jLabel30.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 14)); // NOI18N
         jLabel30.setForeground(new java.awt.Color(255, 255, 255));
         jLabel30.setText("Total Allowed :");
-        panelRound10.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 70, 90, 20));
+        panelRound10.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 70, -1, 20));
+        panelRound10.add(roundTextAreaPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, 50));
 
-        panelRound1.add(panelRound10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 590, 1100, 120));
+        panelRound1.add(panelRound10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 590, 540, 120));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -806,7 +773,7 @@ public class Home extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelRound1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelRound1, javax.swing.GroupLayout.DEFAULT_SIZE, 710, Short.MAX_VALUE)
         );
 
         pack();
@@ -866,13 +833,7 @@ public class Home extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JProgressBar jProgressBar1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextArea jTextArea3;
     private components.PanelRound panelRound1;
     private components.PanelRound panelRound10;
     private components.PanelRound panelRound11;
@@ -884,7 +845,6 @@ public class Home extends javax.swing.JInternalFrame {
     private components.PanelRound panelRound18;
     private components.PanelRound panelRound19;
     private components.PanelRound panelRound2;
-    private components.PanelRound panelRound21;
     private components.PanelRound panelRound22;
     private components.PanelRound panelRound23;
     private components.PanelRound panelRound24;
@@ -902,6 +862,10 @@ public class Home extends javax.swing.JInternalFrame {
     private components.PictureBox pictureBox2;
     private components.PictureBox pictureBox3;
     private components.PictureBox pictureBox4;
+    private components.RoundTextAreaPanel roundTextAreaPanel1;
+    private components.RoundTextAreaPanel roundTextAreaPanel2;
+    private components.RoundTextAreaPanel roundTextAreaPanel3;
+    private components.SmartStreetMap smartStreetMap1;
     private components.SmartSwitch smartSwitch1;
     private components.SmartSwitch smartSwitch2;
     private components.SmartSwitch smartSwitch3;

@@ -30,16 +30,15 @@ public class smartZone extends javax.swing.JInternalFrame {
         panelRound7 = new components.PanelRound();
         jLabel26 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        smartTerminal1 = new components.SmartTerminal();
         jLabel21 = new javax.swing.JLabel();
         panelRound5 = new components.PanelRound();
         jLabel29 = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
         panelRound6 = new components.PanelRound();
         jLabel25 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        smartZoneTable1 = new components.SmartZoneTable();
         panelRound8 = new components.PanelRound();
         panelRound9 = new components.PanelRound();
         jButton1 = new javax.swing.JButton();
@@ -66,9 +65,10 @@ public class smartZone extends javax.swing.JInternalFrame {
         jLabel19.setText("Zone Hierarchy");
         panelRound2.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 330, 40));
 
+        jScrollPane4.setBorder(null);
         jScrollPane4.setViewportView(smartZoneTree2);
 
-        panelRound2.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(-6, 60, 380, 630));
+        panelRound2.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(-6, 60, 380, 610));
 
         panelRound1.add(panelRound2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 370, 680));
 
@@ -113,13 +113,7 @@ public class smartZone extends javax.swing.JInternalFrame {
 
         jSeparator2.setBackground(new java.awt.Color(255, 255, 255));
         panelRound4.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 690, 10));
-
-        jTextArea1.setBackground(new java.awt.Color(30, 41, 59));
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane3.setViewportView(jTextArea1);
-
-        panelRound4.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 690, 130));
+        panelRound4.add(smartTerminal1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 690, 130));
 
         panelRound1.add(panelRound4, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 510, 710, 190));
 
@@ -159,28 +153,9 @@ public class smartZone extends javax.swing.JInternalFrame {
         jLabel25.setText("Zone Power Usage");
         panelRound6.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 710, 40));
 
-        jTable1.setAutoCreateRowSorter(true);
-        jTable1.setBackground(new java.awt.Color(30, 41, 59));
-        jTable1.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 14)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+        jScrollPane1.setViewportView(smartZoneTable1);
 
-            },
-            new String [] {
-                "Zone Name", "Type", "Status", "Live Usage (kW)", "Daily Limit (kWh)", "Alerts", ""
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane2.setViewportView(jTable1);
-
-        panelRound6.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 690, 240));
+        panelRound6.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 690, 260));
 
         panelRound1.add(panelRound6, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 70, 710, 310));
 
@@ -257,12 +232,9 @@ public class smartZone extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel30;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextArea jTextArea1;
     private components.PanelRound panelRound1;
     private components.PanelRound panelRound2;
     private components.PanelRound panelRound3;
@@ -272,6 +244,8 @@ public class smartZone extends javax.swing.JInternalFrame {
     private components.PanelRound panelRound7;
     private components.PanelRound panelRound8;
     private components.PanelRound panelRound9;
+    private components.SmartTerminal smartTerminal1;
+    private components.SmartZoneTable smartZoneTable1;
     private components.SmartZoneTree smartZoneTree2;
     // End of variables declaration//GEN-END:variables
 }

@@ -44,13 +44,16 @@ public class Home extends javax.swing.JInternalFrame {
         panelRound6 = new components.PanelRound();
         jLabel7 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        panelRound12 = new components.PanelRound();
         jProgressBar1 = new javax.swing.JProgressBar();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        smartSwitch1 = new components.SmartSwitch();
+        smartSwitch2 = new components.SmartSwitch();
+        smartSwitch3 = new components.SmartSwitch();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTextArea2 = new javax.swing.JTextArea();
         panelRound7 = new components.PanelRound();
         jLabel18 = new javax.swing.JLabel();
         panelRound13 = new components.PanelRound();
@@ -362,51 +365,36 @@ public class Home extends javax.swing.JInternalFrame {
         panelRound6.setRoundBottomRight(15);
         panelRound6.setRoundTopLeft(15);
         panelRound6.setRoundTopRight(15);
+        panelRound6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel7.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Security Streams");
+        panelRound6.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, -1, 30));
 
         jLabel14.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 14)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setText("Simulation");
-
-        jScrollPane1.setBackground(new java.awt.Color(30, 41, 59));
-        jScrollPane1.setBorder(null);
-
-        panelRound12.setBackground(new java.awt.Color(37, 49, 71));
-        panelRound12.setRoundBottomLeft(10);
-        panelRound12.setRoundBottomRight(10);
-        panelRound12.setRoundTopLeft(10);
-        panelRound12.setRoundTopRight(10);
-
-        javax.swing.GroupLayout panelRound12Layout = new javax.swing.GroupLayout(panelRound12);
-        panelRound12.setLayout(panelRound12Layout);
-        panelRound12Layout.setHorizontalGroup(
-            panelRound12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 299, Short.MAX_VALUE)
-        );
-        panelRound12Layout.setVerticalGroup(
-            panelRound12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 166, Short.MAX_VALUE)
-        );
-
-        jScrollPane1.setViewportView(panelRound12);
+        panelRound6.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 42, 131, 30));
 
         jProgressBar1.setForeground(new java.awt.Color(56, 189, 248));
         jProgressBar1.setValue(50);
+        panelRound6.add(jProgressBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(321, 60, 213, 12));
 
         jLabel15.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 14)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("Encryption");
+        panelRound6.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(323, 78, 108, 30));
 
         jLabel16.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 14)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(255, 255, 255));
         jLabel16.setText("Authentication");
+        panelRound6.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(323, 114, 108, 30));
 
         jLabel17.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 14)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
         jLabel17.setText("Compression");
+        panelRound6.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(323, 150, 108, 30));
 
         jButton1.setBackground(new java.awt.Color(56, 189, 248));
         jButton1.setFont(new java.awt.Font("Franklin Gothic Medium", 1, 18)); // NOI18N
@@ -414,55 +402,26 @@ public class Home extends javax.swing.JInternalFrame {
         jButton1.setText("Secure & Send");
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(this::jButton1ActionPerformed);
+        panelRound6.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(323, 204, 211, 40));
 
-        javax.swing.GroupLayout panelRound6Layout = new javax.swing.GroupLayout(panelRound6);
-        panelRound6.setLayout(panelRound6Layout);
-        panelRound6Layout.setHorizontalGroup(
-            panelRound6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelRound6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panelRound6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelRound6Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(panelRound6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelRound6Layout.createSequentialGroup()
-                                .addGroup(panelRound6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
-                                    .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(80, 80, 80))
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(panelRound6Layout.createSequentialGroup()
-                        .addGroup(panelRound6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
-        );
-        panelRound6Layout.setVerticalGroup(
-            panelRound6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelRound6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelRound6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelRound6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
-                    .addGroup(panelRound6Layout.createSequentialGroup()
-                        .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
-        );
+        smartSwitch1.setText("smartSwitch1");
+        panelRound6.add(smartSwitch1, new org.netbeans.lib.awtextra.AbsoluteConstraints(437, 80, 71, -1));
+
+        smartSwitch2.setText("smartSwitch1");
+        panelRound6.add(smartSwitch2, new org.netbeans.lib.awtextra.AbsoluteConstraints(437, 116, 71, -1));
+
+        smartSwitch3.setText("smartSwitch1");
+        panelRound6.add(smartSwitch3, new org.netbeans.lib.awtextra.AbsoluteConstraints(437, 150, 71, -1));
+
+        jTextArea2.setBackground(new java.awt.Color(30, 41, 59));
+        jTextArea2.setColumns(20);
+        jTextArea2.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jTextArea2.setForeground(new java.awt.Color(255, 255, 255));
+        jTextArea2.setRows(5);
+        jTextArea2.setText("[11:15:02] EM_82931 // 42.18 kW");
+        jScrollPane3.setViewportView(jTextArea2);
+
+        panelRound6.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 290, 160));
 
         panelRound1.add(panelRound6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 89, 540, 250));
 
@@ -883,12 +842,12 @@ public class Home extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JProgressBar jProgressBar1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTextArea jTextArea2;
     private components.PanelRound panelRound1;
     private components.PanelRound panelRound10;
     private components.PanelRound panelRound11;
-    private components.PanelRound panelRound12;
     private components.PanelRound panelRound13;
     private components.PanelRound panelRound14;
     private components.PanelRound panelRound15;
@@ -916,5 +875,8 @@ public class Home extends javax.swing.JInternalFrame {
     private components.PictureBox pictureBox2;
     private components.PictureBox pictureBox3;
     private components.PictureBox pictureBox4;
+    private components.SmartSwitch smartSwitch1;
+    private components.SmartSwitch smartSwitch2;
+    private components.SmartSwitch smartSwitch3;
     // End of variables declaration//GEN-END:variables
 }

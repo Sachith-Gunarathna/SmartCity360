@@ -25,11 +25,13 @@ public class dataStreamSecurity extends javax.swing.JInternalFrame {
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
+        smartSwitch1 = new components.SmartSwitch();
+        smartSwitch2 = new components.SmartSwitch();
+        smartSwitch3 = new components.SmartSwitch();
         jLabel20 = new javax.swing.JLabel();
         panelRound3 = new components.PanelRound();
         jLabel21 = new javax.swing.JLabel();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        jTextArea3 = new javax.swing.JTextArea();
+        smartTerminal1 = new components.SmartTerminal();
         panelRound4 = new components.PanelRound();
         jLabel22 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -58,11 +60,10 @@ public class dataStreamSecurity extends javax.swing.JInternalFrame {
         jLabel18.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(255, 255, 255));
         jLabel18.setText("Compression (GZIP Data)");
-        panelRound2.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 180, 230, 20));
+        panelRound2.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 180, 230, 30));
 
         jButton1.setBackground(new java.awt.Color(56, 189, 248));
         jButton1.setFont(new java.awt.Font("Franklin Gothic Medium", 1, 24)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Secure & Send");
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(this::jButton1ActionPerformed);
@@ -76,12 +77,21 @@ public class dataStreamSecurity extends javax.swing.JInternalFrame {
         jLabel24.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
         jLabel24.setForeground(new java.awt.Color(255, 255, 255));
         jLabel24.setText("Encryption (AES-256)");
-        panelRound2.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, 230, 20));
+        panelRound2.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, 230, 30));
 
         jLabel25.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 16)); // NOI18N
         jLabel25.setForeground(new java.awt.Color(255, 255, 255));
         jLabel25.setText("Authentication (HMAC Sign)");
-        panelRound2.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 130, 230, 20));
+        panelRound2.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 130, 230, 30));
+
+        smartSwitch1.setText("smartSwitch1");
+        panelRound2.add(smartSwitch1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 70, -1));
+
+        smartSwitch2.setText("smartSwitch1");
+        panelRound2.add(smartSwitch2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 70, -1));
+
+        smartSwitch3.setText("smartSwitch1");
+        panelRound2.add(smartSwitch3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 70, -1));
 
         panelRound1.add(panelRound2, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 90, 390, 320));
 
@@ -101,12 +111,7 @@ public class dataStreamSecurity extends javax.swing.JInternalFrame {
         jLabel21.setForeground(new java.awt.Color(255, 255, 255));
         jLabel21.setText("System Wrapper Output");
         panelRound3.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 420, 20));
-
-        jTextArea3.setColumns(20);
-        jTextArea3.setRows(5);
-        jScrollPane4.setViewportView(jTextArea3);
-
-        panelRound3.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 1080, 230));
+        panelRound3.add(smartTerminal1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 1080, 230));
 
         panelRound1.add(panelRound3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 430, 1100, 280));
 
@@ -122,8 +127,12 @@ public class dataStreamSecurity extends javax.swing.JInternalFrame {
         jLabel22.setText("Raw Data Stream");
         panelRound4.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 420, 20));
 
+        jTextArea2.setBackground(new java.awt.Color(30, 41, 59));
         jTextArea2.setColumns(20);
+        jTextArea2.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jTextArea2.setForeground(new java.awt.Color(255, 255, 255));
         jTextArea2.setRows(5);
+        jTextArea2.setText("[11:15:02] EM_82931 // 42.18 kW");
         jScrollPane3.setViewportView(jTextArea2);
 
         panelRound4.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 670, 260));
@@ -160,12 +169,14 @@ public class dataStreamSecurity extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextArea jTextArea3;
     private components.PanelRound panelRound1;
     private components.PanelRound panelRound2;
     private components.PanelRound panelRound3;
     private components.PanelRound panelRound4;
+    private components.SmartSwitch smartSwitch1;
+    private components.SmartSwitch smartSwitch2;
+    private components.SmartSwitch smartSwitch3;
+    private components.SmartTerminal smartTerminal1;
     // End of variables declaration//GEN-END:variables
 }

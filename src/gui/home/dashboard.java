@@ -206,7 +206,7 @@ public class dashboard extends javax.swing.JFrame {
                 shutdownButtonMouseClicked(evt);
             }
         });
-        sideNavBar.add(shutdownButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(81, 576, 55, 60));
+        sideNavBar.add(shutdownButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 580, 50, 50));
 
         jButton1.setBackground(new java.awt.Color(30, 41, 59));
         jButton1.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 14)); // NOI18N

@@ -406,7 +406,7 @@ public class SmartStreetMap extends JPanel {
         g2.rotate(angle);
         g2.setFont(new Font("Segoe UI", Font.PLAIN, 13));
         g2.setColor(new Color(226, 232, 240));
-        g2.drawString("Newton Street", -42, -5);
+        g2.drawString("Narammala Road", -42, -5);
         g2.setTransform(old);
     }
 

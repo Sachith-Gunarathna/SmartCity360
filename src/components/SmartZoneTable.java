@@ -20,7 +20,7 @@ public class SmartZoneTable extends JTable {
     private JTextArea boundLogArea;
     private JLabel boundTotalLabel;
 
-    // Switch එක Off කර නැවත On කරන විට මුල් kW අගය ලබා ගැනීමට
+    
     private final int[] defaultUsages = {345, 120, 85, 60, 35, 45};
 
     public SmartZoneTable() {
@@ -56,9 +56,7 @@ public class SmartZoneTable extends JTable {
         setupMouseInteractions();
     }
 
-    /**
-     * System Activity Log (JTextArea) එකක් සහ Total Usage (JLabel) එකක් සම්බන්ධ කිරීමට
-     */
+    
     public void bindOutputs(JTextArea logArea, JLabel totalUsageLabel) {
         this.boundLogArea = logArea;
         this.boundTotalLabel = totalUsageLabel;
@@ -111,7 +109,7 @@ public class SmartZoneTable extends JTable {
         setModel(model);
     }
 
-    // --- Switch එක සහ තිත් 3 (...) Click කිරීම හඳුනාගන්නා Mouse Listener එක ---
+    
     private void setupMouseInteractions() {
         MouseAdapter mouseAdapter = new MouseAdapter() {
             @Override
@@ -127,17 +125,17 @@ public class SmartZoneTable extends JTable {
                 Rectangle cellRect = getCellRect(row, col, false);
                 int relX = e.getX() - cellRect.x;
 
-                // 1. Column 2 (Status Switch) Click කළ විට On/Off කිරීම
+               
                 if (col == 2) {
                     togglePowerSwitch(row);
                 } 
-                // 2. Column 5 (Alerts සහ තිත් 3) Click කළ විට
+               
                 else if (col == 5) {
-                    // දකුණු පස ඇති තිත් 3 (...) මත Click කළ විට Popup Menu එක පෙන්වීම
+                    
                     if (relX >= cellRect.width - 35) {
                         showRowActionMenu(e.getComponent(), e.getX(), e.getY(), row);
                     } 
-                    // වම් පස ඇති රතු Alert ත්‍රිකෝණය මත Click කළ විට Alert එක ඉවත් කිරීම
+                    
                     else if (relX <= 32) {
                         boolean currentAlert = Boolean.TRUE.equals(getValueAt(row, 5));
                         if (currentAlert) {
@@ -173,7 +171,7 @@ public class SmartZoneTable extends JTable {
         addMouseMotionListener(mouseAdapter);
     }
 
-    // --- Switch එක On/Off කරන Method එක ---
+    
     public void togglePowerSwitch(int row) {
         if (row < 0 || row >= getRowCount()) {
             return;
@@ -199,7 +197,7 @@ public class SmartZoneTable extends JTable {
         repaint();
     }
 
-    // --- තිත් 3 (...) Click කළ විට විවෘත වන Dark Theme Popup Menu එක ---
+    
     private void showRowActionMenu(Component invoker, int x, int y, int row) {
         String zoneName = getValueAt(row, 0).toString();
         boolean isPowerOn = Boolean.TRUE.equals(getValueAt(row, 2));
@@ -209,14 +207,14 @@ public class SmartZoneTable extends JTable {
         menu.setBackground(new Color(15, 23, 42));
         menu.setBorder(new LineBorder(new Color(56, 189, 248, 120), 1, true));
 
-        // 1. Power Switch On/Off Item
+        
         JMenuItem itemToggle = createStyledMenuItem(
                 isPowerOn ? "Turn Power OFF" : "Turn Power ON",
                 new Color(56, 189, 248)
         );
         itemToggle.addActionListener(ev -> togglePowerSwitch(row));
 
-        // 2. Report Usage Item
+       
         JMenuItem itemReport = createStyledMenuItem("Report Zone Usage", new Color(226, 232, 240));
         itemReport.addActionListener(ev -> {
             String usage = getValueAt(row, 3).toString();
@@ -228,7 +226,7 @@ public class SmartZoneTable extends JTable {
                     "Zone Usage Report", JOptionPane.INFORMATION_MESSAGE);
         });
 
-        // 3. Clear or Trigger Alert Item
+        
         JMenuItem itemAlert = createStyledMenuItem(
                 hasAlert ? "Clear / Resolve Alert" : "Flag Warning Alert",
                 new Color(250, 204, 21)
@@ -241,7 +239,7 @@ public class SmartZoneTable extends JTable {
             repaint();
         });
 
-        // 4. Emergency Shutdown Item
+        
         JMenuItem itemShutdown = createStyledMenuItem("Emergency Shutdown", new Color(248, 113, 113));
         itemShutdown.addActionListener(ev -> {
             setValueAt(false, row, 2);
@@ -272,7 +270,7 @@ public class SmartZoneTable extends JTable {
         return item;
     }
 
-    // --- Custom Renderer ---
+    
     private class CustomTableRenderer extends DefaultTableCellRenderer {
 
         @Override
@@ -409,7 +407,7 @@ public class SmartZoneTable extends JTable {
                                 g2.fillRect(iconX + 5, iconY + 4, 2, 2);
                             }
 
-                            // තිත් 3 (...) වටා Hover Button පසුබිම
+                            
                             int dotX = w - 28;
                             if (row == hoverRow && column == 5) {
                                 g2.setColor(new Color(51, 65, 85));

@@ -15,15 +15,15 @@ public class SmartTerminal extends JPanel {
     private final StyledDocument doc;
     private final JScrollPane scrollPane;
 
-    // Chitradalli iruva bannaagalu (Colors)
+    
     private static final Color BG_COLOR = new Color(8, 15, 22);
     private static final Color BORDER_COLOR = new Color(38, 52, 71);
     private static final Color TEXT_COLOR = new Color(226, 232, 240);
-    private static final Color GREEN_TAG = new Color(74, 222, 128);   // [INFO], [SUCCESS]
-    private static final Color CYAN_TAG = new Color(45, 212, 191);    // [PATTERN], [DECORATOR]
-    private static final Color YELLOW_TAG = new Color(250, 204, 21);  // [WARNING], [ALERT]
-    private static final Color RED_TAG = new Color(248, 113, 113);    // [ERROR], [CRITICAL]
-    private static final Color TIME_COLOR = new Color(148, 163, 184); // Timestamps
+    private static final Color GREEN_TAG = new Color(74, 222, 128);   
+    private static final Color CYAN_TAG = new Color(45, 212, 191);    
+    private static final Color YELLOW_TAG = new Color(250, 204, 21);  
+    private static final Color RED_TAG = new Color(248, 113, 113);    
+    private static final Color TIME_COLOR = new Color(148, 163, 184); 
 
     private static final Pattern TAG_PATTERN = Pattern.compile("\\[([^\\]]+)\\]");
 
@@ -49,13 +49,13 @@ public class SmartTerminal extends JPanel {
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
-        // Dark Scrollbar ವಿನ್ಯಾಸ
+        
         styleScrollBar(scrollPane.getVerticalScrollBar());
         styleScrollBar(scrollPane.getHorizontalScrollBar());
 
         add(scrollPane, BorderLayout.CENTER);
 
-        // NetBeans Design View nalli kanisalu initial sample data
+        
         loadSampleLogs();
     }
 
@@ -69,17 +69,12 @@ public class SmartTerminal extends JPanel {
         appendLog("SUCCESS", "Secure packet EnDeCo(RawStreamData) transmitted successfully to urban API.");
     }
 
-    /**
-     * Terminal clear maadalu
-     */
+    
     public void clear() {
         textPane.setText("");
     }
 
-    /**
-     * Tag mattu message prathyekavaagi kaluhisi print maadalu
-     * Udaharane: terminal.appendLog("DECORATOR", "Wrapped with EncryptionDecorator");
-     */
+    
     public void appendLog(String tag, String message) {
         String cleanTag = tag.replace("[", "").replace("]", "").trim();
         Color tagColor = resolveTagColor(cleanTag);
@@ -89,10 +84,7 @@ public class SmartTerminal extends JPanel {
         scrollToBottom();
     }
 
-    /**
-     * Neraavaagi string salugalanu print maadalu (Tag bannavannu swayamchalitavaagi guruthisuttade)
-     * Udaharane: terminal.append("[SUCCESS] Data transmitted!\n");
-     */
+    
     public void append(String text) {
         if (text == null || text.isEmpty()) {
             return;
@@ -140,7 +132,7 @@ public class SmartTerminal extends JPanel {
     private Color resolveTagColor(String tag) {
         String upper = tag.toUpperCase();
 
-        // Timestamp aagiddare (udaharane: 18:24:31)
+        
         if (upper.matches("\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?")) {
             return TIME_COLOR;
         }

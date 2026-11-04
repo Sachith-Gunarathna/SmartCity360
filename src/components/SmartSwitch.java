@@ -9,21 +9,21 @@ import javax.swing.*;
 
 public class SmartSwitch extends JToggleButton {
 
-    private float thumbPosition = 1.0f; // 0.0f = OFF (Left), 1.0f = ON (Right)
+    private float thumbPosition = 1.0f; 
     private Timer animationTimer;
     private boolean hovered = false;
 
-    // Chitradalli iruva bannaagalu (Colors)
-    private Color activeTrackColor = new Color(45, 168, 242);      // Bright Cyan/Blue Fill
-    private Color activeBorderColor = new Color(86, 194, 255);     // Lighter Cyan Outline
-    private Color inactiveTrackColor = new Color(22, 32, 48);      // Dark Slate OFF Track
-    private Color inactiveBorderColor = new Color(51, 65, 85);     // Muted Slate Border
-    private Color knobFillColor = new Color(27, 40, 58);           // Dark Navy Knob Center
-    private Color inactiveKnobColor = new Color(100, 116, 139);    // Muted Knob Ring when OFF
+    
+    private Color activeTrackColor = new Color(45, 168, 242);      
+    private Color activeBorderColor = new Color(86, 194, 255);     
+    private Color inactiveTrackColor = new Color(22, 32, 48);      
+    private Color inactiveBorderColor = new Color(51, 65, 85);     
+    private Color knobFillColor = new Color(27, 40, 58);           
+    private Color inactiveKnobColor = new Color(100, 116, 139);    
 
     public SmartSwitch() {
         super();
-        setSelected(true); // Chitradalli iruva haage default ON sthithi
+        setSelected(true); 
         setOpaque(false);
         setContentAreaFilled(false);
         setBorderPainted(false);
@@ -31,7 +31,7 @@ public class SmartSwitch extends JToggleButton {
         setCursor(new Cursor(Cursor.HAND_CURSOR));
         setPreferredSize(new Dimension(56, 28));
 
-        // Smooth sliding animation timer
+        
         animationTimer = new Timer(12, e -> {
             float target = isSelected() ? 1.0f : 0.0f;
             float step = 0.14f;
@@ -89,23 +89,23 @@ public class SmartSwitch extends JToggleButton {
         int w = getWidth();
         int h = getHeight();
 
-        // Padding mattu pill track alate (Dimensions)
+        
         int pad = 2;
         int trackW = w - (pad * 2);
         int trackH = h - (pad * 2);
         int arc = trackH;
 
-        // ON mattu OFF bannaagala mishrana (Color interpolation during animation)
+        
         Color currentTrack = blendColors(inactiveTrackColor, activeTrackColor, thumbPosition);
         Color currentBorder = blendColors(inactiveBorderColor, activeBorderColor, thumbPosition);
 
-        // 1. Hover Glow Effect
+        
         if (hovered) {
             g2.setColor(new Color(45, 168, 242, 40));
             g2.fill(new RoundRectangle2D.Float(pad - 2, pad - 2, trackW + 4, trackH + 4, arc + 4, arc + 4));
         }
 
-        // 2. Pill Track Background & Border
+        
         g2.setColor(currentTrack);
         g2.fill(new RoundRectangle2D.Float(pad, pad, trackW, trackH, arc, arc));
 
@@ -113,7 +113,7 @@ public class SmartSwitch extends JToggleButton {
         g2.setColor(currentBorder);
         g2.draw(new RoundRectangle2D.Float(pad, pad, trackW, trackH, arc, arc));
 
-        // 3. Circular Knob (Thumb) Position
+        
         int knobMargin = 3;
         int knobDiameter = trackH - (knobMargin * 2);
         float minX = pad + knobMargin;
@@ -121,11 +121,11 @@ public class SmartSwitch extends JToggleButton {
         float knobX = minX + (maxX - minX) * thumbPosition;
         float knobY = pad + knobMargin;
 
-        // Knob Inner Dark Fill (Chitradalli iruva dark navy vrutta)
+        
         g2.setColor(knobFillColor);
         g2.fill(new Ellipse2D.Float(knobX, knobY, knobDiameter, knobDiameter));
 
-        // Knob Ring / Border
+        
         Color currentKnobRing = blendColors(inactiveKnobColor, activeBorderColor, thumbPosition);
         g2.setStroke(new BasicStroke(2.0f));
         g2.setColor(currentKnobRing);
@@ -142,7 +142,7 @@ public class SmartSwitch extends JToggleButton {
         return new Color(r, g, b);
     }
 
-    // NetBeans Properties Window nalli banna badalisalu Getters & Setters
+   
     public Color getActiveTrackColor() {
         return activeTrackColor;
     }

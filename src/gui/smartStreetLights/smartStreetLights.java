@@ -12,6 +12,8 @@ public class smartStreetLights extends javax.swing.JInternalFrame {
         this.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
         BasicInternalFrameUI ui = (BasicInternalFrameUI) this.getUI();
         ui.setNorthPane(null);
+        
+        jButton1.putClientProperty("FlatLaf.style", "arc:30");
     }
 
     @SuppressWarnings("unchecked")
@@ -39,7 +41,7 @@ public class smartStreetLights extends javax.swing.JInternalFrame {
 
         jLabel22.setFont(new java.awt.Font("Franklin Gothic Medium", 1, 20)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel22.setText("Smart Street Lights ( Flyweight Pattern)");
+        jLabel22.setText("Smart Street Lights");
         panelRound1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 470, 40));
 
         panelRound2.setBackground(new java.awt.Color(30, 41, 59));

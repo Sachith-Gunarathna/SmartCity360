@@ -7,7 +7,15 @@ import gui.policy.policy;
 import gui.smartStreetLights.smartStreetLights;
 import gui.smartZone.smartZone;
 import java.awt.Color;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalTime;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import module.AppIcon;
 
 
@@ -24,7 +32,7 @@ public class dashboard extends javax.swing.JFrame {
          menuButton = new JButton[]{jButton1,jButton2,jButton3,jButton4,jButton5,jButton6};
         for(JButton btn : menuButton){
             if(btn != null){
-                btn.putClientProperty("FlatLaf.style", "arc:30");
+                btn.putClientProperty("FlatLaf.style", "arc:25");
             }
         }
         
@@ -35,7 +43,25 @@ public class dashboard extends javax.swing.JFrame {
         jButton1.setForeground(new Color(56, 189, 248));
         jButton1.putClientProperty("JComponent.outline", "cyan");
         
+        LocalTime currentTime = LocalTime.now();
         
+        int hour = currentTime.getHour();
+        
+        if(hour >= 5 && hour < 12){
+            jLabel7.setText("Good Morning !");
+            pictureBox1.setImage(new ImageIcon(getClass().getResource("/resources/img/icons8-sun-48.png")));
+        }else if(hour >=12 && hour < 17){
+            jLabel7.setText("Good Afternoon !");
+            pictureBox1.setImage(new ImageIcon(getClass().getResource("/resources/img/icons8-afternoon-48.png")));
+        }else if(hour >= 17 && hour < 21){
+            jLabel7.setText("Good Evening !");
+            pictureBox1.setImage(new ImageIcon(getClass().getResource("/resources/img/icons8-evening-48.png")));
+        }else {
+            jLabel7.setText("Good Night !");
+            pictureBox1.setImage(new ImageIcon(getClass().getResource("/resources/img/icons8-night-48.png")));
+        }
+        
+        Clock();
         
     }
 
@@ -47,12 +73,38 @@ public class dashboard extends javax.swing.JFrame {
                 btn.setForeground(new Color(56, 189, 248));
                 btn.putClientProperty("JComponent.outline", "cyan");
             }else{
-                btn.setBackground(new Color(15, 23, 42));
-                btn.setForeground(new Color(148, 163, 184));
+                btn.setBackground(new Color(30,41,59));
+                btn.setForeground(new Color(255,255,255));
                 btn.putClientProperty("JComponent.outline", null);
             }
         }
 
+    }
+    
+    private void Clock(){
+        Thread clock = new Thread(){
+            public void run(){
+                try{
+                    while (true) {
+                        Calendar cal = new GregorianCalendar();
+                        int day = cal.get(Calendar.DAY_OF_MONTH);
+                        int month = cal.get(Calendar.MONTH) + 1;
+                        int year = cal.get(Calendar.YEAR);
+                        
+                        DateFormat date = new SimpleDateFormat("hh : mm : ss aa");
+                        String time = date.format(new Date()).toString();
+                        
+                        timeLabel.setText(time);
+                        dateLabel.setText(year + "/" + month + "/" + day);
+                        
+                        sleep(1000);
+                    }
+                }catch(Exception e){
+                    JOptionPane.showMessageDialog(rootPane, e);
+                }
+            }
+        };
+        clock.start();
     }
    
     @SuppressWarnings("unchecked")
@@ -73,6 +125,12 @@ public class dashboard extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        dateLabel = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        timeLabel = new javax.swing.JLabel();
+        pictureBox1 = new components.PictureBox();
         jDesktopPane1 = new javax.swing.JDesktopPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -89,8 +147,10 @@ public class dashboard extends javax.swing.JFrame {
         sideNavBar.setRoundBottomRight(30);
         sideNavBar.setRoundTopLeft(30);
         sideNavBar.setRoundTopRight(30);
+        sideNavBar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         logo.setImage(new javax.swing.ImageIcon(getClass().getResource("/resources/logo/smartcity360 logo white version.png"))); // NOI18N
+        sideNavBar.add(logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 88, 69));
 
         line01.setBackground(new java.awt.Color(255, 255, 255));
         line01.setRoundBottomLeft(10);
@@ -109,11 +169,15 @@ public class dashboard extends javax.swing.JFrame {
             .addGap(0, 9, Short.MAX_VALUE)
         );
 
+        sideNavBar.add(line01, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 171, 213, -1));
+
         companyLogo.setImage(new javax.swing.ImageIcon(getClass().getResource("/resources/logo/logo2.png"))); // NOI18N
+        sideNavBar.add(companyLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(103, 675, 88, 25));
 
         jLabel1.setFont(new java.awt.Font("Microsoft YaHei", 0, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Powered by");
+        sideNavBar.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 683, -1, -1));
 
         line02.setBackground(new java.awt.Color(255, 255, 255));
         line02.setRoundBottomLeft(10);
@@ -132,6 +196,8 @@ public class dashboard extends javax.swing.JFrame {
             .addGap(0, 9, Short.MAX_VALUE)
         );
 
+        sideNavBar.add(line02, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 654, 213, -1));
+
         shutdownButton.setToolTipText("Close");
         shutdownButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         shutdownButton.setImage(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/icons8-shutdown-52.png"))); // NOI18N
@@ -140,6 +206,7 @@ public class dashboard extends javax.swing.JFrame {
                 shutdownButtonMouseClicked(evt);
             }
         });
+        sideNavBar.add(shutdownButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(81, 576, 55, 60));
 
         jButton1.setBackground(new java.awt.Color(30, 41, 59));
         jButton1.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 14)); // NOI18N
@@ -147,10 +214,12 @@ public class dashboard extends javax.swing.JFrame {
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/icons8-dashboard-48.png"))); // NOI18N
         jButton1.setText("Dashboard");
         jButton1.setToolTipText("Dashboard");
+        jButton1.setBorder(null);
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
         jButton1.setIconTextGap(5);
         jButton1.addActionListener(this::jButton1ActionPerformed);
+        sideNavBar.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 198, 210, 45));
 
         jButton2.setBackground(new java.awt.Color(30, 41, 59));
         jButton2.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 14)); // NOI18N
@@ -158,10 +227,12 @@ public class dashboard extends javax.swing.JFrame {
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/icons8-ptz-camera-48.png"))); // NOI18N
         jButton2.setText("Data Stream Security ");
         jButton2.setToolTipText("Dashboard");
+        jButton2.setBorder(null);
         jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton2.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
         jButton2.setIconTextGap(5);
         jButton2.addActionListener(this::jButton2ActionPerformed);
+        sideNavBar.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 261, 210, 45));
 
         jButton3.setBackground(new java.awt.Color(30, 41, 59));
         jButton3.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 14)); // NOI18N
@@ -169,10 +240,12 @@ public class dashboard extends javax.swing.JFrame {
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/icons8-company-48.png"))); // NOI18N
         jButton3.setText("Smart Zone");
         jButton3.setToolTipText("Dashboard");
+        jButton3.setBorder(null);
         jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton3.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
         jButton3.setIconTextGap(5);
         jButton3.addActionListener(this::jButton3ActionPerformed);
+        sideNavBar.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 324, 210, 45));
 
         jButton4.setBackground(new java.awt.Color(30, 41, 59));
         jButton4.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 14)); // NOI18N
@@ -180,10 +253,12 @@ public class dashboard extends javax.swing.JFrame {
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/icons8-complaints-48.png"))); // NOI18N
         jButton4.setText("Citizen Complaint");
         jButton4.setToolTipText("Dashboard");
+        jButton4.setBorder(null);
         jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton4.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
         jButton4.setIconTextGap(5);
         jButton4.addActionListener(this::jButton4ActionPerformed);
+        sideNavBar.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 387, 210, 45));
 
         jButton5.setBackground(new java.awt.Color(30, 41, 59));
         jButton5.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 14)); // NOI18N
@@ -191,10 +266,12 @@ public class dashboard extends javax.swing.JFrame {
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/icons8-street-light-48.png"))); // NOI18N
         jButton5.setText("Smart Street Lights");
         jButton5.setToolTipText("Dashboard");
+        jButton5.setBorder(null);
         jButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton5.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
         jButton5.setIconTextGap(5);
         jButton5.addActionListener(this::jButton5ActionPerformed);
+        sideNavBar.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 450, 210, 45));
 
         jButton6.setBackground(new java.awt.Color(30, 41, 59));
         jButton6.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 14)); // NOI18N
@@ -202,70 +279,42 @@ public class dashboard extends javax.swing.JFrame {
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/icons8-rules-48.png"))); // NOI18N
         jButton6.setText("Policy");
         jButton6.setToolTipText("Dashboard");
+        jButton6.setBorder(null);
         jButton6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton6.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
         jButton6.setIconTextGap(5);
         jButton6.addActionListener(this::jButton6ActionPerformed);
+        sideNavBar.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 513, 210, 45));
 
-        javax.swing.GroupLayout sideNavBarLayout = new javax.swing.GroupLayout(sideNavBar);
-        sideNavBar.setLayout(sideNavBarLayout);
-        sideNavBarLayout.setHorizontalGroup(
-            sideNavBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(sideNavBarLayout.createSequentialGroup()
-                .addGroup(sideNavBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(sideNavBarLayout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(companyLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(sideNavBarLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(sideNavBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(logo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(line01, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(line02, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap())
-            .addGroup(sideNavBarLayout.createSequentialGroup()
-                .addGap(81, 81, 81)
-                .addComponent(shutdownButton, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        sideNavBarLayout.setVerticalGroup(
-            sideNavBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(sideNavBarLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(line01, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(shutdownButton, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(line02, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(sideNavBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(companyLogo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25))
-        );
+        jLabel4.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 20)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("SmartCity360");
+        sideNavBar.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 30, 130, 35));
+
+        dateLabel.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 14)); // NOI18N
+        dateLabel.setForeground(new java.awt.Color(255, 255, 255));
+        dateLabel.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        dateLabel.setText("04/11/2026");
+        sideNavBar.add(dateLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 130, 130, 20));
+
+        jLabel6.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Tagline Goes Here");
+        sideNavBar.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 50, 130, 35));
+
+        jLabel7.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("Good Morning !");
+        sideNavBar.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 110, 20));
+
+        timeLabel.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 14)); // NOI18N
+        timeLabel.setForeground(new java.awt.Color(255, 255, 255));
+        timeLabel.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        timeLabel.setText("15:30");
+        sideNavBar.add(timeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, 130, 20));
+
+        pictureBox1.setImage(new javax.swing.ImageIcon(getClass().getResource("/resources/img/icons8-sun-48.png"))); // NOI18N
+        sideNavBar.add(pictureBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 40, 40));
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
@@ -367,6 +416,7 @@ public class dashboard extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private components.PictureBox companyLogo;
+    private javax.swing.JLabel dateLabel;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -375,11 +425,16 @@ public class dashboard extends javax.swing.JFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private components.PanelRound line01;
     private components.PanelRound line02;
     private components.PictureBox logo;
     private components.PanelRound panelRound2;
+    private components.PictureBox pictureBox1;
     private components.PictureBox shutdownButton;
     private components.PanelRound sideNavBar;
+    private javax.swing.JLabel timeLabel;
     // End of variables declaration//GEN-END:variables
 }

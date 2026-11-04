@@ -6,6 +6,7 @@ import gui.dataStreamSecurity.dataStreamSecurity;
 import gui.policy.policy;
 import gui.smartStreetLights.smartStreetLights;
 import gui.smartZone.smartZone;
+import java.awt.Color;
 import javax.swing.JButton;
 import module.AppIcon;
 
@@ -13,12 +14,13 @@ import module.AppIcon;
 public class dashboard extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(dashboard.class.getName());
-
+    private JButton[]  menuButton;
+    
     
     public dashboard() {
         initComponents();
         AppIcon.setIcon(this);
-        JButton[] menuButton = {jButton1,jButton2,jButton3,jButton4,jButton5,jButton6};
+         menuButton = new JButton[]{jButton1,jButton2,jButton3,jButton4,jButton5,jButton6};
         for(JButton btn : menuButton){
             if(btn != null){
                 btn.putClientProperty("FlatLaf.style", "arc:30");
@@ -28,8 +30,27 @@ public class dashboard extends javax.swing.JFrame {
         jDesktopPane1.removeAll();
         jDesktopPane1.add(new Home()).setVisible(true);
         
+        jButton1.setBackground(new Color(30, 52, 82));
+        jButton1.setForeground(new Color(56, 189, 248));
+        jButton1.putClientProperty("JComponent.outline", "cyan");
+        
     }
 
+    private void activeButton(JButton clickButton){
+    
+        for(JButton btn : menuButton){
+            if(btn == clickButton){
+                btn.setBackground(new Color(30, 52, 82));
+                btn.setForeground(new Color(56, 189, 248));
+                btn.putClientProperty("JComponent.outline", "cyan");
+            }else{
+                btn.setBackground(new Color(15, 23, 42));
+                btn.setForeground(new Color(148, 163, 184));
+                btn.putClientProperty("JComponent.outline", null);
+            }
+        }
+
+    }
    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -290,31 +311,43 @@ public class dashboard extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         jDesktopPane1.removeAll();
         jDesktopPane1.add(new dataStreamSecurity()).setVisible(true);
+        
+        activeButton(jButton2);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         jDesktopPane1.removeAll();
         jDesktopPane1.add(new Home()).setVisible(true);
+        
+        activeButton(jButton1);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
        jDesktopPane1.removeAll();
        jDesktopPane1.add(new smartZone()).setVisible(true);
+       
+       activeButton(jButton3);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         jDesktopPane1.removeAll();
         jDesktopPane1.add(new citizenComplaint()).setVisible(true);
+        
+        activeButton(jButton4);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         jDesktopPane1.removeAll();
         jDesktopPane1.add(new smartStreetLights()).setVisible(true);
+        
+        activeButton(jButton5);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
        jDesktopPane1.removeAll();
        jDesktopPane1.add(new policy()).setVisible(true);
+       
+       activeButton(jButton6);
     }//GEN-LAST:event_jButton6ActionPerformed
 
     public static void main(String args[]) {

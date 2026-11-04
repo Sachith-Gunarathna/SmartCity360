@@ -11,6 +11,8 @@ public class dataStreamSecurity extends javax.swing.JInternalFrame {
         this.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
         BasicInternalFrameUI ui = (BasicInternalFrameUI) this.getUI();
         ui.setNorthPane(null);
+        
+        jButton1.putClientProperty("FlatLaf.style", "arc:30");
     }
 
     @SuppressWarnings("unchecked")
@@ -64,6 +66,7 @@ public class dataStreamSecurity extends javax.swing.JInternalFrame {
 
         jButton1.setBackground(new java.awt.Color(56, 189, 248));
         jButton1.setFont(new java.awt.Font("Franklin Gothic Medium", 1, 24)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(12, 0, 0));
         jButton1.setText("Secure & Send");
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(this::jButton1ActionPerformed);

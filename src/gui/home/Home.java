@@ -1,6 +1,7 @@
 package gui.home;
 
 import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 
 public class Home extends javax.swing.JInternalFrame {
@@ -11,6 +12,13 @@ public class Home extends javax.swing.JInternalFrame {
         this.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
         BasicInternalFrameUI ui = (BasicInternalFrameUI) this.getUI();
         ui.setNorthPane(null);
+        
+        JButton[] jbutton = {jButton1,jButton2,jButton3};
+        for(JButton jbtn : jbutton){
+            if(jbtn != null){
+                jbtn.putClientProperty("FlatLaf.style", "arc:20");
+            } 
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -398,7 +406,7 @@ public class Home extends javax.swing.JInternalFrame {
 
         jButton1.setBackground(new java.awt.Color(56, 189, 248));
         jButton1.setFont(new java.awt.Font("Franklin Gothic Medium", 1, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setForeground(new java.awt.Color(12, 0, 0));
         jButton1.setText("Secure & Send");
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(this::jButton1ActionPerformed);
@@ -541,7 +549,7 @@ public class Home extends javax.swing.JInternalFrame {
         jLabel26.setText("Zone Hierarchy");
         panelRound9.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 530, 20));
 
-        jButton2.setBackground(new java.awt.Color(56, 189, 248));
+        jButton2.setBackground(new java.awt.Color(204, 0, 0));
         jButton2.setFont(new java.awt.Font("Franklin Gothic Medium", 1, 18)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Shutdown Power");
@@ -551,7 +559,7 @@ public class Home extends javax.swing.JInternalFrame {
 
         jButton3.setBackground(new java.awt.Color(56, 189, 248));
         jButton3.setFont(new java.awt.Font("Franklin Gothic Medium", 1, 18)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jButton3.setForeground(new java.awt.Color(12, 0, 0));
         jButton3.setText("Report Usage");
         jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton3.addActionListener(this::jButton3ActionPerformed);

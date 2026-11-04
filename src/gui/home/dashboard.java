@@ -19,6 +19,7 @@ public class dashboard extends javax.swing.JFrame {
     
     public dashboard() {
         initComponents();
+        getRootPane().putClientProperty("JRootPane.roundRect", true);
         AppIcon.setIcon(this);
          menuButton = new JButton[]{jButton1,jButton2,jButton3,jButton4,jButton5,jButton6};
         for(JButton btn : menuButton){
@@ -33,6 +34,8 @@ public class dashboard extends javax.swing.JFrame {
         jButton1.setBackground(new Color(30, 52, 82));
         jButton1.setForeground(new Color(56, 189, 248));
         jButton1.putClientProperty("JComponent.outline", "cyan");
+        
+        
         
     }
 
@@ -145,7 +148,8 @@ public class dashboard extends javax.swing.JFrame {
         jButton1.setText("Dashboard");
         jButton1.setToolTipText("Dashboard");
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton1.setIconTextGap(55);
+        jButton1.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
+        jButton1.setIconTextGap(5);
         jButton1.addActionListener(this::jButton1ActionPerformed);
 
         jButton2.setBackground(new java.awt.Color(30, 41, 59));
@@ -155,6 +159,8 @@ public class dashboard extends javax.swing.JFrame {
         jButton2.setText("Data Stream Security ");
         jButton2.setToolTipText("Dashboard");
         jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton2.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
+        jButton2.setIconTextGap(5);
         jButton2.addActionListener(this::jButton2ActionPerformed);
 
         jButton3.setBackground(new java.awt.Color(30, 41, 59));
@@ -164,7 +170,8 @@ public class dashboard extends javax.swing.JFrame {
         jButton3.setText("Smart Zone");
         jButton3.setToolTipText("Dashboard");
         jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton3.setIconTextGap(60);
+        jButton3.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
+        jButton3.setIconTextGap(5);
         jButton3.addActionListener(this::jButton3ActionPerformed);
 
         jButton4.setBackground(new java.awt.Color(30, 41, 59));
@@ -174,7 +181,8 @@ public class dashboard extends javax.swing.JFrame {
         jButton4.setText("Citizen Complaint");
         jButton4.setToolTipText("Dashboard");
         jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton4.setIconTextGap(20);
+        jButton4.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
+        jButton4.setIconTextGap(5);
         jButton4.addActionListener(this::jButton4ActionPerformed);
 
         jButton5.setBackground(new java.awt.Color(30, 41, 59));
@@ -184,7 +192,8 @@ public class dashboard extends javax.swing.JFrame {
         jButton5.setText("Smart Street Lights");
         jButton5.setToolTipText("Dashboard");
         jButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton5.setIconTextGap(20);
+        jButton5.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
+        jButton5.setIconTextGap(5);
         jButton5.addActionListener(this::jButton5ActionPerformed);
 
         jButton6.setBackground(new java.awt.Color(30, 41, 59));
@@ -194,7 +203,8 @@ public class dashboard extends javax.swing.JFrame {
         jButton6.setText("Policy");
         jButton6.setToolTipText("Dashboard");
         jButton6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton6.setIconTextGap(90);
+        jButton6.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
+        jButton6.setIconTextGap(5);
         jButton6.addActionListener(this::jButton6ActionPerformed);
 
         javax.swing.GroupLayout sideNavBarLayout = new javax.swing.GroupLayout(sideNavBar);

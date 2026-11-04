@@ -13,12 +13,13 @@ public class Home extends javax.swing.JInternalFrame {
         BasicInternalFrameUI ui = (BasicInternalFrameUI) this.getUI();
         ui.setNorthPane(null);
         
-        JButton[] jbutton = {jButton1,jButton2,jButton3};
+        JButton[] jbutton = {jButton1,jButton2,jButton3,jButton4};
         for(JButton jbtn : jbutton){
             if(jbtn != null){
                 jbtn.putClientProperty("FlatLaf.style", "arc:20");
             } 
         }
+         jProgressBar1.putClientProperty("FlatLaf.style", "arc:20");
     }
 
     @SuppressWarnings("unchecked")
@@ -68,7 +69,8 @@ public class Home extends javax.swing.JInternalFrame {
         panelRound14 = new components.PanelRound();
         panelRound18 = new components.PanelRound();
         panelRound19 = new components.PanelRound();
-        panelRound20 = new components.PanelRound();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTextArea3 = new javax.swing.JTextArea();
         panelRound9 = new components.PanelRound();
         jLabel26 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
@@ -93,6 +95,11 @@ public class Home extends javax.swing.JInternalFrame {
         panelRound10 = new components.PanelRound();
         jLabel27 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jButton4 = new javax.swing.JButton();
+        jLabel29 = new javax.swing.JLabel();
+        jLabel30 = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(1124, 725));
 
@@ -425,8 +432,8 @@ public class Home extends javax.swing.JInternalFrame {
         jTextArea2.setColumns(20);
         jTextArea2.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         jTextArea2.setForeground(new java.awt.Color(255, 255, 255));
-        jTextArea2.setRows(5);
         jTextArea2.setText("[11:15:02] EM_82931 // 42.18 kW");
+        jTextArea2.setCaretColor(new java.awt.Color(255, 255, 255));
         jScrollPane3.setViewportView(jTextArea2);
 
         panelRound6.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 290, 160));
@@ -517,23 +524,15 @@ public class Home extends javax.swing.JInternalFrame {
 
         panelRound7.add(panelRound19, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 50, 100, 90));
 
-        panelRound20.setRoundBottomLeft(15);
-        panelRound20.setRoundBottomRight(15);
-        panelRound20.setRoundTopLeft(15);
-        panelRound20.setRoundTopRight(15);
+        jTextArea3.setBackground(new java.awt.Color(30, 41, 59));
+        jTextArea3.setColumns(20);
+        jTextArea3.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        jTextArea3.setForeground(new java.awt.Color(255, 255, 255));
+        jTextArea3.setText("Submit Noise Copalint...");
+        jTextArea3.setCaretColor(new java.awt.Color(255, 255, 255));
+        jScrollPane4.setViewportView(jTextArea3);
 
-        javax.swing.GroupLayout panelRound20Layout = new javax.swing.GroupLayout(panelRound20);
-        panelRound20.setLayout(panelRound20Layout);
-        panelRound20Layout.setHorizontalGroup(
-            panelRound20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 530, Short.MAX_VALUE)
-        );
-        panelRound20Layout.setVerticalGroup(
-            panelRound20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 80, Short.MAX_VALUE)
-        );
-
-        panelRound7.add(panelRound20, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 530, 80));
+        panelRound7.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 530, 90));
 
         panelRound1.add(panelRound7, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 90, 550, 250));
 
@@ -757,37 +756,47 @@ public class Home extends javax.swing.JInternalFrame {
         panelRound10.setRoundBottomRight(15);
         panelRound10.setRoundTopLeft(15);
         panelRound10.setRoundTopRight(15);
+        panelRound10.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel27.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
         jLabel27.setForeground(new java.awt.Color(255, 255, 255));
         jLabel27.setText("Policy Interpreter");
+        panelRound10.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 530, 20));
 
         jLabel28.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 14)); // NOI18N
         jLabel28.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel28.setText("Rule DSL : Base (50) + Zone (10) + Event (20)");
+        jLabel28.setText("80 dB");
+        panelRound10.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 70, 80, 20));
 
-        javax.swing.GroupLayout panelRound10Layout = new javax.swing.GroupLayout(panelRound10);
-        panelRound10.setLayout(panelRound10Layout);
-        panelRound10Layout.setHorizontalGroup(
-            panelRound10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelRound10Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panelRound10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 583, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(511, Short.MAX_VALUE))
-        );
-        panelRound10Layout.setVerticalGroup(
-            panelRound10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelRound10Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(58, Short.MAX_VALUE))
-        );
+        jTextArea1.setBackground(new java.awt.Color(30, 41, 59));
+        jTextArea1.setColumns(20);
+        jTextArea1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jTextArea1.setForeground(new java.awt.Color(255, 255, 255));
+        jTextArea1.setText("Simulation : Base (50) + Zone (10) + Event (20)");
+        jTextArea1.setCaretColor(new java.awt.Color(255, 255, 255));
+        jScrollPane1.setViewportView(jTextArea1);
 
-        panelRound1.add(panelRound10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 590, 1100, 110));
+        panelRound10.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 880, 50));
+
+        jButton4.setBackground(new java.awt.Color(56, 189, 248));
+        jButton4.setFont(new java.awt.Font("Franklin Gothic Medium", 1, 18)); // NOI18N
+        jButton4.setForeground(new java.awt.Color(12, 0, 0));
+        jButton4.setText("Execute/Evaluate");
+        jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton4.addActionListener(this::jButton4ActionPerformed);
+        panelRound10.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 20, -1, 40));
+
+        jLabel29.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 14)); // NOI18N
+        jLabel29.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel29.setText("Rule DSL : Base (50) + Zone (10) + Event (20)");
+        panelRound10.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 32, 583, 20));
+
+        jLabel30.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 14)); // NOI18N
+        jLabel30.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel30.setText("Total Allowed :");
+        panelRound10.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 70, 90, 20));
+
+        panelRound1.add(panelRound10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 590, 1100, 120));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -816,11 +825,16 @@ public class Home extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -841,7 +855,9 @@ public class Home extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -850,9 +866,13 @@ public class Home extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JProgressBar jProgressBar1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
+    private javax.swing.JTextArea jTextArea3;
     private components.PanelRound panelRound1;
     private components.PanelRound panelRound10;
     private components.PanelRound panelRound11;
@@ -864,7 +884,6 @@ public class Home extends javax.swing.JInternalFrame {
     private components.PanelRound panelRound18;
     private components.PanelRound panelRound19;
     private components.PanelRound panelRound2;
-    private components.PanelRound panelRound20;
     private components.PanelRound panelRound21;
     private components.PanelRound panelRound22;
     private components.PanelRound panelRound23;

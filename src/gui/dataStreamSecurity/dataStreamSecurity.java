@@ -130,7 +130,7 @@ public class dataStreamSecurity extends javax.swing.JInternalFrame {
         panelRound4.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 420, 20));
 
         roundTextAreaPanel2.setForeground(new java.awt.Color(255, 255, 255));
-        panelRound4.add(roundTextAreaPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, 270));
+        panelRound4.add(roundTextAreaPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 670, 270));
 
         panelRound1.add(panelRound4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 690, 320));
 

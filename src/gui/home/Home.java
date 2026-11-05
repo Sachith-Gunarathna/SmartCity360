@@ -85,7 +85,7 @@ public class Home extends javax.swing.JInternalFrame {
         jLabel3.setText("435");
 
         jLabel4.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setForeground(new java.awt.Color(56, 189, 248));
         jLabel4.setText("kW");
 
         javax.swing.GroupLayout panelRound2Layout = new javax.swing.GroupLayout(panelRound2);
@@ -145,7 +145,7 @@ public class Home extends javax.swing.JInternalFrame {
         panelRound15.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel31.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
-        jLabel31.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel31.setForeground(new java.awt.Color(0, 204, 0));
         jLabel31.setText(" / Online");
 
         javax.swing.GroupLayout panelRound3Layout = new javax.swing.GroupLayout(panelRound3);
@@ -193,11 +193,11 @@ public class Home extends javax.swing.JInternalFrame {
         jLabel8.setText("Activity Alerts");
 
         jLabel9.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("125");
+        jLabel9.setForeground(new java.awt.Color(255, 153, 0));
+        jLabel9.setText("30");
 
         jLabel10.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setForeground(new java.awt.Color(255, 153, 0));
         jLabel10.setText("Warning");
 
         javax.swing.GroupLayout panelRound4Layout = new javax.swing.GroupLayout(panelRound4);
@@ -239,11 +239,11 @@ public class Home extends javax.swing.JInternalFrame {
         jLabel11.setText("Systems Security");
 
         jLabel12.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel12.setForeground(new java.awt.Color(56, 189, 248));
         jLabel12.setText("100%");
 
         jLabel13.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel13.setForeground(new java.awt.Color(56, 189, 248));
         jLabel13.setText("Encrypted");
 
         panelRound17.setBackground(new java.awt.Color(27, 44, 72));

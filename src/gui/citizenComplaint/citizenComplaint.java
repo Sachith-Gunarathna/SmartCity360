@@ -123,7 +123,7 @@ public class citizenComplaint extends javax.swing.JInternalFrame {
         panelRound2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 590, 370, 40));
 
         roundTextAreaPanel1.setForeground(new java.awt.Color(255, 255, 255));
-        panelRound2.add(roundTextAreaPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 440, -1, 140));
+        panelRound2.add(roundTextAreaPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 440, 470, 140));
 
         panelRound1.add(panelRound2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 490, 640));
 

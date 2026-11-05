@@ -150,7 +150,7 @@ public class dashboard extends javax.swing.JFrame {
         sideNavBar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         logo.setImage(new javax.swing.ImageIcon(getClass().getResource("/resources/logo/smartcity360 logo white version.png"))); // NOI18N
-        sideNavBar.add(logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 88, 69));
+        sideNavBar.add(logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 88, 69));
 
         line01.setBackground(new java.awt.Color(255, 255, 255));
         line01.setRoundBottomLeft(10);
@@ -211,7 +211,7 @@ public class dashboard extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(30, 41, 59));
         jButton1.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/icons8-dashboard-48.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/icons8-dashboard-30.png"))); // NOI18N
         jButton1.setText("Dashboard");
         jButton1.setToolTipText("Dashboard");
         jButton1.setBorder(null);
@@ -224,7 +224,7 @@ public class dashboard extends javax.swing.JFrame {
         jButton2.setBackground(new java.awt.Color(30, 41, 59));
         jButton2.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/icons8-ptz-camera-48.png"))); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/icons8-shield-30.png"))); // NOI18N
         jButton2.setText("Data Stream Security ");
         jButton2.setToolTipText("Dashboard");
         jButton2.setBorder(null);
@@ -237,7 +237,7 @@ public class dashboard extends javax.swing.JFrame {
         jButton3.setBackground(new java.awt.Color(30, 41, 59));
         jButton3.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 14)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/icons8-company-48.png"))); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/icons8-smart-30.png"))); // NOI18N
         jButton3.setText("Smart Zone");
         jButton3.setToolTipText("Dashboard");
         jButton3.setBorder(null);
@@ -250,7 +250,7 @@ public class dashboard extends javax.swing.JFrame {
         jButton4.setBackground(new java.awt.Color(30, 41, 59));
         jButton4.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 14)); // NOI18N
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/icons8-complaints-48.png"))); // NOI18N
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/icons8-complaint-30.png"))); // NOI18N
         jButton4.setText("Citizen Complaint");
         jButton4.setToolTipText("Dashboard");
         jButton4.setBorder(null);
@@ -263,7 +263,7 @@ public class dashboard extends javax.swing.JFrame {
         jButton5.setBackground(new java.awt.Color(30, 41, 59));
         jButton5.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 14)); // NOI18N
         jButton5.setForeground(new java.awt.Color(255, 255, 255));
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/icons8-street-light-48.png"))); // NOI18N
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/icons8-light-30.png"))); // NOI18N
         jButton5.setText("Smart Street Lights");
         jButton5.setToolTipText("Dashboard");
         jButton5.setBorder(null);
@@ -276,7 +276,7 @@ public class dashboard extends javax.swing.JFrame {
         jButton6.setBackground(new java.awt.Color(30, 41, 59));
         jButton6.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 14)); // NOI18N
         jButton6.setForeground(new java.awt.Color(255, 255, 255));
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/icons8-rules-48.png"))); // NOI18N
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icon/icons8-policy-30.png"))); // NOI18N
         jButton6.setText("Policy");
         jButton6.setToolTipText("Dashboard");
         jButton6.setBorder(null);
@@ -289,7 +289,7 @@ public class dashboard extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 20)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("SmartCity360");
-        sideNavBar.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 30, 130, 35));
+        sideNavBar.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 30, -1, 35));
 
         dateLabel.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 14)); // NOI18N
         dateLabel.setForeground(new java.awt.Color(255, 255, 255));
@@ -300,7 +300,7 @@ public class dashboard extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Tagline Goes Here");
-        sideNavBar.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 50, 130, 35));
+        sideNavBar.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 50, 120, 35));
 
         jLabel7.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));

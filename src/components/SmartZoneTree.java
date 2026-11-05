@@ -448,7 +448,7 @@ public class SmartZoneTree extends JTree {
             setOpaque(false);
             setBorder(new EmptyBorder(0, 4, 0, 10));
 
-            lblText.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+            lblText.setFont(new Font("Franklin Gothic Medium", Font.PLAIN, 13));
             lblText.setForeground(new Color(226, 232, 240));
 
             add(lblIcon, BorderLayout.WEST);
@@ -464,7 +464,7 @@ public class SmartZoneTree extends JTree {
             if (node.getUserObject() instanceof ZoneData) {
                 ZoneData data = (ZoneData) node.getUserObject();
                 lblText.setText(data.name);
-                lblText.setFont(new Font("Segoe UI", (data.isRootHeader || selected) ? Font.BOLD : Font.PLAIN, 13));
+                lblText.setFont(new Font("Franklin Gothic Medium", (data.isRootHeader || selected) ? Font.BOLD : Font.PLAIN, 13));
                 lblText.setForeground(selected ? Color.WHITE : new Color(226, 232, 240));
                 lblIcon.setIcon(new VectorIcon(data.iconType));
                 badge.setStatus(data.status);
@@ -522,7 +522,7 @@ public class SmartZoneTree extends JTree {
                 g2.setColor(border);
                 g2.draw(new RoundRectangle2D.Float(0, y, w - 1, pillH, 18, 18));
 
-                g2.setFont(new Font("Segoe UI", Font.PLAIN, 11));
+                g2.setFont(new Font("Franklin Gothic Medium", Font.PLAIN, 11));
                 FontMetrics fm = g2.getFontMetrics();
                 int tx = (w - fm.stringWidth(status)) / 2;
                 int ty = y + ((pillH - fm.getHeight()) / 2) + fm.getAscent() - 1;

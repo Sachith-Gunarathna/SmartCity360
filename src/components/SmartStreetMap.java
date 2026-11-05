@@ -60,7 +60,7 @@ public class SmartStreetMap extends JPanel {
             }
 
             
-            g2.setFont(new Font("Segoe UI", Font.BOLD, 10));
+            g2.setFont(new Font("Franklin Gothic Medium", Font.BOLD, 10));
             FontMetrics fm = g2.getFontMetrics();
             String s = String.valueOf(symbol);
             int tx = cx - fm.stringWidth(s) / 2;
@@ -404,14 +404,14 @@ public class SmartStreetMap extends JPanel {
         double angle = Math.atan2(0.77 * h, 0.83 * w);
         g2.translate(w * 0.41, h * 0.44);
         g2.rotate(angle);
-        g2.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+        g2.setFont(new Font("Franklin Gothic Medium", Font.PLAIN, 13));
         g2.setColor(new Color(226, 232, 240));
         g2.drawString("Narammala Road", -42, -5);
         g2.setTransform(old);
     }
 
     private void drawLocationPill(Graphics2D g2, int x, int y, String text) {
-        g2.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        g2.setFont(new Font("Franklin Gothic Medium", Font.PLAIN, 14));
         FontMetrics fm = g2.getFontMetrics();
         int pw = fm.stringWidth(text) + 22;
         int ph = 28;
@@ -441,7 +441,7 @@ public class SmartStreetMap extends JPanel {
         
         g2.setColor(new Color(6, 232, 255));
         g2.fillOval(boxX + 12, boxY + 11, 14, 14);
-        g2.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        g2.setFont(new Font("Franklin Gothic Medium", Font.PLAIN, 12));
         g2.setColor(new Color(226, 232, 240));
         g2.drawString("Active Node (LED)", boxX + 34, boxY + 23);
 
@@ -465,7 +465,7 @@ public class SmartStreetMap extends JPanel {
         g2.draw(new RoundRectangle2D.Float(cardX, cardY, cardW, cardH, 10, 10));
 
         
-        g2.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        g2.setFont(new Font("Franklin Gothic Medium", Font.PLAIN, 14));
         g2.setColor(new Color(241, 245, 249));
         g2.drawString("Option", cardX + 12, cardY + 25);
 
@@ -489,7 +489,7 @@ public class SmartStreetMap extends JPanel {
         compactRowBounds.setBounds(cardX + 8, r1Y, cardW - 16, 24);
         g2.setColor(showCompact ? new Color(250, 204, 21) : new Color(100, 116, 139));
         g2.fillOval(cardX + 14, r1Y + 7, 9, 9);
-        g2.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+        g2.setFont(new Font("Franklin Gothic Medium", Font.PLAIN, 13));
         g2.setColor(showCompact ? new Color(226, 232, 240) : new Color(100, 116, 139));
         g2.drawString("Compact-bulb", cardX + 30, r1Y + 16);
 

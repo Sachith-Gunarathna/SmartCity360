@@ -36,7 +36,7 @@ public class SmartZoneTable extends JTable {
         header.setPreferredSize(new Dimension(0, 40));
         header.setBackground(new Color(15, 23, 42));
         header.setForeground(new Color(203, 213, 225));
-        header.setFont(new Font("Segoe UI", Font.BOLD, 13));
+        header.setFont(new Font("Franklin Gothic Medium", Font.BOLD, 13));
         header.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(30, 41, 59)));
 
         setupTableModel();
@@ -262,7 +262,7 @@ public class SmartZoneTable extends JTable {
 
     private JMenuItem createStyledMenuItem(String text, Color textColor) {
         JMenuItem item = new JMenuItem(text);
-        item.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+        item.setFont(new Font("Franklin Gothic Medium", Font.PLAIN, 13));
         item.setForeground(textColor);
         item.setBackground(new Color(15, 23, 42));
         item.setBorder(new EmptyBorder(8, 14, 8, 14));
@@ -311,7 +311,7 @@ public class SmartZoneTable extends JTable {
                         g2.drawLine(0, h - 1, w, h - 1);
                     }
 
-                    g2.setFont(new Font("Segoe UI", Font.BOLD, 13));
+                    g2.setFont(new Font("Franklin Gothic Medium", Font.BOLD, 13));
                     FontMetrics fm = g2.getFontMetrics();
                     int textY = (h - fm.getHeight()) / 2 + fm.getAscent();
 
@@ -343,7 +343,7 @@ public class SmartZoneTable extends JTable {
                             int tW = 38, tH = 18;
                             int tX = 15, tY = (h - tH) / 2;
 
-                            // Mouse එක Switch එක උඩට ගෙන ගිය විට Glow වීම
+                            
                             if (row == hoverRow && column == 2) {
                                 g2.setColor(new Color(56, 189, 248, 40));
                                 g2.fillRoundRect(tX - 3, tY - 3, tW + 6, tH + 6, tH + 6, tH + 6);

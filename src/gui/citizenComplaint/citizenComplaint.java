@@ -41,9 +41,8 @@ public class citizenComplaint extends javax.swing.JInternalFrame {
         jLabel17 = new javax.swing.JLabel();
         comboBoxSuggestion2 = new components.ComboBoxSuggestion();
         jLabel18 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
         jButton1 = new javax.swing.JButton();
+        roundTextAreaPanel1 = new components.RoundTextAreaPanel();
         panelRound3 = new components.PanelRound();
         smartEscalationChain1 = new components.SmartEscalationChain();
         smartTerminal1 = new components.SmartTerminal();
@@ -114,15 +113,6 @@ public class citizenComplaint extends javax.swing.JInternalFrame {
         jLabel18.setText("Zone");
         panelRound2.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 470, 30));
 
-        jTextArea1.setBackground(new java.awt.Color(30, 41, 59));
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 14)); // NOI18N
-        jTextArea1.setForeground(new java.awt.Color(255, 255, 255));
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
-
-        panelRound2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 440, 470, 130));
-
         jButton1.setBackground(new java.awt.Color(56, 189, 248));
         jButton1.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(12, 0, 0));
@@ -131,6 +121,9 @@ public class citizenComplaint extends javax.swing.JInternalFrame {
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(this::jButton1ActionPerformed);
         panelRound2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 590, 370, 40));
+
+        roundTextAreaPanel1.setForeground(new java.awt.Color(255, 255, 255));
+        panelRound2.add(roundTextAreaPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 440, -1, 140));
 
         panelRound1.add(panelRound2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 490, 640));
 
@@ -193,13 +186,12 @@ public class citizenComplaint extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel22;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private components.PanelRound panelRound1;
     private components.PanelRound panelRound2;
     private components.PanelRound panelRound3;
+    private components.RoundTextAreaPanel roundTextAreaPanel1;
     private components.SmartEscalationChain smartEscalationChain1;
     private components.SmartTerminal smartTerminal1;
     // End of variables declaration//GEN-END:variables

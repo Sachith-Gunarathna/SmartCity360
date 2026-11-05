@@ -19,8 +19,8 @@ public class RoundTextAreaPanel extends JPanel {
         textArea = new JTextArea();
         textArea.setOpaque(false);
         textArea.setForeground(Color.WHITE);
-        textArea.setCaretColor(new Color(6, 182, 212)); 
-        textArea.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+        textArea.setCaretColor(new Color(6, 182, 212));
+        textArea.setFont(new Font("Franklin Gothic Medium", Font.PLAIN, 13));
         textArea.setLineWrap(true);
         textArea.setWrapStyleWord(true);
 
@@ -35,6 +35,9 @@ public class RoundTextAreaPanel extends JPanel {
         scrollPane.getHorizontalScrollBar().setOpaque(false);
 
         add(scrollPane, BorderLayout.CENTER);
+        
+        
+        setMinimumSize(new Dimension(100, 40));
     }
 
     public JTextArea getTextArea() {

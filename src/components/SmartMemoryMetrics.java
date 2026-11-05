@@ -64,7 +64,7 @@ public class SmartMemoryMetrics extends JPanel {
         int barH = 42;
         drawBeforeFlyweightBar(g2, padX, bar1Y, contentW, barH);
 
-        g2.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        g2.setFont(new Font("Franklin Gothic Medium", Font.PLAIN, 14));
         g2.setColor(new Color(203, 185, 190));
         g2.drawString(beforeRamMB + " MB RAM Used", padX + 2, bar1Y + barH + 22);
 
@@ -72,7 +72,7 @@ public class SmartMemoryMetrics extends JPanel {
         int bar2Y = 144;
         drawWithFlyweightBar(g2, padX, bar2Y, contentW, barH);
 
-        g2.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        g2.setFont(new Font("Franklin Gothic Medium", Font.PLAIN, 14));
         g2.setColor(new Color(165, 205, 215));
         g2.drawString(withFlyweightRamMB + " MB RAM Used", padX + 2, bar2Y + barH + 22);
 
@@ -88,8 +88,8 @@ public class SmartMemoryMetrics extends JPanel {
         int leftCenterX = padX + (w / 2 - padX) / 2 - 10;
         int rightCenterX = w / 2 + (w / 2 - padX) / 2 + 10;
 
-        Font titleFont = new Font("Segoe UI", Font.PLAIN, 16);
-        Font subFont = new Font("Segoe UI", Font.PLAIN, 13);
+        Font titleFont = new Font("Franklin Gothic Medium", Font.PLAIN, 16);
+        Font subFont = new Font("Franklin Gothic Medium", Font.PLAIN, 13);
 
         
         g2.setFont(titleFont);
@@ -101,7 +101,7 @@ public class SmartMemoryMetrics extends JPanel {
         drawCenteredString(g2, "(Total Extrinsic Instances)", leftCenterX, topY + 20);
 
         
-        g2.setFont(new Font("Segoe UI", Font.PLAIN, 16));
+        g2.setFont(new Font("Franklin Gothic Medium", Font.PLAIN, 16));
         g2.setColor(new Color(226, 232, 240));
         drawCenteredString(g2, "VS.", w / 2, topY + 11);
 
@@ -183,7 +183,7 @@ public class SmartMemoryMetrics extends JPanel {
 
         
         String savedText = savedPercentage + "% Memory Saved";
-        g2.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        g2.setFont(new Font("Franklin Gothic Medium", Font.PLAIN, 12));
         FontMetrics fm = g2.getFontMetrics();
         int pillW = fm.stringWidth(savedText) + 24;
         int pillH = 26;
@@ -228,8 +228,8 @@ public class SmartMemoryMetrics extends JPanel {
         int labelX = x + 38;
         int rightX = x + w - 16;
 
-        Font labelFont = new Font("Segoe UI", Font.PLAIN, 14);
-        Font valFont = new Font("Segoe UI", Font.PLAIN, 15);
+        Font labelFont = new Font("Franklin Gothic Medium", Font.PLAIN, 14);
+        Font valFont = new Font("Franklin Gothic Medium", Font.PLAIN, 15);
         Color labelColor = new Color(203, 213, 225);
         Color valColor = new Color(248, 250, 252);
         Color iconColor = new Color(120, 140, 165);

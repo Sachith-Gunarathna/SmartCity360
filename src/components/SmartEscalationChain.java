@@ -11,7 +11,7 @@ import javax.swing.*;
 
 public class SmartEscalationChain extends JPanel {
 
-    private int activeLevel = 1; // 1 = Local Staff, 2 = Supervisor, 3 = City Manager
+    private int activeLevel = 1; 
     private int hoverLevel = -1;
     private SmartTerminal boundTerminal;
 
@@ -69,16 +69,12 @@ public class SmartEscalationChain extends JPanel {
         addMouseMotionListener(mouseHandler);
     }
 
-    /**
-     * Ikonektar ti SmartTerminal tapno automatiko a ma-log ti panagtaray ti Chain of Responsibility
-     */
+   
     public void bindTerminal(SmartTerminal terminal) {
         this.boundTerminal = terminal;
     }
 
-    /**
-     * Baliwan ti aktibo nga agpang (1, 2, wenno 3)
-     */
+    
     public void escalateToLevel(int level) {
         if (level < 1 || level > 3) {
             return;
@@ -115,7 +111,7 @@ public class SmartEscalationChain extends JPanel {
         int w = getWidth();
         int h = getHeight();
 
-        // 1. Akinruar a Card Background ken Border
+       
         g2.setColor(new Color(30,41,59));
         g2.fillRoundRect(0, 0, w, h, 14, 14);
         g2.setColor(new Color(30,41,59));
@@ -126,7 +122,7 @@ public class SmartEscalationChain extends JPanel {
         g2.setColor(Color.WHITE);
         g2.drawString("Escalation Chain Routing Path", 22, 34);
         
-        // 3.rukod ken posision dagiti 3 nga agpang
+       
         int leftNumX = 20;
         int iconCenterX = 64;
         int cardX = 104;
@@ -153,7 +149,7 @@ public class SmartEscalationChain extends JPanel {
 
         String[] etas = {level1Eta, level2Eta, level3Eta};
 
-        // 4. Ipinta dagiti puted-puted a pana (Dotted Arrows) iti baet dagiti agpang
+        
         for (int i = 0; i < 2; i++) {
             int topCircleBottom = (ys[i] + hs[i] / 2) + 26;
             int nextCircleTop = (ys[i + 1] + hs[i + 1] / 2) - 26;
@@ -165,7 +161,7 @@ public class SmartEscalationChain extends JPanel {
             drawDottedArrow(g2, cardCenterX, topCardBottom, nextCardTop, new Color(100, 116, 139));
         }
 
-        // 5. Ipinta ti tunggal agpang (Level 1, 2, 3)
+       
         for (int i = 0; i < 3; i++) {
             int levelNum = i + 1;
             int cy = ys[i] + hs[i] / 2;
@@ -174,15 +170,15 @@ public class SmartEscalationChain extends JPanel {
 
             cardBounds[i].setBounds(20, ys[i], w - 40, hs[i]);
 
-            // Numero iti kannigid (1., 2., 3.)
-            g2.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+            
+            g2.setFont(new Font("Franklin Gothic Medium", Font.PLAIN, 15));
             g2.setColor(new Color(148, 163, 184));
             g2.drawString(levelNum + ".", leftNumX, cy + 5);
 
-            // Nagbukel nga Icon agraman Glow
+            
             drawLevelCircleIcon(g2, iconCenterX, cy, levelNum, isActive);
 
-            // Kahon ti Card iti kannawan
+            
             drawLevelCard(g2, cardX, ys[i], cardW, hs[i], levelNum, titles[i], etas[i], isActive, isHovered);
         }
 
@@ -195,17 +191,17 @@ public class SmartEscalationChain extends JPanel {
         Color fillBg;
 
         if (level == 1) {
-            mainColor = new Color(45, 212, 160); // Glowing Green
+            mainColor = new Color(45, 212, 160); 
             fillBg = new Color(18, 62, 54);
         } else if (level == 2) {
-            mainColor = new Color(217, 107, 99); // Coral Red
+            mainColor = new Color(217, 107, 99); 
             fillBg = new Color(56, 31, 36);
         } else {
-            mainColor = isActive ? new Color(56, 189, 248) : new Color(115, 130, 150); // Slate Gray
+            mainColor = isActive ? new Color(56, 189, 248) : new Color(115, 130, 150); 
             fillBg = new Color(36, 45, 60);
         }
 
-        // Outer Glow
+        
         if (level == 1 || isActive) {
             for (int glow = 10; glow >= 2; glow -= 2) {
                 g2.setColor(new Color(mainColor.getRed(), mainColor.getGreen(), mainColor.getBlue(), 18));
@@ -218,7 +214,7 @@ public class SmartEscalationChain extends JPanel {
             }
         }
 
-        // Circle Fill & Border
+        
         g2.setColor(fillBg);
         g2.fill(new Ellipse2D.Float(cx - r, cy - r, r * 2, r * 2));
 
@@ -226,10 +222,10 @@ public class SmartEscalationChain extends JPanel {
         g2.setStroke(new BasicStroke(1.8f));
         g2.draw(new Ellipse2D.Float(cx - r, cy - r, r * 2, r * 2));
 
-        // Vector Icons iti uneg ti nagbukel
+        
         g2.setStroke(new BasicStroke(1.5f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
         if (level == 1) {
-            // Field Staff Icon (Hardhat + Worker Shoulders)
+            
             g2.drawArc(cx - 6, cy - 10, 12, 10, 0, 180);
             g2.drawLine(cx - 8, cy - 5, cx + 8, cy - 5);
             g2.drawArc(cx - 5, cy - 8, 10, 10, 180, 180);
@@ -237,14 +233,14 @@ public class SmartEscalationChain extends JPanel {
             g2.drawLine(cx - 4, cy + 3, cx - 4, cy + 11);
             g2.drawLine(cx + 4, cy + 3, cx + 4, cy + 11);
         } else if (level == 2) {
-            // Supervisor + Walkie-Talkie Radio Icon
+            
             g2.drawOval(cx - 8, cy - 9, 9, 9);
             g2.drawArc(cx - 11, cy + 1, 15, 12, 0, 180);
             g2.drawRoundRect(cx + 4, cy - 3, 6, 11, 2, 2);
             g2.drawLine(cx + 8, cy - 7, cx + 8, cy - 3);
             g2.fillOval(cx + 6, cy - 1, 2, 2);
         } else {
-            // City Manager (City Hall / Dome Building Icon)
+            
             g2.drawArc(cx - 6, cy - 7, 12, 10, 0, 180);
             g2.drawLine(cx, cy - 10, cx, cy - 7);
             g2.drawRect(cx - 9, cy - 2, 18, 10);
@@ -258,7 +254,7 @@ public class SmartEscalationChain extends JPanel {
     private void drawLevelCard(Graphics2D g2, int x, int y, int w, int h, int level,
             String title, String eta, boolean isActive, boolean isHovered) {
 
-        // Card Glow & Fill
+        
         if (isActive) {
             for (int glow = 6; glow >= 2; glow -= 2) {
                 g2.setColor(new Color(34, 211, 238, 18));
@@ -279,13 +275,13 @@ public class SmartEscalationChain extends JPanel {
             g2.draw(new RoundRectangle2D.Float(x, y, w, h, 12, 12));
         }
 
-        // Card Text
+        
         if (isActive) {
-            g2.setFont(new Font("Segoe UI", Font.BOLD, 15));
+            g2.setFont(new Font("Franklin Gothic Medium", Font.BOLD, 15));
             g2.setColor(Color.WHITE);
             g2.drawString(title, x + 18, y + 28);
 
-            g2.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+            g2.setFont(new Font("Franklin Gothic Medium", Font.PLAIN, 13));
             g2.setColor(new Color(148, 163, 184));
             g2.drawString("ETA: ", x + 18, y + 52);
             int etaLabelW = g2.getFontMetrics().stringWidth("ETA: ");
@@ -304,7 +300,7 @@ public class SmartEscalationChain extends JPanel {
             g2.drawString(title, x + 18, ty);
         }
 
-        // Pill Badge iti kannawan
+        
         String badgeText;
         Color badgeBg;
         Color badgeBorder;
@@ -332,7 +328,7 @@ public class SmartEscalationChain extends JPanel {
             badgeFg = new Color(148, 163, 184);
         }
 
-        g2.setFont(new Font("Segoe UI", Font.BOLD, 11));
+        g2.setFont(new Font("Franklin Gothic Medium", Font.BOLD, 11));
         FontMetrics fm = g2.getFontMetrics();
         int pillW = fm.stringWidth(badgeText) + 24;
         int pillH = 24;

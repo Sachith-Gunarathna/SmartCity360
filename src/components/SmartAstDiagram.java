@@ -355,7 +355,7 @@ public class SmartAstDiagram extends JPanel {
         g2.draw(new RoundRectangle2D.Float(r.x, r.y, r.width, r.height, arc, arc));
 
         
-        g2.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        g2.setFont(new Font("Franklin Gothic Medium", Font.PLAIN, 14));
         FontMetrics fm1 = g2.getFontMetrics();
         g2.setColor(new Color(241, 245, 249));
         int tx1 = r.x + (r.width - fm1.stringWidth(title)) / 2;
@@ -363,7 +363,7 @@ public class SmartAstDiagram extends JPanel {
         g2.drawString(title, tx1, ty1);
 
         
-        g2.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        g2.setFont(new Font("Franklin Gothic Medium", Font.PLAIN, 14));
         FontMetrics fm2 = g2.getFontMetrics();
         g2.setColor(statusColor);
         int tx2 = r.x + (r.width - fm2.stringWidth(badgeText)) / 2;

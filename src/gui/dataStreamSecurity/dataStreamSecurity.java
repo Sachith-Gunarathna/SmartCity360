@@ -36,7 +36,7 @@ public class dataStreamSecurity extends javax.swing.JInternalFrame {
         smartTerminal1 = new components.SmartTerminal();
         panelRound4 = new components.PanelRound();
         jLabel22 = new javax.swing.JLabel();
-        roundTextAreaPanel1 = new components.RoundTextAreaPanel();
+        roundTextAreaPanel2 = new components.RoundTextAreaPanel();
 
         panelRound1.setBackground(new java.awt.Color(11, 15, 25));
         panelRound1.setPreferredSize(new java.awt.Dimension(1124, 725));
@@ -128,7 +128,9 @@ public class dataStreamSecurity extends javax.swing.JInternalFrame {
         jLabel22.setForeground(new java.awt.Color(255, 255, 255));
         jLabel22.setText("Raw Data Stream");
         panelRound4.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 420, 20));
-        panelRound4.add(roundTextAreaPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, 260));
+
+        roundTextAreaPanel2.setForeground(new java.awt.Color(255, 255, 255));
+        panelRound4.add(roundTextAreaPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, 270));
 
         panelRound1.add(panelRound4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 690, 320));
 
@@ -165,7 +167,7 @@ public class dataStreamSecurity extends javax.swing.JInternalFrame {
     private components.PanelRound panelRound2;
     private components.PanelRound panelRound3;
     private components.PanelRound panelRound4;
-    private components.RoundTextAreaPanel roundTextAreaPanel1;
+    private components.RoundTextAreaPanel roundTextAreaPanel2;
     private components.SmartSwitch smartSwitch1;
     private components.SmartSwitch smartSwitch2;
     private components.SmartSwitch smartSwitch3;

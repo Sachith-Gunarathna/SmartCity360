@@ -105,7 +105,7 @@ public class slideShow extends JLayeredPane {
 
         };
 
-        // Animation
+        
         animator = new Animator(1000, target);
         animator.setResolution(0);
         animator.setAcceleration(0.5f);

@@ -1,7 +1,9 @@
 package gui.dataStreamSecurity;
 
+import controller.SmartCityController;
 import javax.swing.BorderFactory;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
+import model.DataSecurity;
 
 public class dataStreamSecurity extends javax.swing.JInternalFrame {
 
@@ -13,6 +15,12 @@ public class dataStreamSecurity extends javax.swing.JInternalFrame {
         ui.setNorthPane(null);
         
         jButton1.putClientProperty("FlatLaf.style", "arc:30");
+        
+        roundTextAreaPanel2.setText("{\n  \"zone\": \"Alawwa City - Central District\",\n  \"sensorId\": \"NODE_1540\",\n  \"powerLoadKW\": 345,\n  \"voltage\": \"230V\",\n  \"status\": \"ONLINE\"\n}");
+        
+        smartTerminal1.clear();
+        smartTerminal1.appendLog("INFO", "Part A: Decorator Pattern Security Engine initialized.");
+        smartTerminal1.appendLog("SECURITY", "Select security wrappers and click 'Secure & Send'.");
     }
 
     @SuppressWarnings("unchecked")
@@ -149,6 +157,39 @@ public class dataStreamSecurity extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+        String rawPayload = roundTextAreaPanel2.getText().trim();
+        if(rawPayload.isEmpty()){
+            smartTerminal1.appendLog("WARNING", "Raw Data Stream is empty! Please enter telemetry data.");
+            return;
+        }
+        
+        boolean useAes = smartSwitch1.isSelected();
+        boolean useHmac = smartSwitch2.isSelected();
+        boolean useGzip = smartSwitch3.isSelected();
+        
+        DataSecurity.DataStream dataSecurity = new DataSecurity.RawSensorStream();
+        smartTerminal1.appendLog("INFO", "Starting RawSensorStream ->" +rawPayload.replace("\n", " "));
+        
+        if(useGzip){
+            dataSecurity = new DataSecurity.GzipCompressionDecorder(dataSecurity);
+            smartTerminal1.appendLog("WRAPPER", "Applied GzipCompressionDecorator (GZIP Data)");  
+        }
+        
+        if(useHmac){
+            dataSecurity = new DataSecurity.HmacAuthDecorator(dataSecurity);
+            smartTerminal1.appendLog("WRAPPER", "Applied HmacAuthDecorator (HMAC-SHA256 Signature)"); 
+        }
+        
+        if(useAes){
+            dataSecurity = new DataSecurity.Aes256EncryptionDecorator(dataSecurity);
+            smartTerminal1.appendLog("WRAPPER", "Applied Aes256EncryptionDecorator (AES-256 Encryption)");
+        }
+        
+        String finalPacket = dataSecurity.writeData(rawPayload.replace("\n", " "));
+        SmartCityController.getInstance().updateSecurityState(useAes, useHmac, useGzip);
+  
+        smartTerminal1.appendLog("SUCCESS", "Transmitted Packet: " + finalPacket);
         
     }//GEN-LAST:event_jButton1ActionPerformed
 

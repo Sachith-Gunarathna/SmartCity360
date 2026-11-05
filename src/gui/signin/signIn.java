@@ -5,7 +5,7 @@ import components.SMSlide1;
 import components.SMSlide2;
 import components.SMSlide3;
 import gui.home.dashboard;
-import module.AppIcon;
+import components.AppIcon;
 
 
 public class signIn extends javax.swing.JFrame {

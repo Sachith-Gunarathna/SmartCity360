@@ -16,7 +16,7 @@ import java.util.GregorianCalendar;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
-import module.AppIcon;
+import components.AppIcon;
 
 
 public class dashboard extends javax.swing.JFrame {

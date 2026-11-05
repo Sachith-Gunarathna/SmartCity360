@@ -50,4 +50,41 @@ public class DataSecurity {
             return "100% Encrypted (AES-256)";
         }
     }
+    
+    public static class HmacAuthDecorator extends StreamDecorator{
+        public HmacAuthDecorator(DataStream wrappedStream){
+            super(wrappedStream);
+        }
+
+        @Override
+        public String writeData(String rawPayload) {
+            String data = wrappedStream.writeData(rawPayload);
+            String sig = Integer.toHexString(data.hashCode()).toUpperCase();
+            return "HMAC_SHA256(sig=)"+ sig + ")["+data+"]";
+        }
+
+        @Override
+        public String getSecurityStatus() {
+            return wrappedStream.getSecurityStatus() + " + HMAC";
+        }
+ 
+    }
+    
+    public static class GzipCompressionDecorder extends StreamDecorator{
+        public GzipCompressionDecorder(DataStream wrappedStream){
+            super(wrappedStream);
+        }
+
+        @Override
+        public String writeData(String rawPayload) {
+            String data = wrappedStream.writeData(rawPayload);
+            return "GZIP_COMP(ratio=64%)["+ data +"]";
+        }
+
+        @Override
+        public String getSecurityStatus() {
+            return wrappedStream.getSecurityStatus() + " + GZIP";
+        }
+   
+    }
 }

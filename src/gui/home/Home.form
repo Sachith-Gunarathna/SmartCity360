@@ -144,7 +144,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="435"/>
+                <Property name="text" type="java.lang.String" value="0"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel4">
@@ -236,7 +236,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="1,540"/>
+                <Property name="text" type="java.lang.String" value="0"/>
               </Properties>
             </Component>
             <Container class="components.PanelRound" name="panelRound15">
@@ -335,7 +335,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="99" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="30"/>
+                <Property name="text" type="java.lang.String" value="0"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel10">
@@ -377,9 +377,9 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel11" pref="252" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
-                              <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel12" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jLabel13" max="32767" attributes="0"/>
+                              <Component id="jLabel13" min="-2" pref="170" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -427,7 +427,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="f8" green="bd" red="38" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="100%"/>
+                <Property name="text" type="java.lang.String" value="0%"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel13">

@@ -1,5 +1,8 @@
 package gui.home;
 
+import controller.SmartCityController;
+import java.text.NumberFormat;
+import java.util.Locale;
 import javax.swing.BorderFactory;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 
@@ -12,7 +15,29 @@ public class Home extends javax.swing.JInternalFrame {
         BasicInternalFrameUI ui = (BasicInternalFrameUI) this.getUI();
         ui.setNorthPane(null);
         
-
+        connectDashboard();
+    }
+    
+    private void connectDashboard(){
+        SmartCityController smartCityController = SmartCityController.getInstance();
+        
+        smartPowerChart1.bindTerminal(smartTerminal1);
+        smartActiveZones1.bindTerminal(smartTerminal1);
+        smartDispatchStatus1.bindTerminal(smartTerminal1);
+        
+        jLabel3.setText(String.valueOf(smartCityController.getCurrentPowerKW()));
+        jLabel6.setText(NumberFormat.getNumberInstance(Locale.US).format(smartCityController.getTotalLights()));
+        jLabel9.setText(String.valueOf(smartCityController.getActiveAlerts()));
+        jLabel12.setText(smartCityController.getSecurityPercent());
+        jLabel13.setText(smartCityController.getSecurityLabel());
+        
+        smartPowerChart1.setPeakLoadKW(smartCityController.getPeakLoadKW());
+        smartDispatchStatus1.setQueueStatus(smartCityController.getLastEscalatedLevel(), "Dispatched", 0);
+        
+        smartTerminal1.appendLog("INFO", "All SmartCity360 subsystems operational.");
+        smartTerminal1.appendLog("SECURITY", "Data Stream Security: "+ smartCityController.getSecurityPercent());
+        smartTerminal1.appendLog("ZONES", "Smart Zone: Total city power load at "+ smartCityController.getCurrentPowerKW() + " kW.");
+        smartTerminal1.appendLog("FLYWEIGHT", "Street Light: Managing "+ smartCityController.getTotalLights() +" street light nodes.");
     }
 
     @SuppressWarnings("unchecked")
@@ -82,7 +107,7 @@ public class Home extends javax.swing.JInternalFrame {
 
         jLabel3.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("435");
+        jLabel3.setText("0");
 
         jLabel4.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(56, 189, 248));
@@ -135,7 +160,7 @@ public class Home extends javax.swing.JInternalFrame {
 
         jLabel6.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("1,540");
+        jLabel6.setText("0");
 
         panelRound15.setBackground(new java.awt.Color(27, 44, 72));
         panelRound15.setRoundBottomLeft(20);
@@ -194,7 +219,7 @@ public class Home extends javax.swing.JInternalFrame {
 
         jLabel9.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 153, 0));
-        jLabel9.setText("30");
+        jLabel9.setText("0");
 
         jLabel10.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 153, 0));
@@ -240,7 +265,7 @@ public class Home extends javax.swing.JInternalFrame {
 
         jLabel12.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(56, 189, 248));
-        jLabel12.setText("100%");
+        jLabel12.setText("0%");
 
         jLabel13.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 24)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(56, 189, 248));
@@ -264,9 +289,9 @@ public class Home extends javax.swing.JInternalFrame {
                 .addGroup(panelRound5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
                     .addGroup(panelRound5Layout.createSequentialGroup()
-                        .addComponent(jLabel12)
+                        .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         panelRound5Layout.setVerticalGroup(

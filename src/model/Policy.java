@@ -69,7 +69,7 @@ public class Policy {
         
     }
     
-    public EvaluationReport evaluationReport(String dslRule,String targetZone, String currentLoadInput){
+    public static EvaluationReport evaluatePolicyRule(String dslRule,String targetZone, String currentLoadInput){
         String expectedZone = "Central District";
         int threshold = DEFAULT_THRESHOLD;
         String logicOp = "AND";

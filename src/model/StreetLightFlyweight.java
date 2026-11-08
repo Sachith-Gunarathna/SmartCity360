@@ -1,129 +1,134 @@
 package model;
 
+import components.SmartTerminal;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class StreetLightFlyweight {
-   
-    public static class LightModelFlyweight{
-        private final String modelCode;
-        private final String typeLabel;
+
+    private static final int INITIAL_SIMULATED_LIGHTS = 1540;
+    private static final double RAM_PER_NON_FLYWEIGHT_MB = 0.2026;
+    private static final double RAM_PER_FLYWEIGHT_MB = 0.01558;
+
+    public static abstract class AbstractStreetLight {
+
+        public abstract void display(SmartTerminal terminal);
+    }
+
+    public static class SharedStreetLight {
+
+        private final String type;
         private final int wattage;
+        private final String colorSpectrum;
 
-        public LightModelFlyweight(String modelCode, String typeLabel, int wattage) {
-            this.modelCode = modelCode;
-            this.typeLabel = typeLabel;
+        public SharedStreetLight(String type, int wattage, String colorSpectrum) {
+            this.type = type;
             this.wattage = wattage;
+            this.colorSpectrum = colorSpectrum;
         }
 
-        public String getModelCode() {
-            return modelCode;
-        }
-
-        public String getTypeLabel() {
-            return typeLabel;
+        public String getType() {
+            return type;
         }
 
         public int getWattage() {
             return wattage;
         }
- 
+
+        public String getColorSpectrum() {
+            return colorSpectrum;
+        }
+
     }
-    
-    public static class LightFactory{
-        private static final Map<String, LightModelFlyweight> SHARED_POOL = new HashMap<>();
-        
-        public static LightModelFlyweight getLightModel(String key){
-            String normalized = key.toUpperCase();
-            if(!SHARED_POOL.containsKey(normalized)){
-                if("LED".equals(normalized)){
-                    SHARED_POOL.put("LED", new LightModelFlyweight(
-                            "LED_150W_Cyan", "Active Node (LED)", 150));
-                }else{
-                    SHARED_POOL.put("COMPACT", new LightModelFlyweight(
-                            "COMP_60W_Amber", "Active Node (Compact)", 60));
+
+    public static class SharedStreetLightPool {
+
+        private static final ArrayList<SharedStreetLight> sharedLightList = new ArrayList<>();
+
+        public static SharedStreetLight getSharedLight(String type, int wattage, String colorSpectrum) {
+            SharedStreetLight sl = null;
+            for (SharedStreetLight item : sharedLightList) {
+                if (type.equalsIgnoreCase(item.getType())
+                        && wattage == item.getWattage()
+                        && colorSpectrum.equalsIgnoreCase(item.getColorSpectrum())) {
+                    sl = item;
+                    break;
                 }
             }
-            
-            return SHARED_POOL.get(normalized);
+
+            if (sl == null) {
+                sl = new SharedStreetLight(type, wattage, colorSpectrum);
+                sharedLightList.add(sl);
+            }
+            return sl;
         }
-        
-        public static int getIntrinsicTypeCount(){
-            return SHARED_POOL.size();
+
+        public static int getPoolSize() {
+            return sharedLightList.size();
         }
     }
-    
-    public static class DeployedLightContext{
-        private final int id;
+
+    public static class StreetLight extends AbstractStreetLight {
+
+        private final int x;
+        private final int y;
         private final String streetName;
-        private final float x;
-        private final float y;
-        private final LightModelFlyweight intrinsicModel;
-        
-        public DeployedLightContext(int id, String streetName, float x, float y, LightModelFlyweight intrinsicModel){
-            this.id = id;
-            this.streetName = streetName;
+        private final SharedStreetLight sharedLight;
+
+        public StreetLight(String type, int wattage, String colorSpectrum, int x, int y, String streetName) {
             this.x = x;
             this.y = y;
-            this.intrinsicModel = intrinsicModel;
+            this.streetName = streetName;
+            this.sharedLight = SharedStreetLightPool.getSharedLight(type, wattage, colorSpectrum);
         }
 
-        public int getId() {
-            return id;
+        @Override
+        public void display(SmartTerminal terminal) {
+            if (terminal != null) {
+                terminal.appendLog("FLYWEIGHT", "Deployed [" + sharedLight.getType() + " " + sharedLight.getWattage()
+                        + "W " + sharedLight.getColorSpectrum() + "] at (" + x + ", " + y + ") on " + streetName
+                        + " | Shared Pool Objects: " + SharedStreetLightPool.getPoolSize());
+            }
         }
-
-        public String getStreetName() {
-            return streetName;
-        }
-
-        public float getX() {
-            return x;
-        }
-
-        public float getY() {
-            return y;
-        }
-
-        public LightModelFlyweight getIntrinsicModel() {
-            return intrinsicModel;
-        }
-
     }
-    
-    private final List<DeployedLightContext> deployedNodes = new ArrayList<>();
-    private int totalSimulatedLights = 1540;
-    
-    public StreetLightFlyweight(){
-        LightFactory.getLightModel("LED");
-        LightFactory.getLightModel("COMPACT");
+
+    private final List<StreetLight> deployedLights = new ArrayList<>();
+    private int totalSimulatedLights = INITIAL_SIMULATED_LIGHTS;
+
+    public StreetLightFlyweight() {
+        SharedStreetLightPool.getSharedLight("LED", 150, "Cyan");
+        SharedStreetLightPool.getSharedLight("COMPACT", 60, "Amber");
     }
-    
-    public DeployedLightContext deployNode(String typeKey,String streetName,float x,float y){
-        LightModelFlyweight sharedModel = LightFactory.getLightModel(typeKey);
+
+    public StreetLight deployNode(String typeKey, String streetName, float normX, float normY, SmartTerminal terminal) {
+        boolean isLed = "LED".equalsIgnoreCase(typeKey);
+        int wattage = isLed ? 150 : 60;
+        String spectrum = isLed ? "Cyan" : "Amber";
+
         totalSimulatedLights++;
-        DeployedLightContext context = new DeployedLightContext(
-                totalSimulatedLights, streetName, x, y, sharedModel);
-        deployedNodes.add(context);
-        return context;
+        int coordX = Math.round(normX * 1000);
+        int coordY = Math.round(normY * 1000);
+
+        StreetLight light = new StreetLight(isLed ? "LED" : "COMPACT", wattage, spectrum, coordX, coordY, streetName);
+        deployedLights.add(light);
+        light.display(terminal);
+        return light;
+    }
+
+    public StreetLight deployedLights(String typeKey, String streetName, float normX, float normY) {
+        return deployNode(typeKey, streetName, normX, normY, null);
     }
 
     public int getTotalSimulatedLights() {
         return totalSimulatedLights;
     }
-    
-    public int getBeforeFlyweightRamMB(){
-        return (int) Math.round(totalSimulatedLights * 0.2026);
+
+    public int getBeforeFlyweightRamMB() {
+        return (int) Math.round(totalSimulatedLights * RAM_PER_NON_FLYWEIGHT_MB);
     }
-    
-    public int getWithFlyweightRamMB(){
-        return (int) Math.round(totalSimulatedLights * 0.01558);
+
+    public int getWithFlyweightRamMB() {
+        return (int) Math.round(totalSimulatedLights * RAM_PER_FLYWEIGHT_MB);
     }
-    
-    public double getMemorySavePrecentage(){
-        int before = getBeforeFlyweightRamMB();
-        int after = getWithFlyweightRamMB();
-        return Math.round(((double)(before - after) / before) * 1000.0) / 10.0;
-    }
+
 }

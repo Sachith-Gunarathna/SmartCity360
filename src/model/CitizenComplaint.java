@@ -1,7 +1,13 @@
 package model;
 
+import components.SmartTerminal;
+
 public class CitizenComplaint {
 
+    public static final int LEVEL_LOCAL_STAF = 1;
+    public static final int LEVEL_SUPERVISOR = 2;
+    public static final int LEVEL_CITY_MANAGER = 3;
+    
     public static class ComplaintRequest {
 
         private final String citizenName;
@@ -40,128 +46,100 @@ public class CitizenComplaint {
 
     }
 
-    public static class RoutingResult {
-
-        private final int assignedLevel;
-        private final String handlerTitle;
-        private final String eta;
-        private final String status;
-        private final String logMessage;
-
-        public RoutingResult(int assignedLevel, String handlerTitle, String eta, String status, String logMessage) {
-            this.assignedLevel = assignedLevel;
-            this.handlerTitle = handlerTitle;
-            this.eta = eta;
-            this.status = status;
-            this.logMessage = logMessage;
+    public static abstract class ComplaintHandler{
+        private ComplaintHandler handler;
+        
+        public ComplaintHandler getHandler(){
+            return handler;
         }
 
-        public int getAssignedLevel() {
-            return assignedLevel;
+        public void setHandler(ComplaintHandler handler) {
+            this.handler = handler;
         }
-
-        public String getHandlerTitle() {
-            return handlerTitle;
-        }
-
-        public String getEta() {
-            return eta;
-        }
-
-        public String getStatus() {
-            return status;
-        }
-
-        public String getLogMessage() {
-            return logMessage;
-        }
-
+        
+        public abstract int handle(ComplaintRequest request, SmartTerminal terminal);
     }
-
-    public static abstract class ComplaintHandler {
-
-        protected ComplaintHandler nextHandler;
-
-        public void setNextHandler(ComplaintHandler nextHandler) {
-            this.nextHandler = nextHandler;
-        }
-
-        public abstract RoutingResult handleComplaint(ComplaintRequest request);
-    }
-
-    public static class LocalFieldStaffHandler extends ComplaintHandler {
+    
+    public static class LocalFieldStaffHandler extends ComplaintHandler{
 
         @Override
-        public RoutingResult handleComplaint(ComplaintRequest request) {
+        public int handle(ComplaintRequest request, SmartTerminal terminal) {
             String desc = request.getDescription().toLowerCase();
             String cat = request.getCategory().toLowerCase();
-
-            boolean isMajorGridFailure = desc.contains("main grid") || desc.contains("blackout") || cat.contains("emergency");
-            boolean isSupervisorLevel = cat.contains("infrastructure") || desc.contains("multiple");
-
-            if (!isMajorGridFailure && !isSupervisorLevel) {
-                return new RoutingResult(1,
-                        "Level 1: Local Field Staff",
-                        "15 mins",
-                        "Dispatched",
-                        "[SUCCESS] Level 1 dispatch sent to available field staff: EM_2941 for Zone '" + request.getZone() + "'"
-                );
+            
+            boolean needsEscalation = desc.contains("main grid") || desc.contains("blackout")
+                    || desc.contains("multiple") || desc.contains("critical") || cat.contains("emergency");
+            
+            if(!needsEscalation){
+                if(terminal != null){
+                    terminal.appendLog("SUCCESS", "Level 1 (Local Field Staff) handling complaint for "
+                            + request.getCitizenName() + " in " + request.getZone() + " [ETA: 15 mins]");
+                }
+                return LEVEL_LOCAL_STAF;
+            }else{
+                if(terminal != null){
+                    terminal.appendLog("ROUTING", "Level 1 cannot handle high severity. Escalating to Level 2 Supervisor...");
+                }
+                if(this.getHandler() != null){
+                    return this.getHandler().handle(request, terminal);
+                }
+                return LEVEL_LOCAL_STAF;
             }
-
-            if (nextHandler != null) {
-                return nextHandler.handleComplaint(request);
-            }
-            return null;
         }
+ 
     }
-
-    public static class MaintenanceSupervisorHandler extends ComplaintHandler {
+    
+    public static class MaintenanceSupervisorHandler extends ComplaintHandler{
 
         @Override
-        public RoutingResult handleComplaint(ComplaintRequest request) {
+        public int handle(ComplaintRequest request, SmartTerminal terminal) {
             String desc = request.getDescription().toLowerCase();
-            boolean isCityWideEmergency = desc.contains("city-wide") || desc.contains("critical");
-
-            if (!isCityWideEmergency) {
-                return new RoutingResult(
-                        2,
-                        "Level 2: Maintenance Supervisor",
-                        "30 mins",
-                        "Pending / Escalation point",
-                        "[ROUTING] Escalated to Level 2 Maintenance Supervisor for '" + request.getCategory() + "' in " + request.getZone()
-                );
+            String cat = request.getDescription().toLowerCase();
+            
+            boolean isCriticalEmergency = desc.contains("main grid") || desc.contains("blackout")
+                    || desc.contains("multiple") || desc.contains("critical") || cat.contains("emergency");
+            
+            if(!isCriticalEmergency){
+                if(terminal != null){
+                    terminal.appendLog("WARNING", "Level 2 (Maintenance Supervisor) handling infrastructure issue for "
+                            + request.getCitizenName() + " [ETA: 30 mins]");
+                }
+                return LEVEL_SUPERVISOR;
+            }else{
+                if(terminal != null){
+                    terminal.appendLog("ROUTING", "Level 2 escalating critical grid emergency to Level 3 City Manager...");
+                }
+                if(this.getHandler() != null){
+                    return this.getHandler().handle(request, terminal);
+                }
+                return LEVEL_SUPERVISOR;
             }
-
-            if (nextHandler != null) {
-                return nextHandler.handleComplaint(request);
-            }
-            return null;
+                    
         }
-
+        
     }
-
-    public static class CityManagerHandler extends ComplaintHandler {
+    
+    public static class CityManagerHandler extends ComplaintHandler{
 
         @Override
-        public RoutingResult handleComplaint(ComplaintRequest request) {
-            return new RoutingResult(
-                    3,
-                    "Level 3: City Manager",
-                    "45 mins",
-                    "Awaiting Level 2 Escalation",
-                    "[CRITICAL] High-priority escalation routed to Level 3 City Manager for Citizen: " + request.getCitizenName()
-            );
+        public int handle(ComplaintRequest request, SmartTerminal terminal) {
+            if(terminal != null){
+                terminal.appendLog("CRITICAL", "Level 3 (City Manager) took command of critical complaint from "
+                        + request.getCitizenName() + " in " + request.getZone() + " [Immediate Dispatch]");
+            }
+            return LEVEL_CITY_MANAGER;
         }
 
     }
-
-    public static ComplaintHandler buildDefaultChain() {
-        ComplaintHandler level1 = new LocalFieldStaffHandler();
-        ComplaintHandler level2 = new MaintenanceSupervisorHandler();
-        ComplaintHandler level3 = new CityManagerHandler();
-
-        level1.setNextHandler(level2);
-        level2.setNextHandler(level3);
+    
+    public static ComplaintHandler createEscalationChain(){
+        LocalFieldStaffHandler level1 = new LocalFieldStaffHandler();
+        MaintenanceSupervisorHandler level2 = new MaintenanceSupervisorHandler();
+        CityManagerHandler level3 = new CityManagerHandler();
+        
+        level1.setHandler(level2);
+        level2.setHandler(level3);
+        
         return level1;
     }
 

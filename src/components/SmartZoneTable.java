@@ -19,8 +19,10 @@ public class SmartZoneTable extends JTable {
     private int hoverCol = -1;
     private JTextArea boundLogArea;
     private JLabel boundTotalLabel;
+    private SmartTerminal boundTerminal;
+    private SmartZoneTree boundTree;
+    private Runnable onStateChangeCallback;
 
-    
     private final int[] defaultUsages = {345, 120, 85, 60, 35, 45};
 
     public SmartZoneTable() {
@@ -40,41 +42,49 @@ public class SmartZoneTable extends JTable {
         header.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(30, 41, 59)));
 
         setupTableModel();
+        applyCustomRenderers();
+        setupMouseInteractions();
+    }
 
+    public final void applyCustomRenderers() {
         CustomTableRenderer renderer = new CustomTableRenderer();
         for (int i = 0; i < getColumnCount(); i++) {
             getColumnModel().getColumn(i).setCellRenderer(renderer);
         }
-
-        getColumnModel().getColumn(0).setPreferredWidth(180);
-        getColumnModel().getColumn(1).setPreferredWidth(100);
-        getColumnModel().getColumn(2).setPreferredWidth(80);
-        getColumnModel().getColumn(3).setPreferredWidth(160);
-        getColumnModel().getColumn(4).setPreferredWidth(160);
-        getColumnModel().getColumn(5).setPreferredWidth(70);
-
-        setupMouseInteractions();
+        if (getColumnCount() >= 6) {
+            getColumnModel().getColumn(0).setPreferredWidth(180);
+            getColumnModel().getColumn(1).setPreferredWidth(100);
+            getColumnModel().getColumn(2).setPreferredWidth(80);
+            getColumnModel().getColumn(3).setPreferredWidth(160);
+            getColumnModel().getColumn(4).setPreferredWidth(160);
+            getColumnModel().getColumn(5).setPreferredWidth(70);
+        }
     }
 
-    
     public void bindOutputs(JTextArea logArea, JLabel totalUsageLabel) {
         this.boundLogArea = logArea;
         this.boundTotalLabel = totalUsageLabel;
         updateTotalUsage();
     }
 
-    private void logAction(String message) {
+    public void bindSmartComponents(SmartTerminal terminal, SmartZoneTree tree, Runnable onStateChange) {
+        this.boundTerminal = terminal;
+        this.boundTree = tree;
+        this.onStateChangeCallback = onStateChange;
+    }
+
+    private void logAction(String level, String message) {
+        if (boundTerminal != null) {
+            boundTerminal.appendLog(level, message);
+        }
         if (boundLogArea != null) {
             String time = LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"));
-            boundLogArea.append("[" + time + "] " + message + "\n");
+            boundLogArea.append("[" + time + "] [" + level + "] " + message + "\n");
             boundLogArea.setCaretPosition(boundLogArea.getDocument().getLength());
         }
     }
 
     private void updateTotalUsage() {
-        if (boundTotalLabel == null) {
-            return;
-        }
         int total = 0;
         for (int i = 0; i < getRowCount(); i++) {
             Object val = getValueAt(i, 3);
@@ -85,7 +95,12 @@ public class SmartZoneTable extends JTable {
                 }
             }
         }
-        boundTotalLabel.setText("Total Zone Usage: " + total + " kW");
+        if (boundTotalLabel != null) {
+            boundTotalLabel.setText("Total Zone Usage: " + total + " kW");
+        }
+        if (onStateChangeCallback != null) {
+            onStateChangeCallback.run();
+        }
     }
 
     private void setupTableModel() {
@@ -109,7 +124,6 @@ public class SmartZoneTable extends JTable {
         setModel(model);
     }
 
-    
     private void setupMouseInteractions() {
         MouseAdapter mouseAdapter = new MouseAdapter() {
             @Override
@@ -125,23 +139,26 @@ public class SmartZoneTable extends JTable {
                 Rectangle cellRect = getCellRect(row, col, false);
                 int relX = e.getX() - cellRect.x;
 
-               
                 if (col == 2) {
                     togglePowerSwitch(row);
-                } 
-               
-                else if (col == 5) {
-                    
+                } else if (col == 5) {
                     if (relX >= cellRect.width - 35) {
                         showRowActionMenu(e.getComponent(), e.getX(), e.getY(), row);
-                    } 
-                    
-                    else if (relX <= 32) {
+                    } else if (relX <= 32) {
                         boolean currentAlert = Boolean.TRUE.equals(getValueAt(row, 5));
                         if (currentAlert) {
                             setValueAt(false, row, 5);
                             String zoneName = getValueAt(row, 0).toString();
-                            logAction("[ALERT CLEARED] Alert acknowledged for " + zoneName);
+                            if (boundTree != null) {
+                                SmartZoneTree.ZoneData zd = boundTree.findZoneDataByName(zoneName);
+                                if (zd != null) {
+                                    zd.hasAlert = false;
+                                }
+                            }
+                            logAction("INFO", "Alert acknowledged and cleared for " + zoneName);
+                            if (onStateChangeCallback != null) {
+                                onStateChangeCallback.run();
+                            }
                             repaint();
                         }
                     }
@@ -171,7 +188,6 @@ public class SmartZoneTable extends JTable {
         addMouseMotionListener(mouseAdapter);
     }
 
-    
     public void togglePowerSwitch(int row) {
         if (row < 0 || row >= getRowCount()) {
             return;
@@ -182,22 +198,30 @@ public class SmartZoneTable extends JTable {
 
         setValueAt(newState, row, 2);
 
+        int restoredUsage = (row < defaultUsages.length) ? defaultUsages[row] : 50;
+        if (boundTree != null) {
+            SmartZoneTree.ZoneData zd = boundTree.findZoneDataByName(zoneName);
+            if (zd != null) {
+                restoredUsage = zd.usageKW > 0 ? zd.usageKW : restoredUsage;
+                zd.setPowerState(newState);
+                boundTree.repaint();
+            }
+        }
+
         if (newState) {
             setValueAt("Active", row, 1);
-            int restoredUsage = (row < defaultUsages.length) ? defaultUsages[row] : 50;
             setValueAt(restoredUsage, row, 3);
-            logAction("[POWER ON] " + zoneName + " power restored (" + restoredUsage + " kW)");
+            logAction("SUCCESS", zoneName + " power restored (" + restoredUsage + " kW)");
         } else {
             setValueAt("Warning", row, 1);
             setValueAt(0, row, 3);
-            logAction("[POWER OFF] " + zoneName + " power switched OFF");
+            logAction("WARNING", zoneName + " power switched OFF (0 kW)");
         }
 
         updateTotalUsage();
         repaint();
     }
 
-    
     private void showRowActionMenu(Component invoker, int x, int y, int row) {
         String zoneName = getValueAt(row, 0).toString();
         boolean isPowerOn = Boolean.TRUE.equals(getValueAt(row, 2));
@@ -207,47 +231,61 @@ public class SmartZoneTable extends JTable {
         menu.setBackground(new Color(15, 23, 42));
         menu.setBorder(new LineBorder(new Color(56, 189, 248, 120), 1, true));
 
-        
         JMenuItem itemToggle = createStyledMenuItem(
                 isPowerOn ? "Turn Power OFF" : "Turn Power ON",
                 new Color(56, 189, 248)
         );
         itemToggle.addActionListener(ev -> togglePowerSwitch(row));
 
-       
         JMenuItem itemReport = createStyledMenuItem("Report Zone Usage", new Color(226, 232, 240));
         itemReport.addActionListener(ev -> {
             String usage = getValueAt(row, 3).toString();
             String limit = getValueAt(row, 4).toString();
-            logAction("[REPORT] " + zoneName + " -> Live Usage: " + usage + " kW | Limit: " + limit + " kWh");
+            logAction("ZONES", zoneName + " -> Live Usage: " + usage + " kW | Limit: " + limit + " kWh");
             JOptionPane.showMessageDialog(this,
                     "Zone: " + zoneName + "\nStatus: " + getValueAt(row, 1)
                     + "\nLive Usage: " + usage + " kW\nDaily Limit: " + limit + " kWh",
                     "Zone Usage Report", JOptionPane.INFORMATION_MESSAGE);
         });
 
-        
         JMenuItem itemAlert = createStyledMenuItem(
                 hasAlert ? "Clear / Resolve Alert" : "Flag Warning Alert",
                 new Color(250, 204, 21)
         );
         itemAlert.addActionListener(ev -> {
-            setValueAt(!hasAlert, row, 5);
-            logAction(hasAlert
-                    ? "[ALERT RESOLVED] Warning cleared for " + zoneName
-                    : "[ALERT FLAGGED] Manual alert set for " + zoneName);
+            boolean newAlertState = !hasAlert;
+            setValueAt(newAlertState, row, 5);
+            if (boundTree != null) {
+                SmartZoneTree.ZoneData zd = boundTree.findZoneDataByName(zoneName);
+                if (zd != null) {
+                    zd.hasAlert = newAlertState;
+                }
+            }
+            logAction(newAlertState ? "WARNING" : "INFO",
+                    newAlertState ? "Manual warning alert flagged for " + zoneName
+                            : "Warning alert resolved for " + zoneName);
+            if (onStateChangeCallback != null) {
+                onStateChangeCallback.run();
+            }
             repaint();
         });
 
-        
         JMenuItem itemShutdown = createStyledMenuItem("Emergency Shutdown", new Color(248, 113, 113));
         itemShutdown.addActionListener(ev -> {
             setValueAt(false, row, 2);
             setValueAt("Warning", row, 1);
             setValueAt(0, row, 3);
             setValueAt(true, row, 5);
+            if (boundTree != null) {
+                SmartZoneTree.ZoneData zd = boundTree.findZoneDataByName(zoneName);
+                if (zd != null) {
+                    zd.setPowerState(false);
+                    zd.hasAlert = true;
+                    boundTree.repaint();
+                }
+            }
             updateTotalUsage();
-            logAction("[EMERGENCY SHUTDOWN] Immediate power cutoff executed for " + zoneName);
+            logAction("CRITICAL", "Immediate emergency power cutoff executed for " + zoneName);
             repaint();
         });
 
@@ -270,7 +308,6 @@ public class SmartZoneTable extends JTable {
         return item;
     }
 
-    
     private class CustomTableRenderer extends DefaultTableCellRenderer {
 
         @Override
@@ -328,7 +365,7 @@ public class SmartZoneTable extends JTable {
 
                         case 1:
                             String type = value.toString();
-                            if ("Active".equals(type)) {
+                            if ("Active".equalsIgnoreCase(type)) {
                                 g2.setColor(new Color(52, 211, 153));
                             } else {
                                 g2.setColor(new Color(250, 204, 21));
@@ -338,12 +375,11 @@ public class SmartZoneTable extends JTable {
 
                         case 2:
                             boolean isToggleOn = Boolean.TRUE.equals(value);
-                            boolean isWarningRow = "Warning".equals(table.getValueAt(row, 1).toString());
+                            boolean isWarningRow = "Warning".equalsIgnoreCase(table.getValueAt(row, 1).toString());
 
                             int tW = 38, tH = 18;
                             int tX = 15, tY = (h - tH) / 2;
 
-                            
                             if (row == hoverRow && column == 2) {
                                 g2.setColor(new Color(56, 189, 248, 40));
                                 g2.fillRoundRect(tX - 3, tY - 3, tW + 6, tH + 6, tH + 6, tH + 6);
@@ -372,9 +408,10 @@ public class SmartZoneTable extends JTable {
                         case 3:
                         case 4:
                             String valStr = value.toString().replaceAll("[^0-9.]", "");
-                            String fullText = valStr + " kW";
+                            String unit = (column == 3) ? " kW" : " kWh";
+                            String fullText = valStr + unit;
 
-                            boolean isWarning = "Warning".equals(table.getValueAt(row, 1).toString());
+                            boolean isWarning = "Warning".equalsIgnoreCase(table.getValueAt(row, 1).toString());
                             if (column == 3 && isWarning) {
                                 g2.setColor(new Color(250, 204, 21));
                             } else {
@@ -407,7 +444,6 @@ public class SmartZoneTable extends JTable {
                                 g2.fillRect(iconX + 5, iconY + 4, 2, 2);
                             }
 
-                            
                             int dotX = w - 28;
                             if (row == hoverRow && column == 5) {
                                 g2.setColor(new Color(51, 65, 85));

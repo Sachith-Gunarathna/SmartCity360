@@ -29,7 +29,7 @@ public class SmartActiveZones extends JPanel {
     private final MapNode[] nodes = {
         
         new MapNode("Alawwa City", 0.28f, 0.40f, new Color(6, 232, 255), true, true),
-        new MapNode("Newton Street", 0.54f, 0.46f, new Color(6, 232, 255), true, false),
+        new MapNode("Narammala Road", 0.54f, 0.46f, new Color(6, 232, 255), true, false),
         new MapNode("Central District", 0.47f, 0.81f, new Color(6, 232, 255), true, false),
         
         

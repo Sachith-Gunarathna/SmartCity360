@@ -21,10 +21,10 @@ public class SmartZoneTree extends JTree {
     private int hoverRow = -1;
     private JTable boundTable;
     private JLabel boundTotalLabel;
+    private SmartTerminal boundTerminal;
 
     public SmartZoneTree() {
-        setBackground(new Color(30,41,59));
-        
+        setBackground(new Color(30, 41, 59));
         setOpaque(false);
         setRowHeight(34);
         setRootVisible(true);
@@ -41,7 +41,6 @@ public class SmartZoneTree extends JTree {
     }
 
     private void setupInteractions() {
-       
         MouseAdapter mouseHandler = new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
@@ -49,7 +48,6 @@ public class SmartZoneTree extends JTree {
                 if (row != -1) {
                     Rectangle bounds = getRowBounds(row);
                     if (bounds != null && e.getY() >= bounds.y && e.getY() <= bounds.y + bounds.height) {
-                        
                         if (e.getX() >= bounds.x) {
                             setSelectionRow(row);
                         }
@@ -80,13 +78,16 @@ public class SmartZoneTree extends JTree {
         addMouseListener(mouseHandler);
         addMouseMotionListener(mouseHandler);
 
-        
         addTreeSelectionListener(e -> {
             repaint();
             updateBoundTable();
+            ZoneData selected = getSelectedZoneData();
+            if (selected != null && boundTerminal != null) {
+                boundTerminal.appendLog("ZONES", "Selected Hierarchy Node: [" + selected.zoneType + "] "
+                        + selected.name + " | Usage: " + selected.getCurrentUsageKW() + " kW");
+            }
         });
 
-        
         addComponentListener(new ComponentAdapter() {
             @Override
             public void componentResized(ComponentEvent e) {
@@ -98,20 +99,21 @@ public class SmartZoneTree extends JTree {
         });
     }
 
-    
     public void bindTable(JTable table) {
         this.boundTable = table;
         updateBoundTable();
     }
 
-    
     public void bindTable(JTable table, JLabel totalUsageLabel) {
         this.boundTable = table;
         this.boundTotalLabel = totalUsageLabel;
         updateBoundTable();
     }
 
-   
+    public void bindTerminal(SmartTerminal terminal) {
+        this.boundTerminal = terminal;
+    }
+
     public ZoneData getSelectedZoneData() {
         DefaultMutableTreeNode node = (DefaultMutableTreeNode) getLastSelectedPathComponent();
         if (node != null && node.getUserObject() instanceof ZoneData) {
@@ -120,21 +122,28 @@ public class SmartZoneTree extends JTree {
         return null;
     }
 
-    private void updateBoundTable() {
+    public DefaultMutableTreeNode getSelectedTreeNode() {
+        DefaultMutableTreeNode node = (DefaultMutableTreeNode) getLastSelectedPathComponent();
+        if (node == null) {
+            node = (DefaultMutableTreeNode) getModel().getRoot();
+        }
+        return node;
+    }
+
+    /**
+     * SmartZoneTable na 6 columns format ge sariyagi rows load maaduttade
+     */
+    public void updateBoundTable() {
         if (boundTable == null) {
             return;
         }
 
-        DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) getLastSelectedPathComponent();
-        if (selectedNode == null) {
-            selectedNode = (DefaultMutableTreeNode) getModel().getRoot();
-        }
-
+        DefaultMutableTreeNode selectedNode = getSelectedTreeNode();
         DefaultTableModel model = (DefaultTableModel) boundTable.getModel();
-        
-        if (model.getColumnCount() < 5) {
+
+        if (model.getColumnCount() < 6) {
             model.setColumnIdentifiers(new String[]{
-                "Zone Name", "Type", "Status", "Live Usage (kW)", "Daily Limit (kWh)"
+                "Zone Name", "Type", "Status", "Live Usage (kW)", "Daily Limit (kWh)", "Alerts"
             });
         }
         model.setRowCount(0);
@@ -144,27 +153,28 @@ public class SmartZoneTree extends JTree {
 
         int totalUsage = 0;
         for (ZoneData data : rowsToDisplay) {
-            String statusText = data.status.isEmpty() || "CyanDot".equals(data.status) ? "Normal" : data.status;
+            String rowType = data.powerOn ? "Active" : "Warning";
+            int liveKW = data.getCurrentUsageKW();
             model.addRow(new Object[]{
                 data.name,
-                data.zoneType,
-                statusText,
-                data.usageKW + " kW",
-                data.dailyLimitKWh + " kWh"
+                rowType,
+                data.powerOn,
+                liveKW,
+                data.dailyLimitKWh,
+                data.hasAlert
             });
-            totalUsage += data.usageKW;
+            totalUsage += liveKW;
         }
 
         if (boundTotalLabel != null) {
             boundTotalLabel.setText("Total Zone Usage: " + totalUsage + " kW");
         }
+        boundTable.repaint();
     }
 
-    
-    private void collectZoneData(DefaultMutableTreeNode node, List<ZoneData> list) {
+    public void collectZoneData(DefaultMutableTreeNode node, List<ZoneData> list) {
         if (node.getUserObject() instanceof ZoneData) {
             ZoneData data = (ZoneData) node.getUserObject();
-            
             if (!"Category".equals(data.zoneType)) {
                 list.add(data);
             }
@@ -176,42 +186,64 @@ public class SmartZoneTree extends JTree {
         }
     }
 
+    public ZoneData findZoneDataByName(String zoneName) {
+        DefaultMutableTreeNode root = (DefaultMutableTreeNode) getModel().getRoot();
+        return findRecursive(root, zoneName);
+    }
+
+    private ZoneData findRecursive(DefaultMutableTreeNode node, String zoneName) {
+        if (node.getUserObject() instanceof ZoneData) {
+            ZoneData data = (ZoneData) node.getUserObject();
+            if (data.name.equalsIgnoreCase(zoneName)) {
+                return data;
+            }
+        }
+        Enumeration<TreeNode> children = node.children();
+        while (children.hasMoreElements()) {
+            ZoneData found = findRecursive((DefaultMutableTreeNode) children.nextElement(), zoneName);
+            if (found != null) {
+                return found;
+            }
+        }
+        return null;
+    }
+
     private void setupInitialData() {
         DefaultMutableTreeNode root = new DefaultMutableTreeNode(
-                new ZoneData("Alawwa City", "City", IconType.CITY_MAP, "CyanDot", 570, 800, true));
+                new ZoneData("Alawwa City", "City", IconType.CITY_MAP, "CyanDot", 570, 800, true, true, false));
 
         DefaultMutableTreeNode district = new DefaultMutableTreeNode(
-                new ZoneData("District", "Category", IconType.MAP, "", 0, 0, false));
+                new ZoneData("District", "Category", IconType.MAP, "", 0, 0, false, true, false));
         DefaultMutableTreeNode centralDistrict = new DefaultMutableTreeNode(
-                new ZoneData("Central District", "District", IconType.PIN, "Active", 345, 500, false));
+                new ZoneData("Central District", "District", IconType.PIN, "Active", 345, 500, false, true, true));
 
         DefaultMutableTreeNode street = new DefaultMutableTreeNode(
-                new ZoneData("Street", "Category", IconType.FOLDER, "", 0, 0, false));
+                new ZoneData("Street", "Category", IconType.FOLDER, "", 0, 0, false, true, false));
         DefaultMutableTreeNode newtonStreet = new DefaultMutableTreeNode(
-                new ZoneData("Newton Street", "Street", IconType.STREET, "Active", 120, 200, false));
+                new ZoneData("Newton Street", "Street", IconType.STREET, "Active", 120, 200, false, false, true));
 
         DefaultMutableTreeNode building = new DefaultMutableTreeNode(
-                new ZoneData("Building", "Category", IconType.FOLDER, "", 0, 0, false));
+                new ZoneData("Building", "Category", IconType.FOLDER, "", 0, 0, false, true, false));
         DefaultMutableTreeNode hospital = new DefaultMutableTreeNode(
-                new ZoneData("Hospital Block A", "Building", IconType.BUILDING, "Active", 85, 120, false));
+                new ZoneData("Hospital Block A", "Building", IconType.BUILDING, "Active", 85, 120, false, true, false));
         DefaultMutableTreeNode techPark = new DefaultMutableTreeNode(
-                new ZoneData("Tech Park Building", "Building", IconType.BUILDING, "Critical", 60, 80, false));
+                new ZoneData("Tech Park Building", "Building", IconType.BUILDING, "Critical", 60, 80, false, true, false));
         DefaultMutableTreeNode aptC1 = new DefaultMutableTreeNode(
-                new ZoneData("Apartment C (Block 1)", "Building", IconType.BUILDING, "Critical", 35, 50, false));
+                new ZoneData("Apartment C (Block 1)", "Building", IconType.BUILDING, "Critical", 35, 50, false, true, true));
         DefaultMutableTreeNode aptC2 = new DefaultMutableTreeNode(
-                new ZoneData("Apartment C (Block 2)", "Building", IconType.BUILDING, "Active", 25, 50, false));
+                new ZoneData("Apartment C (Block 2)", "Building", IconType.BUILDING, "Active", 25, 50, false, true, false));
         DefaultMutableTreeNode aptC3 = new DefaultMutableTreeNode(
-                new ZoneData("Apartment C (Block 3)", "Building", IconType.BUILDING, "Active", 20, 50, false));
+                new ZoneData("Apartment C (Block 3)", "Building", IconType.BUILDING, "Active", 20, 50, false, true, false));
 
         DefaultMutableTreeNode aptD = new DefaultMutableTreeNode(
-                new ZoneData("Apartment D", "Building", IconType.BUILDING, "Active", 45, 70, false));
+                new ZoneData("Apartment D", "Building", IconType.BUILDING, "Active", 45, 70, false, false, false));
         aptD.add(new DefaultMutableTreeNode(
-                new ZoneData("Apt D - Floor 1", "Floor", IconType.BUILDING, "Active", 25, 40, false)));
+                new ZoneData("Apt D - Floor 1", "Floor", IconType.BUILDING, "Active", 25, 40, false, true, false)));
 
         DefaultMutableTreeNode aptE = new DefaultMutableTreeNode(
-                new ZoneData("Apartment E", "Building", IconType.BUILDING, "Active", 40, 60, false));
+                new ZoneData("Apartment E", "Building", IconType.BUILDING, "Active", 40, 60, false, true, false));
         aptE.add(new DefaultMutableTreeNode(
-                new ZoneData("Apt E - Floor 1", "Floor", IconType.BUILDING, "Active", 20, 30, false)));
+                new ZoneData("Apt E - Floor 1", "Floor", IconType.BUILDING, "Active", 20, 30, false, true, false)));
 
         building.add(hospital);
         building.add(techPark);
@@ -298,9 +330,16 @@ public class SmartZoneTree extends JTree {
         public int usageKW;
         public int dailyLimitKWh;
         public boolean isRootHeader;
+        public boolean powerOn;
+        public boolean hasAlert;
 
         public ZoneData(String name, String zoneType, IconType iconType, String status,
                 int usageKW, int dailyLimitKWh, boolean isRootHeader) {
+            this(name, zoneType, iconType, status, usageKW, dailyLimitKWh, isRootHeader, true, "Critical".equals(status));
+        }
+
+        public ZoneData(String name, String zoneType, IconType iconType, String status,
+                int usageKW, int dailyLimitKWh, boolean isRootHeader, boolean powerOn, boolean hasAlert) {
             this.name = name;
             this.zoneType = zoneType;
             this.iconType = iconType;
@@ -308,6 +347,19 @@ public class SmartZoneTree extends JTree {
             this.usageKW = usageKW;
             this.dailyLimitKWh = dailyLimitKWh;
             this.isRootHeader = isRootHeader;
+            this.powerOn = powerOn;
+            this.hasAlert = hasAlert;
+        }
+
+        public int getCurrentUsageKW() {
+            return powerOn ? usageKW : 0;
+        }
+
+        public void setPowerState(boolean on) {
+            this.powerOn = on;
+            if (!isRootHeader && !"Category".equals(zoneType)) {
+                this.status = on ? "Active" : "Critical";
+            }
         }
 
         @Override
@@ -623,11 +675,10 @@ public class SmartZoneTree extends JTree {
             g2.drawLine(11, 4, 15, 2);
             g2.drawLine(2, 14, 6, 12);
             g2.drawLine(6, 12, 11, 14);
-            g2.drawLine(11, 14, 15, 12);
-            g2.drawLine(2, 4, 2, 14);
-            g2.drawLine(6, 2, 6, 12);
             g2.drawLine(11, 4, 11, 14);
             g2.drawLine(15, 2, 15, 12);
+            g2.drawLine(2, 4, 2, 14);
+            g2.drawLine(6, 2, 6, 12);
         }
     }
 }

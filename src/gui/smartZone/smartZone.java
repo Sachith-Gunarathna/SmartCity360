@@ -1,11 +1,16 @@
 package gui.smartZone;
 
-import gui.dataStreamSecurity.*;
+import controller.SmartCityController;
 import javax.swing.BorderFactory;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
+import javax.swing.tree.DefaultMutableTreeNode;
+import model.SmartZone;
 
 public class smartZone extends javax.swing.JInternalFrame {
 
+    private final SmartZone smartZoneBackend = new SmartZone();
+    private SmartZone.ZoneComponent selectedZoneComponent;
+    
     public smartZone() {
         initComponents();
         
@@ -15,6 +20,48 @@ public class smartZone extends javax.swing.JInternalFrame {
         
         jButton1.putClientProperty("FlatLaf.style", "arc:30");
         jButton2.putClientProperty("FlatLaf.style", "arc:30");
+        
+        SmartZone.CityZoneComposite city = SmartCityController.getInstance().getCityZoneComposite();
+        jLabel24.setText(String.valueOf(city.getActiveNodesCount()));
+        jLabel30.setText("14");
+        
+        connectCustomTreeAndTable();
+    }
+    
+    private void connectCustomTreeAndTable(){
+        
+        smartZoneTree2.bindTerminal(smartTerminal1);
+        smartZoneTree2.bindTable(smartZoneTable1);
+        smartZoneTable1.applyCustomRenderers();
+        
+        smartZoneTable1.bindSmartComponents(smartTerminal1, smartZoneTree2, this::syncMetrics);
+    
+        syncMetrics();
+        
+        smartTerminal1.appendLog("INFO", "Part B: Composite Pattern Smart Zone Hierarchy loaded.");
+        smartTerminal1.appendLog("ZONES", "Click any Tree node, Table power switch, Alert icon, or 3-dot action menu.");
+    
+    }
+    
+    private void syncMetrics(){
+        
+        int activeZones = smartZoneBackend.getTotalActiveZoneCount();
+        int totalNodes = activeZones * 11;
+        jLabel30.setText(String.valueOf(activeZones));
+        jLabel24.setText(String.valueOf(totalNodes));
+        
+        int liveKW = 0;
+        for(int i = 0 ; i < smartZoneTable1.getRowCount(); i++){
+            Object val = smartZoneTable1.getValueAt(i, 3);
+            if(val != null){
+                try {
+                    liveKW += Integer.parseInt(val.toString().replace("[^0-9]", ""));
+                } catch (NumberFormatException e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+        }
+        SmartCityController.getInstance().setCurrentPowerKW(liveKW);  
     }
 
     @SuppressWarnings("unchecked")
@@ -89,7 +136,7 @@ public class smartZone extends javax.swing.JInternalFrame {
 
         jLabel24.setFont(new java.awt.Font("Franklin Gothic Medium", 1, 14)); // NOI18N
         jLabel24.setForeground(new java.awt.Color(102, 204, 255));
-        jLabel24.setText("128");
+        jLabel24.setText("0");
         panelRound3.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, 50, 20));
 
         panelRound1.add(panelRound3, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 20, 150, 40));
@@ -139,7 +186,7 @@ public class smartZone extends javax.swing.JInternalFrame {
 
         jLabel30.setFont(new java.awt.Font("Franklin Gothic Medium", 1, 14)); // NOI18N
         jLabel30.setForeground(new java.awt.Color(102, 204, 255));
-        jLabel30.setText("14");
+        jLabel30.setText("0");
         panelRound5.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, 50, 20));
 
         panelRound1.add(panelRound5, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 20, 150, 40));
@@ -216,6 +263,18 @@ public class smartZone extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
+        DefaultMutableTreeNode selectNode = smartZoneTree2.getSelectedTreeNode();
+        String targetName = selectNode.getUserObject().toString();
+        
+        smartZoneBackend.findZoneByName(targetName);
+        syncMetrics();
+        
+        SmartCityController ctrl = SmartCityController.getInstance();
+        ctrl.setActiveAlerts(ctrl.getActiveAlerts() + 1);
+        
+        smartTerminal1.appendLog("CRITICAL", "EMERGENCY SHUTDOWN executed on Composite/Leaf [" + targetName + "]!");
+        smartTerminal1.appendLog("WARNING", "All child nodes under '" + targetName + "' switched OFF and flagged with alerts.");
+    
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

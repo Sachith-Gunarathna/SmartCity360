@@ -12,7 +12,7 @@ public class SmartCityController {
     }
     
     private final StreetLightFlyweight streetLightFlyweight = new StreetLightFlyweight();
-    private final SmartZone.CityZoneComposite cityZoneComposite;
+    private final SmartZone smartZone = new SmartZone();
     
     private int currentPowerKW = 435;
     private int peakLoadKW = 345;
@@ -22,10 +22,7 @@ public class SmartCityController {
     private int lastEscalatedLevel = 1;
     
     private SmartCityController(){
-        cityZoneComposite = new SmartZone.CityZoneComposite("Alawwa City");
-        cityZoneComposite.addZone(new SmartZone.streetNodeLeaf("Central District", 185, 52));
-        cityZoneComposite.addZone(new SmartZone.streetNodeLeaf("Newton Street", 150, 44));
-        cityZoneComposite.addZone(new SmartZone.streetNodeLeaf("Industrial Sector", 100, 32));
+        this.currentPowerKW = smartZone.getRootCity().getPowerUsageKW();
     }
 
     public int getCurrentPowerKW() {
@@ -98,7 +95,7 @@ public class SmartCityController {
     }
 
     public SmartZone.CityZoneComposite getCityZoneComposite() {
-        return cityZoneComposite;
+        return smartZone.getRootCity();
     } 
 
 }

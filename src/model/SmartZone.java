@@ -1,13 +1,18 @@
 package model;
 
 import components.SmartTerminal;
+import components.SmartZoneTable;
+import components.SmartZoneTree;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.List;
 import javax.swing.JTable;
 import javax.swing.JTree;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreeNode;
+import org.jdesktop.swingx.multislider.DefaultMultiThumbModel;
 
 public class SmartZone {
     
@@ -224,69 +229,65 @@ public class SmartZone {
         return null;
     }
     
-    public void PopulateJTreen(JTree tree){
-        DefaultMutableTreeNode rootNode = buildTreeNode(city);
-        tree.setModel(new DefaultTreeModel(rootNode));
-        for (int i = 0; i < tree.getRowCount(); i++) {
-            tree.expandRow(i);
+    public void setSubtreePowerState(DefaultMutableTreeNode rootNode, boolean powerOn, SmartZoneTree tree, SmartZoneTable table){
+        applyPowerRecursive(rootNode, powerOn);
+        ZoneComponent modelComp = findZoneByName(rootNode.getUserObject().toString());
+        if(modelComp != null){
+            modelComp.setShutdown(!powerOn);
         }
+        tree.updateBoundTable();
+        table.applyCustomRenderers();
+        tree.repaint();
     }
     
-    private DefaultMutableTreeNode buildTreeNode(ZoneComponent component){
-        DefaultMutableTreeNode node = new DefaultMutableTreeNode(component.getZoneName());
-        if(component instanceof CityZoneComposite){
-            for(ZoneComponent child : ((CityZoneComposite) component).getChildren()){
-                node.add(buildTreeNode(child));
+    private void applyPowerRecursive(DefaultMutableTreeNode node, boolean powerOn){
+        if(node.getUserObject() instanceof SmartZoneTree.ZoneData){
+            SmartZoneTree.ZoneData data = (SmartZoneTree.ZoneData) node.getUserObject();
+            data.setPowerState(powerOn);
+            if(!powerOn && !"Category".equals(data.zoneType)){
+                data.hasAlert = true;
             }
         }
-        return node;
-    }
-    
-    public void populateJTable(JTable table, ZoneComponent filterRoot){
-        ZoneComponent target = (filterRoot != null) ? filterRoot : city;
-        String[] columns = {"Zone ID", "Zone / Sector Name", "Component Type", "Active Nodes", "Power (kW)", "Status"};
-        DefaultTableModel model = new DefaultTableModel(columns, 0){
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return false;
-            }  
-        };
-        
-        List<ZoneComponent> flatList = new ArrayList<>();
-        collectComponents(target, flatList);
-        
-        for(ZoneComponent comp : flatList){
-            model.addRow(new Object[]{
-                comp.getZoneId(),
-                comp.getZoneName(),
-                comp.getZoneType(),
-                comp.getActiveNodesCount(),
-                comp.getPowerUsageKW() + " kW",
-                comp.getStatus()
-            });
+        Enumeration<TreeNode> children = node.children();
+        while (children.hasMoreElements()) {
+            applyPowerRecursive((DefaultMutableTreeNode) children.nextElement(), powerOn);
+            
         }
-        table.setModel(model);   
     }
     
-    private void collectComponents(ZoneComponent comp, List<ZoneComponent> list){
-        list.add(comp);
-        if(comp instanceof CityZoneComposite){
-            for(ZoneComponent child : ((CityZoneComposite) comp).getChildren()){
-                collectComponents(child, list);
+    public int reportSubTreeUsage(DefaultMutableTreeNode node, SmartTerminal terminal, String indent){
+        int totalKW = 0;
+        if(node.getUserObject() instanceof SmartZoneTree.ZoneData){
+            SmartZoneTree.ZoneData data = (SmartZoneTree.ZoneData) node.getUserObject();
+            if(!"Category".equals(data.zoneType)){
+                int kw = data.getCurrentUsageKW();
+                totalKW += kw;
+                if(terminal != null){
+                    String nodeKind = node.isLeaf() ? "└─ [Leaf]" : " [Composite]";
+                    terminal.appendLog("ZONES", indent + nodeKind + " " + data.name
+                            + " (" + data.zoneType + ") -> " + kw + " kW / " + data.dailyLimitKWh + " kWh ["
+                            + (data.powerOn ? "ON" : "OFF") + "]");
+                }
             }
         }
+        Enumeration<TreeNode> childern = node.children();
+        while (childern.hasMoreElements()) {
+            totalKW += reportSubTreeUsage((DefaultMutableTreeNode) childern.nextElement(), terminal, indent+ " "); 
+        }
+        return totalKW;
     }
     
-    public int getTotalActiveZoneCount(){
-        List<ZoneComponent> list = new ArrayList<>();
-        collectComponents(city, list);
-        int activeCount = 0;
-        for(ZoneComponent c : list){
-            if(!"Offline".equalsIgnoreCase(c.getStatus())){
-                activeCount++;
+    public int countActiveZone(SmartZoneTree tree){
+        DefaultMutableTreeNode root = (DefaultMutableTreeNode) tree.getModel().getRoot();
+        List<SmartZoneTree.ZoneData> list = new ArrayList<>();
+        tree.collectZoneData(root, list);
+        int active = 0;
+        for(SmartZoneTree.ZoneData d : list){
+            if(d.powerOn){
+                active++;
             }
         }
-        return activeCount;
+        return active;
     }
 }
 

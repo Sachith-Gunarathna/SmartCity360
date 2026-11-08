@@ -45,7 +45,7 @@ public class smartZone extends javax.swing.JInternalFrame {
     
     private void syncMetrics(){
         
-        int activeZones = smartZoneBackend.getTotalActiveZoneCount();
+        int activeZones = smartZoneBackend.countActiveZone(smartZoneTree2);
         int totalNodes = activeZones * 11;
         jLabel30.setText(String.valueOf(activeZones));
         jLabel24.setText(String.valueOf(totalNodes));

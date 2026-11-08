@@ -164,32 +164,13 @@ public class dataStreamSecurity extends javax.swing.JInternalFrame {
             return;
         }
         
-        boolean useAes = smartSwitch1.isSelected();
-        boolean useHmac = smartSwitch2.isSelected();
-        boolean useGzip = smartSwitch3.isSelected();
-        
-        DataSecurity.DataStream dataSecurity = new DataSecurity.RawSensorStream();
-        smartTerminal1.appendLog("INFO", "Starting RawSensorStream ->" +rawPayload.replace("\n", " "));
-        
-        if(useGzip){
-            dataSecurity = new DataSecurity.GzipCompressionDecorder(dataSecurity);
-            smartTerminal1.appendLog("WRAPPER", "Applied GzipCompressionDecorator (GZIP Data)");  
-        }
-        
-        if(useHmac){
-            dataSecurity = new DataSecurity.HmacAuthDecorator(dataSecurity);
-            smartTerminal1.appendLog("WRAPPER", "Applied HmacAuthDecorator (HMAC-SHA256 Signature)"); 
-        }
-        
-        if(useAes){
-            dataSecurity = new DataSecurity.Aes256EncryptionDecorator(dataSecurity);
-            smartTerminal1.appendLog("WRAPPER", "Applied Aes256EncryptionDecorator (AES-256 Encryption)");
-        }
-        
-        String finalPacket = dataSecurity.writeData(rawPayload.replace("\n", " "));
-        SmartCityController.getInstance().updateSecurityState(useAes, useHmac, useGzip);
-  
-        smartTerminal1.appendLog("SUCCESS", "Transmitted Packet: " + finalPacket);
+        SmartCityController.getInstance().secureAndSendStream(
+                rawPayload, 
+                smartSwitch1.isSelected(), 
+                smartSwitch2.isSelected(), 
+                smartSwitch3.isSelected(), 
+                smartTerminal1
+        );
         
     }//GEN-LAST:event_jButton1ActionPerformed
 

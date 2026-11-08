@@ -1,5 +1,6 @@
 package gui.policy;
 
+import controller.SmartCityController;
 import gui.dataStreamSecurity.*;
 import javax.swing.BorderFactory;
 import javax.swing.JTextField;
@@ -7,6 +8,8 @@ import javax.swing.plaf.basic.BasicInternalFrameUI;
 
 public class policy extends javax.swing.JInternalFrame {
 
+    private final String defaultDslRule = "IF ZONE == \"Central District\" AND USAGE > 300kW\nTHEN DIM_LIGHTS 40% AND ACTIVATE_BACKUP";
+    
     public policy() {
         initComponents();
         
@@ -22,6 +25,17 @@ public class policy extends javax.swing.JInternalFrame {
                 textF.putClientProperty("FlatLaf.style", "arc:15");
             }
         }
+        
+        jLabel21.setText("Policy DSL Rule & Context");
+        jTextField1.setText("Alawwa City - Central District");
+        jTextField2.setText("345 kW");
+        jTextField3.setText("Peak Load");
+
+        smartTerminal2.appendLog("DSL", "IF ZONE == \"Central District\" AND USAGE > 300kW");
+        smartTerminal2.appendLog("DSL", "THEN DIM_LIGHTS 40% AND ACTIVATE_BACKUP");
+
+        smartAstDiagram1.bindTerminal(smartTerminal1);
+        smartTerminal1.appendLog("INFO", "AST Engine initialized.");
     }
 
     @SuppressWarnings("unchecked")
@@ -159,7 +173,19 @@ public class policy extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
+        
+        String targetZone = jTextField1.getText().trim();
+        String currentLoad = jTextField2.getText().trim();
+        String gridStatus = jTextField3.getText().trim();
+        
+        smartTerminal2.appendLog("CONTEXT", "Evaluating -> Zone: " + targetZone + " | Load: " + currentLoad + " | Grid: " + gridStatus);
+        SmartCityController.getInstance().evaluateCityPolicy(
+                defaultDslRule, 
+                targetZone, 
+                currentLoad);
+        smartAstDiagram1.evaluatePolicy(
+                defaultDslRule, targetZone, currentLoad);
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

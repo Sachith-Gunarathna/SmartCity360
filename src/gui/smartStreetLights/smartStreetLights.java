@@ -1,5 +1,6 @@
 package gui.smartStreetLights;
 
+import controller.SmartCityController;
 import gui.dataStreamSecurity.*;
 import javax.swing.BorderFactory;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
@@ -14,6 +15,12 @@ public class smartStreetLights extends javax.swing.JInternalFrame {
         ui.setNorthPane(null);
         
         jButton1.putClientProperty("FlatLaf.style", "arc:30");
+        
+        smartStreetMap1.bindTerminal(smartTerminal1);
+        int totalLights = SmartCityController.getInstance().getTotalLights();
+        smartMemoryMetrics1.setTotalLights(totalLights);
+        
+        smartTerminal1.appendLog("INFO", "Flyweight Pool active. Sharing intrinsic objects across " + totalLights + " nodes.");
     }
 
     @SuppressWarnings("unchecked")
@@ -131,6 +138,19 @@ public class smartStreetLights extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
+        SmartCityController ctrl = SmartCityController.getInstance();
+        String typeKey = (ctrl.getTotalLights() % 2 == 0) ? "LED" : "COMPACT";
+        
+        ctrl.getStreetLightFlyweight().deployNode(
+                typeKey, 
+                "Narammala Road", 
+                0.52f, 
+                0.48f, 
+                smartTerminal1
+        );
+        smartStreetMap1.deployNewNode(typeKey);
+        smartMemoryMetrics1.addDeployedLights(1);
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

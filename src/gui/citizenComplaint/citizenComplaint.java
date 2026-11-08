@@ -1,5 +1,6 @@
 package gui.citizenComplaint;
 
+import controller.SmartCityController;
 import gui.dataStreamSecurity.*;
 import javax.swing.BorderFactory;
 import javax.swing.JTextField;
@@ -22,6 +23,11 @@ public class citizenComplaint extends javax.swing.JInternalFrame {
                 tf.putClientProperty("FlatLaf.style", "arc:15");
             }
         }
+        
+        smartEscalationChain1.bindTerminal(smartTerminal1);
+        roundTextAreaPanel1.setText("Main grid power failure affecting street lights and hospital block on Newton Street.");
+        
+        smartTerminal1.appendLog("INFO", "(Local Staff -> Supervisor -> City Manager) active.");
     }
 
     @SuppressWarnings("unchecked")
@@ -171,6 +177,26 @@ public class citizenComplaint extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
+        String citizenName = jTextField1.getText().trim().isEmpty() ? "Sachith Gunarathna" : jTextField1.getText().trim();
+        String contactNumber = jTextField2.getText().trim().isEmpty() ? "+94763145020" : jTextField2.getText().trim();
+        String Category = comboBoxSuggestion1.getSelectedItem() != null ? comboBoxSuggestion1.getSelectedItem().toString() : "Power Outage";
+        String zone = comboBoxSuggestion2.getSelectedItem() != null ? comboBoxSuggestion2.getSelectedItem().toString() : "Central District";
+        String description = roundTextAreaPanel1.getText().trim();
+        
+        if(description.isEmpty()){
+            smartTerminal1.appendLog("WARNING", "Please enter a complaint description to route through the chain.");
+            return;
+        }
+        
+        int handledLevel = SmartCityController.getInstance().submitCitizenComplaint(
+                citizenName, 
+                contactNumber, 
+                Category, 
+                zone, 
+                description, 
+                smartTerminal1
+        );
+        smartEscalationChain1.escalateToLevel(handledLevel);
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

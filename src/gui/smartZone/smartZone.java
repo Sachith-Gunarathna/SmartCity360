@@ -4,6 +4,7 @@ import controller.SmartCityController;
 import javax.swing.BorderFactory;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.tree.DefaultMutableTreeNode;
+import model.Policy;
 import model.SmartZone;
 
 public class smartZone extends javax.swing.JInternalFrame {
@@ -21,10 +22,6 @@ public class smartZone extends javax.swing.JInternalFrame {
         jButton1.putClientProperty("FlatLaf.style", "arc:30");
         jButton2.putClientProperty("FlatLaf.style", "arc:30");
         
-        SmartZone.CityZoneComposite city = SmartCityController.getInstance().getCityZoneComposite();
-        jLabel24.setText(String.valueOf(city.getActiveNodesCount()));
-        jLabel30.setText("14");
-        
         connectCustomTreeAndTable();
     }
     
@@ -38,30 +35,26 @@ public class smartZone extends javax.swing.JInternalFrame {
     
         syncMetrics();
         
-        smartTerminal1.appendLog("INFO", "Part B: Composite Pattern Smart Zone Hierarchy loaded.");
-        smartTerminal1.appendLog("ZONES", "Click any Tree node, Table power switch, Alert icon, or 3-dot action menu.");
+        smartTerminal1.appendLog("INFO", "(City -> District -> Street -> Building) ready.");
     
     }
     
     private void syncMetrics(){
         
-        int activeZones = smartZoneBackend.countActiveZone(smartZoneTree2);
-        int totalNodes = activeZones * 11;
-        jLabel30.setText(String.valueOf(activeZones));
-        jLabel24.setText(String.valueOf(totalNodes));
+        SmartCityController ctrl = SmartCityController.getInstance();
         
-        int liveKW = 0;
+        int activeZones = ctrl.getSmartZone().countActiveZone(smartZoneTree2);
+        jLabel30.setText(String.valueOf(activeZones));
+        jLabel24.setText(String.valueOf(activeZones * 11));
+        
+        int totalKW = 0;
         for(int i = 0 ; i < smartZoneTable1.getRowCount(); i++){
             Object val = smartZoneTable1.getValueAt(i, 3);
             if(val != null){
-                try {
-                    liveKW += Integer.parseInt(val.toString().replace("[^0-9]", ""));
-                } catch (NumberFormatException e) {
-                    System.out.println(e.getMessage());
-                }
+                totalKW += Policy.parseSafeInt(val.toString(), 0);
             }
         }
-        SmartCityController.getInstance().setCurrentPowerKW(liveKW);  
+        ctrl.setCurrentPowerKW(totalKW);
     }
 
     @SuppressWarnings("unchecked")
@@ -266,11 +259,11 @@ public class smartZone extends javax.swing.JInternalFrame {
         DefaultMutableTreeNode selectNode = smartZoneTree2.getSelectedTreeNode();
         String targetName = selectNode.getUserObject().toString();
         
-        smartZoneBackend.findZoneByName(targetName);
-        syncMetrics();
-        
         SmartCityController ctrl = SmartCityController.getInstance();
+        ctrl.getSmartZone().setSubtreePowerState(selectNode, false, smartZoneTree2, smartZoneTable1);
         ctrl.setActiveAlerts(ctrl.getActiveAlerts() + 1);
+        
+        syncMetrics();
         
         smartTerminal1.appendLog("CRITICAL", "EMERGENCY SHUTDOWN executed on Composite/Leaf [" + targetName + "]!");
         smartTerminal1.appendLog("WARNING", "All child nodes under '" + targetName + "' switched OFF and flagged with alerts.");
@@ -278,7 +271,16 @@ public class smartZone extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+       
+        DefaultMutableTreeNode selectedNode = smartZoneTree2.getSelectedTreeNode();
+        String targetName = selectedNode.getUserObject().toString();
+        
+        int totalKW = SmartCityController.getInstance()
+                .getSmartZone().reportSubTreeUsage(selectedNode, smartTerminal1, "");
+        smartTerminal1.appendLog("SUCCESS", "Composite Total Power for [" + targetName + "]: " + totalKW + " kW.");
+        
+        syncMetrics();
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
 

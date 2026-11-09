@@ -3,18 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/ASUS/Documents/GitHub/SmartCity360/src/model/DataSecurity.java</file>
-            <file>file:/C:/Users/ASUS/Documents/GitHub/SmartCity360/src/model/SmartZone.java</file>
-            <file>file:/C:/Users/ASUS/Documents/GitHub/SmartCity360/src/components/AppIcon.java</file>
-            <file>file:/C:/Users/ASUS/Documents/GitHub/SmartCity360/src/model/CitizenComplaint.java</file>
             <file>file:/C:/Users/ASUS/Documents/GitHub/SmartCity360/src/model/StreetLightFlyweight.java</file>
             <file>file:/C:/Users/ASUS/Documents/GitHub/SmartCity360/src/model/Policy.java</file>
             <file>file:/C:/Users/ASUS/Documents/GitHub/SmartCity360/src/controller/SmartCityController.java</file>
             <file>file:/C:/Users/ASUS/Documents/GitHub/SmartCity360/src/gui/home/Home.java</file>
             <file>file:/C:/Users/ASUS/Documents/GitHub/SmartCity360/src/gui/dataStreamSecurity/dataStreamSecurity.java</file>
             <file>file:/C:/Users/ASUS/Documents/GitHub/SmartCity360/src/gui/smartZone/smartZone.java</file>
-            <file>file:/C:/Users/ASUS/Documents/GitHub/SmartCity360/src/components/SmartZoneTable.java</file>
-            <file>file:/C:/Users/ASUS/Documents/GitHub/SmartCity360/src/components/SmartActiveZones.java</file>
+            <file>file:/C:/Users/ASUS/Documents/GitHub/SmartCity360/src/gui/citizenComplaint/citizenComplaint.java</file>
+            <file>file:/C:/Users/ASUS/Documents/GitHub/SmartCity360/src/gui/smartStreetLights/smartStreetLights.java</file>
+            <file>file:/C:/Users/ASUS/Documents/GitHub/SmartCity360/src/gui/policy/policy.java</file>
         </group>
     </open-files>
 </project-private>

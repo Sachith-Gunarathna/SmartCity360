@@ -2,6 +2,7 @@ package gui.smartZone;
 
 import controller.SmartCityController;
 import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.tree.DefaultMutableTreeNode;
 import model.Policy;
@@ -19,8 +20,10 @@ public class smartZone extends javax.swing.JInternalFrame {
         BasicInternalFrameUI ui = (BasicInternalFrameUI) this.getUI();
         ui.setNorthPane(null);
         
-        jButton1.putClientProperty("FlatLaf.style", "arc:30");
-        jButton2.putClientProperty("FlatLaf.style", "arc:30");
+        JButton[] btn = {jButton1,jButton2,jButton3};
+        for(JButton jbtn : btn){
+            jbtn.putClientProperty("FlatLaf.style", "arc:30");
+        }
         
         connectCustomTreeAndTable();
     }
@@ -87,6 +90,7 @@ public class smartZone extends javax.swing.JInternalFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel27 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
 
         panelRound1.setBackground(new java.awt.Color(11, 15, 25));
         panelRound1.setPreferredSize(new java.awt.Dimension(1124, 725));
@@ -223,7 +227,7 @@ public class smartZone extends javax.swing.JInternalFrame {
         jButton1.setText("Shutdown Power (Emergency)");
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(this::jButton1ActionPerformed);
-        panelRound8.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 60, 340, 40));
+        panelRound8.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 60, 340, 40));
 
         jButton2.setBackground(new java.awt.Color(56, 189, 248));
         jButton2.setFont(new java.awt.Font("Franklin Gothic Medium", 1, 20)); // NOI18N
@@ -231,12 +235,20 @@ public class smartZone extends javax.swing.JInternalFrame {
         jButton2.setText("Report Usage");
         jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton2.addActionListener(this::jButton2ActionPerformed);
-        panelRound8.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 330, 40));
+        panelRound8.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 60, 170, 40));
 
         jLabel27.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
         jLabel27.setForeground(new java.awt.Color(255, 255, 255));
         jLabel27.setText("Control Action Section");
         panelRound8.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 710, 40));
+
+        jButton3.setBackground(new java.awt.Color(0, 204, 0));
+        jButton3.setFont(new java.awt.Font("Franklin Gothic Medium", 1, 20)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jButton3.setText("Power On");
+        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton3.addActionListener(this::jButton3ActionPerformed);
+        panelRound8.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 160, 40));
 
         panelRound1.add(panelRound8, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 390, 710, 110));
 
@@ -283,10 +295,27 @@ public class smartZone extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        
+        DefaultMutableTreeNode selectedNode = smartZoneTree2.getSelectedTreeNode();
+        String targetName = selectedNode.getUserObject().toString();
+        
+        SmartCityController ctrl = SmartCityController.getInstance();
+        ctrl.getSmartZone().setSubtreePowerState(selectedNode, true, smartZoneTree2, smartZoneTable1);
+        ctrl.setActiveAlerts(ctrl.getActiveAlerts() + 1);
+        
+        syncMetrics();
+        
+        smartTerminal1.appendLog("SUCCESS", "EMERGENCY POWER ON executed on Composite/Leaf [" + targetName + "]!");
+        smartTerminal1.appendLog("WARNING", "All child nodes under '" + targetName + "' switched ON.");
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel23;

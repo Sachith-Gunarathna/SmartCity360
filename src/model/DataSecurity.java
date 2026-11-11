@@ -19,7 +19,7 @@ public class DataSecurity {
 
         @Override
         public String getSecurityStatus() {
-           return "Unsecured Stream";
+           return "Raw Stream";
         }   
       
     }
@@ -47,7 +47,7 @@ public class DataSecurity {
 
         @Override
         public String getSecurityStatus() {
-            return wrappedStream.getSecurityStatus() + " + AES-256 ";
+            return wrappedStream.getSecurityStatus() + " + AES-256";
         }
     }
     

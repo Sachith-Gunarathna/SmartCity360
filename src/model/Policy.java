@@ -85,7 +85,7 @@ public class Policy {
             if(metricMatcher.find()){
                 threshold = parseSafeInt(metricMatcher.group(1), DEFAULT_THRESHOLD);
             }
-            if(dslRule.toUpperCase().contains(" OR ")){
+            if(containsOr(dslRule)){
                 logicOp = "OR";
             }
             
@@ -117,6 +117,17 @@ public class Policy {
             return fallbackValue;
         }
         return Integer.parseInt(digits);
+    }
+    
+    public static boolean containsOr(String dslRule){
+        String text = dslRule.toUpperCase();
+        text = text.replaceAll("\"[^\"]*\"", "");
+        int thenPos = text.indexOf("THEN");
+        if(thenPos >= 0){
+            text = text.substring(0,thenPos);
+        }
+        text = text.replaceAll("\\s+", " ");
+        return text.contains(" OR ");
     }
     
 }

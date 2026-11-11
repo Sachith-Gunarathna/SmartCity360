@@ -9,23 +9,23 @@ import javax.swing.plaf.basic.BasicInternalFrameUI;
 public class policy extends javax.swing.JInternalFrame {
 
     private final String defaultDslRule = "IF ZONE == \"Central District\" AND USAGE > 300kW\nTHEN DIM_LIGHTS 40% AND ACTIVATE_BACKUP";
-    
+
     public policy() {
         initComponents();
-        
+
         this.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
         BasicInternalFrameUI ui = (BasicInternalFrameUI) this.getUI();
         ui.setNorthPane(null);
-        
+
         jButton1.putClientProperty("FlatLaf.style", "arc:30");
-        
-        JTextField[] textfield = {jTextField1,jTextField2,jTextField3};
-        for(JTextField textF : textfield){
-            if(textF != null){
+
+        JTextField[] textfield = {jTextField1, jTextField2, jTextField3};
+        for (JTextField textF : textfield) {
+            if (textF != null) {
                 textF.putClientProperty("FlatLaf.style", "arc:15");
             }
         }
-        
+
         jLabel21.setText("Policy DSL Rule & Context");
         jTextField1.setText("Alawwa City - Central District");
         jTextField2.setText("345 kW");
@@ -57,6 +57,8 @@ public class policy extends javax.swing.JInternalFrame {
         jLabel16 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        jLabel17 = new javax.swing.JLabel();
+        dslRuleCombo = new javax.swing.JComboBox<>();
         jLabel19 = new javax.swing.JLabel();
         smartTerminal1 = new components.SmartTerminal();
 
@@ -112,17 +114,17 @@ public class policy extends javax.swing.JInternalFrame {
         jLabel21.setForeground(new java.awt.Color(255, 255, 255));
         jLabel21.setText("Abstract Syntax Tree (AST) Evaluation");
         panelRound3.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 470, 50));
-        panelRound3.add(smartTerminal2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 470, 320));
+        panelRound3.add(smartTerminal2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 470, 280));
 
         jLabel14.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 15)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel14.setText("Target Zone :");
+        jLabel14.setText("Rules :");
         panelRound3.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 400, 100, 30));
 
         jTextField1.setBackground(new java.awt.Color(30, 41, 59));
         jTextField1.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 14)); // NOI18N
         jTextField1.setForeground(new java.awt.Color(255, 255, 255));
-        panelRound3.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 400, 360, 30));
+        panelRound3.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 350, 360, 30));
 
         jTextField2.setBackground(new java.awt.Color(30, 41, 59));
         jTextField2.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 14)); // NOI18N
@@ -153,6 +155,18 @@ public class policy extends javax.swing.JInternalFrame {
         jButton1.addActionListener(this::jButton1ActionPerformed);
         panelRound3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 570, 370, 40));
 
+        jLabel17.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 15)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel17.setText("Target Zone :");
+        panelRound3.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, 100, 30));
+
+        dslRuleCombo.setBackground(new java.awt.Color(30, 41, 59));
+        dslRuleCombo.setEditable(true);
+        dslRuleCombo.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 14)); // NOI18N
+        dslRuleCombo.setForeground(new java.awt.Color(255, 255, 255));
+        dslRuleCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "IF ZONE == Central District AND USAGE > 300kW THEN DIM_LIGHTS 40% AND ACTIVATE_BACKUP", "IF ZONE == Central District OR USAGE > 300kW THEN DIM_LIGHTS 40%", "IF ZONE == Industrial Sector AND USAGE > 200kW THEN SHUTDOWN_NON_ESSENTIAL", "IF ZONE == Hospital Block A OR USAGE > 400kW THEN ACTIVATE_BACKUP" }));
+        panelRound3.add(dslRuleCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 400, 360, 30));
+
         panelRound1.add(panelRound3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 490, 640));
 
         jLabel19.setFont(new java.awt.Font("Franklin Gothic Medium", 1, 20)); // NOI18N
@@ -176,27 +190,35 @@ public class policy extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+
         String targetZone = jTextField1.getText().trim();
         String currentLoad = jTextField2.getText().trim();
         String gridStatus = jTextField3.getText().trim();
-        
+        String dslRule = dslRuleCombo.getEditor().getItem().toString().trim();
+
+        if (dslRule.isEmpty()) {
+            smartTerminal2.appendLog("WARNING", "Please enter a policy rule.");
+            return;
+        }
+
         smartTerminal2.appendLog("CONTEXT", "Evaluating -> Zone: " + targetZone + " | Load: " + currentLoad + " | Grid: " + gridStatus);
         SmartCityController.getInstance().evaluateCityPolicy(
-                defaultDslRule, 
-                targetZone, 
+                dslRule,
+                targetZone,
                 currentLoad);
         smartAstDiagram1.evaluatePolicy(
-                defaultDslRule, targetZone, currentLoad);
-        
+                dslRule, targetZone, currentLoad);
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> dslRuleCombo;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;

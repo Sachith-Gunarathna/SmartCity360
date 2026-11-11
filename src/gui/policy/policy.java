@@ -19,13 +19,6 @@ public class policy extends javax.swing.JInternalFrame {
 
         jButton1.putClientProperty("FlatLaf.style", "arc:30");
 
-        dslRuleCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{
-            "IF ZONE == \"Central District\" AND USAGE > 300kW THEN DIM_LIGHTS 40% AND ACTIVATE_BACKUP",
-            "IF ZONE == \"Central District\" OR USAGE > 300kW THEN DIM_LIGHTS 40%",
-            "IF ZONE == \"Industrial Sector\" AND USAGE > 200kW THEN SHUTDOWN_NON_ESSENTIAL",
-            "IF ZONE == \"Hospital Block A\" OR USAGE > 400kW THEN ACTIVATE_BACKUP"
-        }));
-
         JTextField[] textfield = {jTextField1, jTextField2, jTextField3};
         for (JTextField textF : textfield) {
             if (textF != null) {

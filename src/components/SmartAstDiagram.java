@@ -204,7 +204,7 @@ public class SmartAstDiagram extends JPanel {
                 loadLimit = Integer.parseInt(loadMatcher.group(2).trim());
             }
 
-            if (dslText.toUpperCase().contains(" OR ")) {
+            if (model.Policy.containsOr(dslText)) {
                 logicOp = "OR";
             }
 

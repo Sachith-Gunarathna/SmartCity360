@@ -19,6 +19,13 @@ public class policy extends javax.swing.JInternalFrame {
 
         jButton1.putClientProperty("FlatLaf.style", "arc:30");
 
+        dslRuleCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{
+            "IF ZONE == \"Central District\" AND USAGE > 300kW THEN DIM_LIGHTS 40% AND ACTIVATE_BACKUP",
+            "IF ZONE == \"Central District\" OR USAGE > 300kW THEN DIM_LIGHTS 40%",
+            "IF ZONE == \"Industrial Sector\" AND USAGE > 200kW THEN SHUTDOWN_NON_ESSENTIAL",
+            "IF ZONE == \"Hospital Block A\" OR USAGE > 400kW THEN ACTIVATE_BACKUP"
+        }));
+
         JTextField[] textfield = {jTextField1, jTextField2, jTextField3};
         for (JTextField textF : textfield) {
             if (textF != null) {
@@ -92,16 +99,16 @@ public class policy extends javax.swing.JInternalFrame {
         smartAstDiagram1.setLayout(smartAstDiagram1Layout);
         smartAstDiagram1Layout.setHorizontalGroup(
             smartAstDiagram1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 570, Short.MAX_VALUE)
+            .addGap(0, 500, Short.MAX_VALUE)
         );
         smartAstDiagram1Layout.setVerticalGroup(
             smartAstDiagram1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 310, Short.MAX_VALUE)
         );
 
-        panelRound2.add(smartAstDiagram1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 570, 310));
+        panelRound2.add(smartAstDiagram1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 500, 310));
 
-        panelRound1.add(panelRound2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 60, 590, 380));
+        panelRound1.add(panelRound2, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 60, 520, 380));
 
         panelRound3.setBackground(new java.awt.Color(30, 41, 59));
         panelRound3.setRoundBottomLeft(15);
@@ -114,7 +121,7 @@ public class policy extends javax.swing.JInternalFrame {
         jLabel21.setForeground(new java.awt.Color(255, 255, 255));
         jLabel21.setText("Abstract Syntax Tree (AST) Evaluation");
         panelRound3.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 470, 50));
-        panelRound3.add(smartTerminal2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 470, 280));
+        panelRound3.add(smartTerminal2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 540, 280));
 
         jLabel14.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 15)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
@@ -124,12 +131,12 @@ public class policy extends javax.swing.JInternalFrame {
         jTextField1.setBackground(new java.awt.Color(30, 41, 59));
         jTextField1.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 14)); // NOI18N
         jTextField1.setForeground(new java.awt.Color(255, 255, 255));
-        panelRound3.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 350, 360, 30));
+        panelRound3.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 350, 430, 30));
 
         jTextField2.setBackground(new java.awt.Color(30, 41, 59));
         jTextField2.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 14)); // NOI18N
         jTextField2.setForeground(new java.awt.Color(255, 255, 255));
-        panelRound3.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 450, 360, 30));
+        panelRound3.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 450, 430, 30));
 
         jLabel15.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 15)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
@@ -144,7 +151,7 @@ public class policy extends javax.swing.JInternalFrame {
         jTextField3.setBackground(new java.awt.Color(30, 41, 59));
         jTextField3.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 14)); // NOI18N
         jTextField3.setForeground(new java.awt.Color(255, 255, 255));
-        panelRound3.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 500, 360, 30));
+        panelRound3.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 500, 430, 30));
 
         jButton1.setBackground(new java.awt.Color(56, 189, 248));
         jButton1.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
@@ -153,7 +160,7 @@ public class policy extends javax.swing.JInternalFrame {
         jButton1.setText("Execute Policy");
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(this::jButton1ActionPerformed);
-        panelRound3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 570, 370, 40));
+        panelRound3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 570, 370, 40));
 
         jLabel17.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 15)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
@@ -165,15 +172,15 @@ public class policy extends javax.swing.JInternalFrame {
         dslRuleCombo.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 14)); // NOI18N
         dslRuleCombo.setForeground(new java.awt.Color(255, 255, 255));
         dslRuleCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "IF ZONE == Central District AND USAGE > 300kW THEN DIM_LIGHTS 40% AND ACTIVATE_BACKUP", "IF ZONE == Central District OR USAGE > 300kW THEN DIM_LIGHTS 40%", "IF ZONE == Industrial Sector AND USAGE > 200kW THEN SHUTDOWN_NON_ESSENTIAL", "IF ZONE == Hospital Block A OR USAGE > 400kW THEN ACTIVATE_BACKUP" }));
-        panelRound3.add(dslRuleCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 400, 360, 30));
+        panelRound3.add(dslRuleCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 400, 430, 30));
 
-        panelRound1.add(panelRound3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 490, 640));
+        panelRound1.add(panelRound3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 560, 640));
 
         jLabel19.setFont(new java.awt.Font("Franklin Gothic Medium", 1, 20)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(255, 255, 255));
         jLabel19.setText("System Activity Log");
-        panelRound1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 450, 540, 40));
-        panelRound1.add(smartTerminal1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 500, 590, 200));
+        panelRound1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 450, 470, 40));
+        panelRound1.add(smartTerminal1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 500, 520, 200));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

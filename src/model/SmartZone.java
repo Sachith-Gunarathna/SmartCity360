@@ -6,13 +6,8 @@ import components.SmartZoneTree;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
-import javax.swing.JTable;
-import javax.swing.JTree;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeNode;
-import org.jdesktop.swingx.multislider.DefaultMultiThumbModel;
 
 public class SmartZone {
 
@@ -200,7 +195,7 @@ public class SmartZone {
     private final CityZoneComposite city;
 
     public SmartZone() {
-        city = new CityZoneComposite("CITY-00", "Alawwa Smart City", "Root Composite");
+        city = new CityZoneComposite("CITY-00", "Alawwa City", "City" ,570);
 
         CityZoneComposite district = new CityZoneComposite("CAT-01", "District", "Category", 0);
         CityZoneComposite street = new CityZoneComposite("CAT-02", "Street", "Category", 0);

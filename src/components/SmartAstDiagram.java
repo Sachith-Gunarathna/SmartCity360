@@ -11,12 +11,13 @@ import javax.swing.*;
 
 public class SmartAstDiagram extends JPanel {
 
-    
     public interface Expression {
+
         boolean interpret(PolicyContext context);
     }
 
     public static class PolicyContext {
+
         public final String targetZone;
         public final int currentLoadKW;
 
@@ -26,8 +27,8 @@ public class SmartAstDiagram extends JPanel {
         }
     }
 
-    
     public static class ZoneTerminalExpression implements Expression {
+
         private final String expectedZone;
 
         public ZoneTerminalExpression(String expectedZone) {
@@ -40,8 +41,8 @@ public class SmartAstDiagram extends JPanel {
         }
     }
 
-    
     public static class LoadTerminalExpression implements Expression {
+
         private final String operator;
         private final int thresholdKW;
 
@@ -69,8 +70,8 @@ public class SmartAstDiagram extends JPanel {
         }
     }
 
-    
     public static class LogicalNonTerminalExpression implements Expression {
+
         private final String logicOp;
         private final Expression left;
         private final Expression right;
@@ -90,7 +91,6 @@ public class SmartAstDiagram extends JPanel {
         }
     }
 
-   
     private String rootTitle = "AND Expression";
     private boolean rootStatus = true;
 
@@ -184,7 +184,6 @@ public class SmartAstDiagram extends JPanel {
         }
     }
 
-    
     public void evaluatePolicy(String dslText, String currentZoneInput, String currentLoadInput) {
         String expectedZone = "Central District";
         String loadOp = ">";
@@ -193,25 +192,22 @@ public class SmartAstDiagram extends JPanel {
         String parsedAction = "Dim Street Lights 40%";
 
         if (dslText != null && !dslText.trim().isEmpty()) {
-            
+
             Matcher zoneMatcher = Pattern.compile("ZONE\\s*==\\s*\"([^\"]+)\"", Pattern.CASE_INSENSITIVE).matcher(dslText);
             if (zoneMatcher.find()) {
                 expectedZone = zoneMatcher.group(1).trim();
             }
 
-            
             Matcher loadMatcher = Pattern.compile("(?:USAGE|LOAD)\\s*([><=]+)\\s*(\\d+)", Pattern.CASE_INSENSITIVE).matcher(dslText);
             if (loadMatcher.find()) {
                 loadOp = loadMatcher.group(1).trim();
                 loadLimit = Integer.parseInt(loadMatcher.group(2).trim());
             }
 
-            
             if (dslText.toUpperCase().contains(" OR ")) {
                 logicOp = "OR";
             }
 
-            
             Matcher thenMatcher = Pattern.compile("THEN\\s+(.+)", Pattern.CASE_INSENSITIVE).matcher(dslText);
             if (thenMatcher.find()) {
                 String rawAction = thenMatcher.group(1).trim();
@@ -233,7 +229,6 @@ public class SmartAstDiagram extends JPanel {
             }
         }
 
-        
         PolicyContext context = new PolicyContext(currentZoneInput, actualLoad);
         ZoneTerminalExpression zoneExpr = new ZoneTerminalExpression(expectedZone);
         LoadTerminalExpression loadExpr = new LoadTerminalExpression(loadOp, loadLimit);
@@ -275,11 +270,9 @@ public class SmartAstDiagram extends JPanel {
         int w = getWidth();
         int h = getHeight();
 
-       
         g2.setColor(getBackground());
         g2.fillRect(0, 0, w, h);
 
-        
         int topW = Math.min(200, (int) (w * 0.40));
         int midW = Math.min(220, (int) (w * 0.44));
         int botW = Math.min(245, (int) (w * 0.50));
@@ -301,24 +294,20 @@ public class SmartAstDiagram extends JPanel {
         nodeBounds[2].setBounds(rightX, midY, midW, boxH);
         nodeBounds[3].setBounds(botX, botY, botW, boxH);
 
-        
         int rootBottomX = topX + topW / 2;
         int rootBottomY = topY + boxH;
         int leftTopX = leftX + midW / 2;
         int rightTopX = rightX + midW / 2;
         int midTopY = midY;
 
-        
         drawBranchedConnector(g2, rootBottomX, rootBottomY, leftTopX, rightTopX, midTopY);
 
-        
         int rightBottomX = rightX + midW / 2;
         int rightBottomY = midY + boxH;
         int botTopX = botX + botW / 2;
         int botTopY = botY;
         drawSingleStepConnector(g2, rightBottomX, rightBottomY, botTopX, botTopY);
 
-        
         drawAstNode(g2, nodeBounds[0], rootTitle, rootStatus ? "[TRUE]" : "[FALSE]", rootStatus, hoveredNode == 0);
         drawAstNode(g2, nodeBounds[1], leftTitle, leftStatus ? "[PASS]" : "[FAIL]", leftStatus, hoveredNode == 1);
         drawAstNode(g2, nodeBounds[2], rightTitle, rightStatus ? "[PASS]" : "[FAIL]", rightStatus, hoveredNode == 2);
@@ -333,7 +322,6 @@ public class SmartAstDiagram extends JPanel {
         Color borderColor = isPositive ? new Color(45, 212, 225) : new Color(239, 68, 68);
         Color statusColor = isPositive ? new Color(74, 222, 128) : new Color(248, 113, 113);
 
-        
         int maxGlow = isHovered ? 10 : 8;
         for (int i = maxGlow; i >= 2; i -= 2) {
             int alpha = isHovered ? 24 : 16;
@@ -341,7 +329,6 @@ public class SmartAstDiagram extends JPanel {
             g2.fill(new RoundRectangle2D.Float(r.x - i, r.y - i, r.width + (i * 2), r.height + (i * 2), arc + i, arc + i));
         }
 
-        
         GradientPaint bgPaint = new GradientPaint(
                 r.x, r.y, isHovered ? new Color(28, 42, 60) : new Color(22, 33, 48),
                 r.x, r.y + r.height, new Color(18, 27, 40)
@@ -349,12 +336,10 @@ public class SmartAstDiagram extends JPanel {
         g2.setPaint(bgPaint);
         g2.fill(new RoundRectangle2D.Float(r.x, r.y, r.width, r.height, arc, arc));
 
-        
         g2.setColor(borderColor);
         g2.setStroke(new BasicStroke(1.5f));
         g2.draw(new RoundRectangle2D.Float(r.x, r.y, r.width, r.height, arc, arc));
 
-        
         g2.setFont(new Font("Franklin Gothic Medium", Font.PLAIN, 14));
         FontMetrics fm1 = g2.getFontMetrics();
         g2.setColor(new Color(241, 245, 249));
@@ -362,7 +347,6 @@ public class SmartAstDiagram extends JPanel {
         int ty1 = r.y + 24;
         g2.drawString(title, tx1, ty1);
 
-        
         g2.setFont(new Font("Franklin Gothic Medium", Font.PLAIN, 14));
         FontMetrics fm2 = g2.getFontMetrics();
         g2.setColor(statusColor);
@@ -375,7 +359,6 @@ public class SmartAstDiagram extends JPanel {
         int midY = startY + (endY - startY) / 2;
         int radius = 8;
 
-        
         Path2D leftPath = new Path2D.Float();
         leftPath.moveTo(startX, startY);
         leftPath.lineTo(startX, midY - radius);
@@ -384,7 +367,6 @@ public class SmartAstDiagram extends JPanel {
         leftPath.quadTo(leftX, midY, leftX, midY + radius);
         leftPath.lineTo(leftX, endY - 3);
 
-        
         Path2D rightPath = new Path2D.Float();
         rightPath.moveTo(startX, startY);
         rightPath.lineTo(startX, midY - radius);
@@ -423,12 +405,11 @@ public class SmartAstDiagram extends JPanel {
     }
 
     private void drawGlowingPath(Graphics2D g2, Path2D path) {
-        
+
         g2.setColor(new Color(56, 189, 248, 35));
         g2.setStroke(new BasicStroke(4.5f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
         g2.draw(path);
 
-        
         g2.setColor(new Color(125, 211, 252));
         g2.setStroke(new BasicStroke(1.8f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
         g2.draw(path);

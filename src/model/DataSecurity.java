@@ -47,7 +47,7 @@ public class DataSecurity {
 
         @Override
         public String getSecurityStatus() {
-            return "100% Encrypted (AES-256)";
+            return wrappedStream.getSecurityStatus() + " + AES-256 ";
         }
     }
     

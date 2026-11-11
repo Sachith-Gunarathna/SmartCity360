@@ -35,9 +35,9 @@ public class dataStreamSecurity extends javax.swing.JInternalFrame {
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
-        smartSwitch1 = new components.SmartSwitch();
-        smartSwitch2 = new components.SmartSwitch();
-        smartSwitch3 = new components.SmartSwitch();
+        compressionSwitch = new components.SmartSwitch();
+        encryptionSwitch = new components.SmartSwitch();
+        authenticationSwitch = new components.SmartSwitch();
         jLabel20 = new javax.swing.JLabel();
         panelRound3 = new components.PanelRound();
         jLabel21 = new javax.swing.JLabel();
@@ -94,14 +94,14 @@ public class dataStreamSecurity extends javax.swing.JInternalFrame {
         jLabel25.setText("Authentication (HMAC Sign)");
         panelRound2.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 130, 230, 30));
 
-        smartSwitch1.setText("smartSwitch1");
-        panelRound2.add(smartSwitch1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 70, -1));
+        compressionSwitch.setText("smartSwitch1");
+        panelRound2.add(compressionSwitch, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 70, -1));
 
-        smartSwitch2.setText("smartSwitch1");
-        panelRound2.add(smartSwitch2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 70, -1));
+        encryptionSwitch.setText("smartSwitch1");
+        panelRound2.add(encryptionSwitch, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 70, -1));
 
-        smartSwitch3.setText("smartSwitch1");
-        panelRound2.add(smartSwitch3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 70, -1));
+        authenticationSwitch.setText("smartSwitch1");
+        panelRound2.add(authenticationSwitch, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 70, -1));
 
         panelRound1.add(panelRound2, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 90, 390, 320));
 
@@ -166,9 +166,9 @@ public class dataStreamSecurity extends javax.swing.JInternalFrame {
         
         SmartCityController.getInstance().secureAndSendStream(
                 rawPayload, 
-                smartSwitch1.isSelected(), 
-                smartSwitch2.isSelected(), 
-                smartSwitch3.isSelected(), 
+                encryptionSwitch.isSelected(), 
+                authenticationSwitch.isSelected(), 
+                compressionSwitch.isSelected(), 
                 smartTerminal1
         );
         
@@ -176,6 +176,9 @@ public class dataStreamSecurity extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private components.SmartSwitch authenticationSwitch;
+    private components.SmartSwitch compressionSwitch;
+    private components.SmartSwitch encryptionSwitch;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
@@ -190,9 +193,6 @@ public class dataStreamSecurity extends javax.swing.JInternalFrame {
     private components.PanelRound panelRound3;
     private components.PanelRound panelRound4;
     private components.RoundTextAreaPanel roundTextAreaPanel2;
-    private components.SmartSwitch smartSwitch1;
-    private components.SmartSwitch smartSwitch2;
-    private components.SmartSwitch smartSwitch3;
     private components.SmartTerminal smartTerminal1;
     // End of variables declaration//GEN-END:variables
 }

@@ -85,7 +85,7 @@ public class Policy {
             if(metricMatcher.find()){
                 threshold = parseSafeInt(metricMatcher.group(1), DEFAULT_THRESHOLD);
             }
-            if(dslRule.toUpperCase().contains("OR")){
+            if(dslRule.toUpperCase().contains(" OR ")){
                 logicOp = "OR";
             }
             

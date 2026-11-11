@@ -172,7 +172,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="components.SmartSwitch" name="smartSwitch1">
+            <Component class="components.SmartSwitch" name="compressionSwitch">
               <Properties>
                 <Property name="text" type="java.lang.String" value="smartSwitch1"/>
               </Properties>
@@ -182,7 +182,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="components.SmartSwitch" name="smartSwitch2">
+            <Component class="components.SmartSwitch" name="encryptionSwitch">
               <Properties>
                 <Property name="text" type="java.lang.String" value="smartSwitch1"/>
               </Properties>
@@ -192,7 +192,7 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="components.SmartSwitch" name="smartSwitch3">
+            <Component class="components.SmartSwitch" name="authenticationSwitch">
               <Properties>
                 <Property name="text" type="java.lang.String" value="smartSwitch1"/>
               </Properties>

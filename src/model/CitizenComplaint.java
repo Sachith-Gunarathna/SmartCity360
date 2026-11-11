@@ -98,7 +98,7 @@ public class CitizenComplaint {
         @Override
         public int handle(ComplaintRequest request, SmartTerminal terminal) {
             String desc = request.getDescription().toLowerCase();
-            String cat = request.getDescription().toLowerCase();
+            String cat = request.getCategory().toLowerCase();
             
             boolean isCriticalEmergency = cat.contains("emergency") 
                     || cat.contains("blackout")

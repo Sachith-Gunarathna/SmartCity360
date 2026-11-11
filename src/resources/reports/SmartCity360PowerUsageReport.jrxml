@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd"
+              name="SmartCity360PowerUsageReport" pageWidth="595" pageHeight="842" columnWidth="555"
+              leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20"
+              isFloatColumnFooter="true">
+
+    <parameter name="targetScore" class="java.lang.String"/>
+    <parameter name="activeZone" class="java.lang.String"/>
+    <parameter name="activeIoTNodes" class="java.lang.String"/>
+    <parameter name="totalPowerLoad" class="java.lang.String"/>
+
+    <field name="Field-1" class="java.lang.String"/>
+    <field name="Field-2" class="java.lang.String"/>
+    <field name="Field-3" class="java.lang.String"/>
+    <field name="Field-4" class="java.lang.String"/>
+    <field name="Field-5" class="java.lang.String"/>
+    <field name="Field-6" class="java.lang.String"/>
+
+    <title>
+        <band height="193">
+            <image scaleImage="FillFrame" hAlign="Center" vAlign="Middle" onErrorType="Blank">
+                <reportElement x="0" y="0" width="555" height="189"/>
+                <imageExpression class="java.lang.String"><![CDATA["https://i.ibb.co/rCc35d0/banner.jpg"]]></imageExpression>
+            </image>
+            <staticText>
+                <reportElement x="338" y="152" width="64" height="31" forecolor="#FFFFFF"/>
+                <textElement verticalAlignment="Middle">
+                    <font fontName="Franklin Gothic Medium" size="10"/>
+                </textElement>
+                <text><![CDATA[Generated at :]]></text>
+            </staticText>
+            <textField pattern="MMMMM dd, yyyy">
+                <reportElement x="402" y="152" width="122" height="31" forecolor="#FAFAFA"/>
+                <textElement verticalAlignment="Middle">
+                    <font fontName="Franklin Gothic Medium" size="10"/>
+                </textElement>
+                <textFieldExpression class="java.util.Date"><![CDATA[new java.util.Date()]]></textFieldExpression>
+            </textField>
+        </band>
+    </title>
+
+    <pageHeader>
+        <band height="133">
+            <staticText>
+                <reportElement x="6" y="7" width="371" height="20"/>
+                <textElement verticalAlignment="Middle">
+                    <font fontName="Franklin Gothic Medium" size="16" isBold="true"/>
+                </textElement>
+                <text><![CDATA[COMPOSITE SMART ZONE HIERARCHY]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="6" y="27" width="524" height="30"/>
+                <textElement verticalAlignment="Middle">
+                    <font fontName="Franklin Gothic Medium" size="24" isBold="true"/>
+                </textElement>
+                <text><![CDATA[POWER CONSUMPTION AUDIT REPORT]]></text>
+            </staticText>
+            <line>
+                <reportElement x="0" y="57" width="555" height="1"/>
+            </line>
+
+            <rectangle radius="10">
+                <reportElement x="6" y="65" width="133" height="61" mode="Opaque" backcolor="#D6D6D6"/>
+            </rectangle>
+            <rectangle radius="10">
+                <reportElement x="154" y="65" width="127" height="61" mode="Opaque" backcolor="#D6D6D6"/>
+            </rectangle>
+            <rectangle radius="10">
+                <reportElement x="292" y="65" width="125" height="61" mode="Opaque" backcolor="#D6D6D6"/>
+            </rectangle>
+            <rectangle radius="10">
+                <reportElement x="429" y="65" width="118" height="61" mode="Opaque" backcolor="#D6D6D6"/>
+            </rectangle>
+
+            <staticText>
+                <reportElement x="12" y="70" width="121" height="20"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Franklin Gothic Medium" size="10" isBold="true"/>
+                </textElement>
+                <text><![CDATA[01) Target Score]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="157" y="70" width="121" height="20"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Franklin Gothic Medium" size="10" isBold="true"/>
+                </textElement>
+                <text><![CDATA[02) Active Zones]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="294" y="70" width="121" height="20"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Franklin Gothic Medium" size="10" isBold="true"/>
+                </textElement>
+                <text><![CDATA[03) Active IoT Nodes]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="433" y="70" width="111" height="20"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Franklin Gothic Medium" size="10" isBold="true"/>
+                </textElement>
+                <text><![CDATA[04) Total Power Load]]></text>
+            </staticText>
+
+            <textField>
+                <reportElement x="12" y="97" width="121" height="23"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Franklin Gothic Medium" size="11" isBold="true"/>
+                </textElement>
+                <textFieldExpression class="java.lang.String"><![CDATA[$P{targetScore}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="157" y="97" width="121" height="23"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Franklin Gothic Medium" size="12" isBold="true"/>
+                </textElement>
+                <textFieldExpression class="java.lang.String"><![CDATA[$P{activeZone}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="294" y="97" width="121" height="23"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Franklin Gothic Medium" size="12" isBold="true"/>
+                </textElement>
+                <textFieldExpression class="java.lang.String"><![CDATA[$P{activeIoTNodes}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="433" y="97" width="111" height="23"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Franklin Gothic Medium" size="12" isBold="true"/>
+                </textElement>
+                <textFieldExpression class="java.lang.String"><![CDATA[$P{totalPowerLoad}]]></textFieldExpression>
+            </textField>
+        </band>
+    </pageHeader>
+
+    <columnHeader>
+        <band height="35">
+            <staticText>
+                <reportElement x="6" y="5" width="134" height="30" mode="Opaque" backcolor="#1F2C3D" forecolor="#FFFFFF"/>
+                <box leftPadding="6"><pen lineWidth="0.75" lineColor="#475569"/></box>
+                <textElement verticalAlignment="Middle"><font fontName="Franklin Gothic Medium" size="10" isBold="true"/></textElement>
+                <text><![CDATA[Zone / Building Name]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="140" y="5" width="80" height="30" mode="Opaque" backcolor="#1F2C3D" forecolor="#FFFFFF"/>
+                <box leftPadding="6"><pen lineWidth="0.75" lineColor="#475569"/></box>
+                <textElement verticalAlignment="Middle"><font fontName="Franklin Gothic Medium" size="10" isBold="true"/></textElement>
+                <text><![CDATA[Type]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="220" y="5" width="82" height="30" mode="Opaque" backcolor="#1F2C3D" forecolor="#FFFFFF"/>
+                <box leftPadding="6"><pen lineWidth="0.75" lineColor="#475569"/></box>
+                <textElement verticalAlignment="Middle"><font fontName="Franklin Gothic Medium" size="10" isBold="true"/></textElement>
+                <text><![CDATA[Power Status]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="302" y="5" width="82" height="30" mode="Opaque" backcolor="#1F2C3D" forecolor="#FFFFFF"/>
+                <box leftPadding="6"><pen lineWidth="0.75" lineColor="#475569"/></box>
+                <textElement verticalAlignment="Middle"><font fontName="Franklin Gothic Medium" size="10" isBold="true"/></textElement>
+                <text><![CDATA[Live Usage]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="384" y="5" width="82" height="30" mode="Opaque" backcolor="#1F2C3D" forecolor="#FFFFFF"/>
+                <box leftPadding="6"><pen lineWidth="0.75" lineColor="#475569"/></box>
+                <textElement verticalAlignment="Middle"><font fontName="Franklin Gothic Medium" size="10" isBold="true"/></textElement>
+                <text><![CDATA[Daily Limit]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="466" y="5" width="81" height="30" mode="Opaque" backcolor="#1F2C3D" forecolor="#FFFFFF"/>
+                <box leftPadding="6"><pen lineWidth="0.75" lineColor="#475569"/></box>
+                <textElement verticalAlignment="Middle"><font fontName="Franklin Gothic Medium" size="10" isBold="true"/></textElement>
+                <text><![CDATA[Alerts]]></text>
+            </staticText>
+        </band>
+    </columnHeader>
+
+    <detail>
+        <band height="28">
+            <textField>
+                <reportElement x="6" y="0" width="134" height="28" mode="Opaque" backcolor="#FFFFFF"/>
+                <box leftPadding="6"><pen lineWidth="0.5" lineColor="#94A3B8"/></box>
+                <textElement verticalAlignment="Middle"><font fontName="Franklin Gothic Medium" size="9"/></textElement>
+                <textFieldExpression class="java.lang.String"><![CDATA[$F{Field-1}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="140" y="0" width="80" height="28" mode="Opaque" backcolor="#FFFFFF"/>
+                <box leftPadding="6"><pen lineWidth="0.5" lineColor="#94A3B8"/></box>
+                <textElement verticalAlignment="Middle"><font fontName="Franklin Gothic Medium" size="9"/></textElement>
+                <textFieldExpression class="java.lang.String"><![CDATA[$F{Field-2}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="220" y="0" width="82" height="28" mode="Opaque" backcolor="#FFFFFF"/>
+                <box leftPadding="6"><pen lineWidth="0.5" lineColor="#94A3B8"/></box>
+                <textElement verticalAlignment="Middle"><font fontName="Franklin Gothic Medium" size="9"/></textElement>
+                <textFieldExpression class="java.lang.String"><![CDATA[$F{Field-3}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="302" y="0" width="82" height="28" mode="Opaque" backcolor="#FFFFFF"/>
+                <box leftPadding="6"><pen lineWidth="0.5" lineColor="#94A3B8"/></box>
+                <textElement verticalAlignment="Middle"><font fontName="Franklin Gothic Medium" size="9"/></textElement>
+                <textFieldExpression class="java.lang.String"><![CDATA[$F{Field-4}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="384" y="0" width="82" height="28" mode="Opaque" backcolor="#FFFFFF"/>
+                <box leftPadding="6"><pen lineWidth="0.5" lineColor="#94A3B8"/></box>
+                <textElement verticalAlignment="Middle"><font fontName="Franklin Gothic Medium" size="9"/></textElement>
+                <textFieldExpression class="java.lang.String"><![CDATA[$F{Field-5}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="466" y="0" width="81" height="28" mode="Opaque" backcolor="#FFFFFF"/>
+                <box leftPadding="6"><pen lineWidth="0.5" lineColor="#94A3B8"/></box>
+                <textElement verticalAlignment="Middle"><font fontName="Franklin Gothic Medium" size="9"/></textElement>
+                <textFieldExpression class="java.lang.String"><![CDATA[$F{Field-6}]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+
+    <columnFooter>
+        <band height="45">
+            <staticText>
+                <reportElement x="415" y="22" width="117" height="18"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Franklin Gothic Medium" size="10"/>
+                </textElement>
+                <text><![CDATA[Audit Authorized Signature]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="415" y="18" width="117" height="8"/>
+                <textElement textAlignment="Center" verticalAlignment="Top">
+                    <font fontName="Franklin Gothic Medium" size="10"/>
+                </textElement>
+                <text><![CDATA[---------------------------------------------]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="6" y="6" width="117" height="32"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Franklin Gothic Medium" size="10"/>
+                </textElement>
+                <text><![CDATA[Verified by SmartCity360
+Composite Subsystem]]></text>
+            </staticText>
+            <image onErrorType="Blank">
+                <reportElement x="121" y="6" width="33" height="32"/>
+                <imageExpression class="java.lang.String"><![CDATA["https://i.ibb.co/B5Y9fXZb/Gemini-Generated-Image-xmlz5yxmlz5yxmlz.jpg"]]></imageExpression>
+            </image>
+        </band>
+    </columnFooter>
+
+    <pageFooter>
+        <band height="44">
+            <rectangle>
+                <reportElement x="6" y="5" width="541" height="33" mode="Opaque" backcolor="#1E2A3F"/>
+            </rectangle>
+            <textField>
+                <reportElement x="425" y="7" width="122" height="30" forecolor="#FFFFFF"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Franklin Gothic Medium" size="10"/>
+                </textElement>
+                <textFieldExpression class="java.lang.Integer"><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+            </textField>
+            <image onErrorType="Blank">
+                <reportElement x="6" y="6" width="104" height="30"/>
+                <imageExpression class="java.lang.String"><![CDATA["https://i.ibb.co/hr3bDss/Screenshot-2026-11-11-063827.png"]]></imageExpression>
+            </image>
+        </band>
+    </pageFooter>
+</jasperReport>

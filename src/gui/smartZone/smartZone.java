@@ -7,6 +7,7 @@ import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.tree.DefaultMutableTreeNode;
 import model.Policy;
 import model.SmartZone;
+import model.SmartZoneReportGenerator;
 
 public class smartZone extends javax.swing.JInternalFrame {
 
@@ -274,12 +275,12 @@ public class smartZone extends javax.swing.JInternalFrame {
         SmartCityController ctrl = SmartCityController.getInstance();
         ctrl.getSmartZone().setSubtreePowerState(selectNode, false, smartZoneTree2, smartZoneTable1);
         ctrl.setActiveAlerts(ctrl.getActiveAlerts() + 1);
-        
+
         syncMetrics();
         
         smartTerminal1.appendLog("CRITICAL", "EMERGENCY SHUTDOWN executed on Composite/Leaf [" + targetName + "]!");
         smartTerminal1.appendLog("WARNING", "All child nodes under '" + targetName + "' switched OFF and flagged with alerts.");
-    
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -292,6 +293,15 @@ public class smartZone extends javax.swing.JInternalFrame {
         smartTerminal1.appendLog("SUCCESS", "Composite Total Power for [" + targetName + "]: " + totalKW + " kW.");
         
         syncMetrics();
+        
+        SmartZoneReportGenerator.generateAndShowPdfReport(
+                smartZoneTable1, 
+                targetName, 
+                jLabel30.getText(), 
+                jLabel24.getText(), 
+                totalKW, 
+                smartTerminal1
+        );
         
     }//GEN-LAST:event_jButton2ActionPerformed
 

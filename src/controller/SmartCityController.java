@@ -21,7 +21,7 @@ public class SmartCityController {
     
     private int currentPowerKW = 435;
     private int peakLoadKW = 345;
-    private int activeAlerts = 30;
+    private int activeAlerts = 0;
     private String securityPercent = "100%";
     private String securityLabel = "Encrypted";
     private int lastEscalatedLevel = 1;

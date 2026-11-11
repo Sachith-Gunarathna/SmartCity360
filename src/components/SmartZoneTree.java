@@ -213,12 +213,12 @@ public class SmartZoneTree extends JTree {
         DefaultMutableTreeNode district = new DefaultMutableTreeNode(
                 new ZoneData("District", "Category", IconType.MAP, "", 0, 0, false, true, false));
         DefaultMutableTreeNode centralDistrict = new DefaultMutableTreeNode(
-                new ZoneData("Central District", "District", IconType.PIN, "Active", 345, 500, false, true, true));
+                new ZoneData("Central District", "District", IconType.PIN, "Active", 345, 500, false, true, false));
 
         DefaultMutableTreeNode street = new DefaultMutableTreeNode(
                 new ZoneData("Street", "Category", IconType.FOLDER, "", 0, 0, false, true, false));
         DefaultMutableTreeNode newtonStreet = new DefaultMutableTreeNode(
-                new ZoneData("Narammala Street", "Street", IconType.STREET, "Active", 120, 200, false, true, true));
+                new ZoneData("Narammala Street", "Street", IconType.STREET, "Active", 120, 200, false, true, false));
 
         DefaultMutableTreeNode building = new DefaultMutableTreeNode(
                 new ZoneData("Building", "Category", IconType.FOLDER, "", 0, 0, false, true, false));
@@ -227,7 +227,7 @@ public class SmartZoneTree extends JTree {
         DefaultMutableTreeNode techPark = new DefaultMutableTreeNode(
                 new ZoneData("Tech Park Building", "Building", IconType.BUILDING, "Active", 60, 80, false, true, false));
         DefaultMutableTreeNode aptC1 = new DefaultMutableTreeNode(
-                new ZoneData("Apartment C (Block 1)", "Building", IconType.BUILDING, "Active", 35, 50, false, true, true));
+                new ZoneData("Apartment C (Block 1)", "Building", IconType.BUILDING, "Active", 35, 50, false, true, false));
         DefaultMutableTreeNode aptC2 = new DefaultMutableTreeNode(
                 new ZoneData("Apartment C (Block 2)", "Building", IconType.BUILDING, "Active", 25, 50, false, true, false));
         DefaultMutableTreeNode aptC3 = new DefaultMutableTreeNode(

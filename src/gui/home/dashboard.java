@@ -171,13 +171,13 @@ public class dashboard extends javax.swing.JFrame {
 
         sideNavBar.add(line01, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 171, 213, -1));
 
-        companyLogo.setImage(new javax.swing.ImageIcon(getClass().getResource("/resources/logo/logo2.png"))); // NOI18N
-        sideNavBar.add(companyLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(103, 675, 88, 25));
+        companyLogo.setImage(new javax.swing.ImageIcon(getClass().getResource("/resources/logo/company logo.png"))); // NOI18N
+        sideNavBar.add(companyLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 670, 140, 50));
 
         jLabel1.setFont(new java.awt.Font("Microsoft YaHei", 0, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Powered by");
-        sideNavBar.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 683, -1, -1));
+        sideNavBar.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 670, -1, 50));
 
         line02.setBackground(new java.awt.Color(255, 255, 255));
         line02.setRoundBottomLeft(10);

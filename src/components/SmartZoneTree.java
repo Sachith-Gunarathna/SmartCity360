@@ -130,9 +130,7 @@ public class SmartZoneTree extends JTree {
         return node;
     }
 
-    /**
-     * SmartZoneTable na 6 columns format ge sariyagi rows load maaduttade
-     */
+
     public void updateBoundTable() {
         if (boundTable == null) {
             return;
@@ -220,23 +218,23 @@ public class SmartZoneTree extends JTree {
         DefaultMutableTreeNode street = new DefaultMutableTreeNode(
                 new ZoneData("Street", "Category", IconType.FOLDER, "", 0, 0, false, true, false));
         DefaultMutableTreeNode newtonStreet = new DefaultMutableTreeNode(
-                new ZoneData("Newton Street", "Street", IconType.STREET, "Active", 120, 200, false, false, true));
+                new ZoneData("Narammala Street", "Street", IconType.STREET, "Active", 120, 200, false, true, true));
 
         DefaultMutableTreeNode building = new DefaultMutableTreeNode(
                 new ZoneData("Building", "Category", IconType.FOLDER, "", 0, 0, false, true, false));
         DefaultMutableTreeNode hospital = new DefaultMutableTreeNode(
                 new ZoneData("Hospital Block A", "Building", IconType.BUILDING, "Active", 85, 120, false, true, false));
         DefaultMutableTreeNode techPark = new DefaultMutableTreeNode(
-                new ZoneData("Tech Park Building", "Building", IconType.BUILDING, "Critical", 60, 80, false, true, false));
+                new ZoneData("Tech Park Building", "Building", IconType.BUILDING, "Active", 60, 80, false, true, false));
         DefaultMutableTreeNode aptC1 = new DefaultMutableTreeNode(
-                new ZoneData("Apartment C (Block 1)", "Building", IconType.BUILDING, "Critical", 35, 50, false, true, true));
+                new ZoneData("Apartment C (Block 1)", "Building", IconType.BUILDING, "Active", 35, 50, false, true, true));
         DefaultMutableTreeNode aptC2 = new DefaultMutableTreeNode(
                 new ZoneData("Apartment C (Block 2)", "Building", IconType.BUILDING, "Active", 25, 50, false, true, false));
         DefaultMutableTreeNode aptC3 = new DefaultMutableTreeNode(
                 new ZoneData("Apartment C (Block 3)", "Building", IconType.BUILDING, "Active", 20, 50, false, true, false));
 
         DefaultMutableTreeNode aptD = new DefaultMutableTreeNode(
-                new ZoneData("Apartment D", "Building", IconType.BUILDING, "Active", 45, 70, false, false, false));
+                new ZoneData("Apartment D", "Building", IconType.BUILDING, "Active", 45, 70, false, true, false));
         aptD.add(new DefaultMutableTreeNode(
                 new ZoneData("Apt D - Floor 1", "Floor", IconType.BUILDING, "Active", 25, 40, false, true, false)));
 

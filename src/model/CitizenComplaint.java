@@ -67,8 +67,12 @@ public class CitizenComplaint {
             String desc = request.getDescription().toLowerCase();
             String cat = request.getCategory().toLowerCase();
             
-            boolean needsEscalation = desc.contains("main grid") || desc.contains("blackout")
-                    || desc.contains("multiple") || desc.contains("critical") || cat.contains("emergency");
+            boolean needsEscalation = cat.contains("multiple") || cat.contains("critical")
+                    || cat.contains("overload") || cat.contains("damage")
+                    || cat.contains("emergency") || cat.contains("blackout")
+                    || desc.contains("multiple") || desc.contains("overload")
+                    || desc.contains("main grid") || desc.contains("blackout")
+                    || desc.contains("city-wide");
             
             if(!needsEscalation){
                 if(terminal != null){
@@ -96,8 +100,10 @@ public class CitizenComplaint {
             String desc = request.getDescription().toLowerCase();
             String cat = request.getDescription().toLowerCase();
             
-            boolean isCriticalEmergency = desc.contains("main grid") || desc.contains("blackout")
-                    || desc.contains("multiple") || desc.contains("critical") || cat.contains("emergency");
+            boolean isCriticalEmergency = cat.contains("emergency") 
+                    || cat.contains("blackout")
+                    || desc.contains("main grid") || desc.contains("blackout")
+                    || desc.contains("city-wide");
             
             if(!isCriticalEmergency){
                 if(terminal != null){

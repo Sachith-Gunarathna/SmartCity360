@@ -120,11 +120,13 @@ public class policy extends javax.swing.JInternalFrame {
         panelRound3.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 400, 100, 30));
 
         jTextField1.setBackground(new java.awt.Color(30, 41, 59));
-        jTextField1.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 12)); // NOI18N
+        jTextField1.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 14)); // NOI18N
+        jTextField1.setForeground(new java.awt.Color(255, 255, 255));
         panelRound3.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 400, 360, 30));
 
         jTextField2.setBackground(new java.awt.Color(30, 41, 59));
-        jTextField2.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 12)); // NOI18N
+        jTextField2.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 14)); // NOI18N
+        jTextField2.setForeground(new java.awt.Color(255, 255, 255));
         panelRound3.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 450, 360, 30));
 
         jLabel15.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 15)); // NOI18N
@@ -138,7 +140,8 @@ public class policy extends javax.swing.JInternalFrame {
         panelRound3.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 500, 100, 30));
 
         jTextField3.setBackground(new java.awt.Color(30, 41, 59));
-        jTextField3.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 12)); // NOI18N
+        jTextField3.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 14)); // NOI18N
+        jTextField3.setForeground(new java.awt.Color(255, 255, 255));
         panelRound3.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 500, 360, 30));
 
         jButton1.setBackground(new java.awt.Color(56, 189, 248));

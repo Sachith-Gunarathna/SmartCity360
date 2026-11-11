@@ -82,7 +82,7 @@ public class signIn extends javax.swing.JFrame {
         jTextField1.setBackground(new java.awt.Color(15, 23, 42));
         jTextField1.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 14)); // NOI18N
         jTextField1.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField1.setText("admin@nexcentauri.com");
+        jTextField1.setText("admin@urbantecksolutions.com");
         jTextField1.setToolTipText("Enter your username or email");
         jTextField1.setBorder(null);
         jTextField1.setCaretColor(new java.awt.Color(255, 255, 255));
@@ -123,10 +123,10 @@ public class signIn extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Microsoft YaHei", 0, 12)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Powered by");
-        panelRound2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 500, 70, 30));
+        panelRound2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 500, 70, 40));
 
-        companyLogo.setImage(new javax.swing.ImageIcon(getClass().getResource("/resources/logo/logo2.png"))); // NOI18N
-        panelRound2.add(companyLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 500, 110, 30));
+        companyLogo.setImage(new javax.swing.ImageIcon(getClass().getResource("/resources/logo/company logo.png"))); // NOI18N
+        panelRound2.add(companyLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 500, 150, 40));
 
         pictureBox2.setToolTipText("Close");
         pictureBox2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));

@@ -25,7 +25,22 @@ public class citizenComplaint extends javax.swing.JInternalFrame {
         }
         
         smartEscalationChain1.bindTerminal(smartTerminal1);
-        roundTextAreaPanel1.setText("Main grid power failure affecting street lights and hospital block on Newton Street.");
+        roundTextAreaPanel1.setText("Routine maintenance required for reported street light fault.");
+        
+        jComboBox1.addActionListener(e -> {
+            
+            if(jComboBox1.getSelectedItem() == null){
+                return;
+            }
+            String selectedCat = jComboBox1.getSelectedItem().toString();
+            if(selectedCat.contains("Emergency") || selectedCat.contains("Blackout")){
+                roundTextAreaPanel1.setText("Main grid power failure and blackout affecting street lights and hospital block.");
+            }else if (selectedCat.contains("Multiple") || selectedCat.contains("Critical")) {
+                roundTextAreaPanel1.setText("Multiple street distribution nodes reporting sector overload.");
+            } else {
+                roundTextAreaPanel1.setText("Routine maintenance required for reported " + selectedCat.toLowerCase() + ".");
+            }
+        });
         
         smartTerminal1.appendLog("INFO", "(Local Staff -> Supervisor -> City Manager) active.");
     }
@@ -43,12 +58,12 @@ public class citizenComplaint extends javax.swing.JInternalFrame {
         jTextField2 = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        comboBoxSuggestion1 = new components.ComboBoxSuggestion();
         jLabel17 = new javax.swing.JLabel();
-        comboBoxSuggestion2 = new components.ComboBoxSuggestion();
         jLabel18 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         roundTextAreaPanel1 = new components.RoundTextAreaPanel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox2 = new javax.swing.JComboBox<>();
         panelRound3 = new components.PanelRound();
         smartEscalationChain1 = new components.SmartEscalationChain();
         smartTerminal1 = new components.SmartTerminal();
@@ -84,11 +99,13 @@ public class citizenComplaint extends javax.swing.JInternalFrame {
         panelRound2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 131, 30));
 
         jTextField1.setBackground(new java.awt.Color(30, 41, 59));
-        jTextField1.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 12)); // NOI18N
+        jTextField1.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 14)); // NOI18N
+        jTextField1.setForeground(new java.awt.Color(255, 255, 255));
         panelRound2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 470, 40));
 
         jTextField2.setBackground(new java.awt.Color(30, 41, 59));
-        jTextField2.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 12)); // NOI18N
+        jTextField2.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 14)); // NOI18N
+        jTextField2.setForeground(new java.awt.Color(255, 255, 255));
         panelRound2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 470, 40));
 
         jLabel15.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 15)); // NOI18N
@@ -101,18 +118,10 @@ public class citizenComplaint extends javax.swing.JInternalFrame {
         jLabel16.setText("Contact Info");
         panelRound2.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 131, 30));
 
-        comboBoxSuggestion1.setBackground(new java.awt.Color(30, 41, 59));
-        comboBoxSuggestion1.setForeground(new java.awt.Color(255, 255, 255));
-        panelRound2.add(comboBoxSuggestion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 470, -1));
-
         jLabel17.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 15)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
         jLabel17.setText("Complaint Description");
         panelRound2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 410, 470, 30));
-
-        comboBoxSuggestion2.setBackground(new java.awt.Color(30, 41, 59));
-        comboBoxSuggestion2.setForeground(new java.awt.Color(255, 255, 255));
-        panelRound2.add(comboBoxSuggestion2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, 470, -1));
 
         jLabel18.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 15)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(255, 255, 255));
@@ -130,6 +139,18 @@ public class citizenComplaint extends javax.swing.JInternalFrame {
 
         roundTextAreaPanel1.setForeground(new java.awt.Color(255, 255, 255));
         panelRound2.add(roundTextAreaPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 440, 470, 140));
+
+        jComboBox1.setBackground(new java.awt.Color(30, 41, 59));
+        jComboBox1.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 14)); // NOI18N
+        jComboBox1.setForeground(new java.awt.Color(255, 255, 255));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Street Light Fault", "Waste Management", "Water Supply Issue", "Noise / Parking Violation", "Multiple Infrastructure Damage", "Critical Sector Overload", "Emergency Grid Failure", "City-Wide Blackout (Emergency)" }));
+        panelRound2.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, 470, 30));
+
+        jComboBox2.setBackground(new java.awt.Color(30, 41, 59));
+        jComboBox2.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 14)); // NOI18N
+        jComboBox2.setForeground(new java.awt.Color(255, 255, 255));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Central District", "Narammala Street", "Alawwa City", "Industrial Sector", "Hospital Block A", "Tech Park Building", "Apartment C (Block 1)", "Apartment D", "Apartment E" }));
+        panelRound2.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, 470, 30));
 
         panelRound1.add(panelRound2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 490, 640));
 
@@ -179,8 +200,8 @@ public class citizenComplaint extends javax.swing.JInternalFrame {
 
         String citizenName = jTextField1.getText().trim().isEmpty() ? "Sachith Gunarathna" : jTextField1.getText().trim();
         String contactNumber = jTextField2.getText().trim().isEmpty() ? "+94763145020" : jTextField2.getText().trim();
-        String Category = comboBoxSuggestion1.getSelectedItem() != null ? comboBoxSuggestion1.getSelectedItem().toString() : "Power Outage";
-        String zone = comboBoxSuggestion2.getSelectedItem() != null ? comboBoxSuggestion2.getSelectedItem().toString() : "Central District";
+        String Category = jComboBox1.getSelectedItem() != null ? jComboBox1.getSelectedItem().toString() : "Power Outage";
+        String zone = jComboBox2.getSelectedItem() != null ? jComboBox2.getSelectedItem().toString() : "Central District";
         String description = roundTextAreaPanel1.getText().trim();
         
         if(description.isEmpty()){
@@ -201,9 +222,9 @@ public class citizenComplaint extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private components.ComboBoxSuggestion comboBoxSuggestion1;
-    private components.ComboBoxSuggestion comboBoxSuggestion2;
     private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;

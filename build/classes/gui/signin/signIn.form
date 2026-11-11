@@ -177,7 +177,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="admin@nexcentauri.com"/>
+                <Property name="text" type="java.lang.String" value="admin@urbantecksolutions.com"/>
                 <Property name="toolTipText" type="java.lang.String" value="Enter your username or email"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="null"/>
@@ -298,19 +298,19 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="90" y="500" width="70" height="30"/>
+                  <AbsoluteConstraints x="90" y="500" width="70" height="40"/>
                 </Constraint>
               </Constraints>
             </Component>
             <Container class="components.PictureBox" name="companyLogo">
               <Properties>
                 <Property name="image" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/resources/logo/logo2.png"/>
+                  <Image iconType="3" name="/resources/logo/company logo.png"/>
                 </Property>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="160" y="500" width="110" height="30"/>
+                  <AbsoluteConstraints x="150" y="500" width="150" height="40"/>
                 </Constraint>
               </Constraints>
 

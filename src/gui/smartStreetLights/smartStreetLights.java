@@ -143,7 +143,7 @@ public class smartStreetLights extends javax.swing.JInternalFrame {
         
         ctrl.getStreetLightFlyweight().deployNode(
                 typeKey, 
-                "Narammala Road", 
+                "Narammala Street", 
                 0.52f, 
                 0.48f, 
                 smartTerminal1

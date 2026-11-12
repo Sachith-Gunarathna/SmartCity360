@@ -208,7 +208,7 @@ public class SmartZoneTree extends JTree {
 
     private void setupInitialData() {
         DefaultMutableTreeNode root = new DefaultMutableTreeNode(
-                new ZoneData("Alawwa City", "City", IconType.CITY_MAP, "CyanDot", 570, 800, true, true, false));
+                new ZoneData("Alawwa City", "City", IconType.CITY_MAP, "CyanDot", 1390, 800, true, true, false));
 
         DefaultMutableTreeNode district = new DefaultMutableTreeNode(
                 new ZoneData("District", "Category", IconType.MAP, "", 0, 0, false, true, false));
